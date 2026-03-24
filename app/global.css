@@ -126,8 +126,9 @@
 }
 
 .dark #nd-sidebar {
-  --color-fd-muted: #1A1A1A;
-  --color-fd-secondary: #1E1E1E;
+  --color-fd-background: #000000;
+  --color-fd-muted: #141414;
+  --color-fd-secondary: #171717;
   --color-fd-muted-foreground: #A1A1AA;
 }
 
