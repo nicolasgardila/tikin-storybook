@@ -1,0 +1,216 @@
+---
+title: Dialog
+description: Modal con patron double-layer, backdrop y variantes de contenido
+status: stable
+---
+
+
+<DialogPlayground />
+
+## Instalacion
+
+```tsx
+import { DSDialog } from '@/components/ds/ds-dialog'
+```
+
+## Uso
+
+```tsx title="dialog.tsx"
+import { DSDialog } from '@/components/ds/ds-dialog'
+
+export default function Example() {
+  return (
+    <DSDialog
+      open={true}
+      onClose={() => {}}
+      title="Confirmar acción"
+    >
+      <p>¿Estás seguro de que deseas continuar?</p>
+    </DSDialog>
+  )
+}
+```
+
+## Ejemplos
+
+### Confirmation Dialog
+
+El caso más común: confirmar una acción antes de ejecutarla.
+
+<ComponentPreview>
+  <div style={{ position: 'relative', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '320px' }}>
+    <div style={{ backgroundColor: 'var(--preview-muted-bg)', border: '1px solid var(--preview-border)', borderRadius: '24px', padding: '12px', boxShadow: '0 0 2px rgba(11,15,16,0.12)', maxWidth: '605px', width: '100%' }}>
+      <div style={{ backgroundColor: 'var(--preview-surface)', borderRadius: '20px', padding: '36px', display: 'flex', flexDirection: 'column' }}>
+        <h3 style={{ fontFamily: 'var(--font-funnel-display)', fontSize: '24px', fontWeight: 400, fontStyle: 'normal', lineHeight: 'normal', margin: 0, color: 'inherit' }}>Confirmar acción</h3>
+        <p style={{ fontFamily: 'var(--font-ubuntu-sans)', fontSize: '16px', fontWeight: 400, color: 'inherit', opacity: 0.65, margin: 0, marginTop: '8px', lineHeight: 'normal' }}>¿Estás seguro de que deseas continuar? Esta acción no se puede deshacer.</p>
+        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px', marginTop: '28px' }}>
+          <button style={{ borderRadius: '12px', border: '1px solid var(--preview-border)', backgroundColor: 'transparent', height: '40px', padding: '0 16px', fontSize: '13px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'inherit', cursor: 'pointer', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>Cancelar</button>
+          <button style={{ borderRadius: '12px', backgroundColor: 'var(--preview-brand)', height: '40px', padding: '0 16px', fontSize: '13px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--preview-brand-on)', border: 'none', cursor: 'pointer', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>Confirmar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ComponentPreview>
+
+### Con Icono
+
+Variante con un icono de advertencia encima del título para acciones destructivas.
+
+<ComponentPreview>
+  <div style={{ position: 'relative', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '360px' }}>
+    <div style={{ backgroundColor: 'var(--preview-muted-bg)', border: '1px solid var(--preview-border)', borderRadius: '24px', padding: '12px', boxShadow: '0 0 2px rgba(11,15,16,0.12)', maxWidth: '605px', width: '100%' }}>
+      <div style={{ backgroundColor: 'var(--preview-surface)', borderRadius: '20px', padding: '36px', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ width: '48px', height: '48px', borderRadius: '12px', backgroundColor: 'var(--preview-error-bg, #FEE9E7)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '16px' }}>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#EC221F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+            <line x1="12" y1="9" x2="12" y2="13" />
+            <line x1="12" y1="17" x2="12.01" y2="17" />
+          </svg>
+        </div>
+        <h3 style={{ fontFamily: 'var(--font-funnel-display)', fontSize: '24px', fontWeight: 400, fontStyle: 'normal', lineHeight: 'normal', margin: 0, color: 'inherit' }}>Eliminar cuenta</h3>
+        <p style={{ fontFamily: 'var(--font-ubuntu-sans)', fontSize: '16px', fontWeight: 400, color: 'inherit', opacity: 0.65, margin: 0, marginTop: '8px', lineHeight: 'normal' }}>Todos tus datos serán eliminados permanentemente. No podrás recuperar tu cuenta ni tu historial.</p>
+        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px', marginTop: '28px' }}>
+          <button style={{ borderRadius: '12px', border: '1px solid var(--preview-border)', backgroundColor: 'transparent', height: '40px', padding: '0 16px', fontSize: '13px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'inherit', cursor: 'pointer', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>Cancelar</button>
+          <button style={{ borderRadius: '12px', backgroundColor: '#EC221F', height: '40px', padding: '0 16px', fontSize: '13px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--preview-brand-on, #FFFFFF)', border: 'none', cursor: 'pointer', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ComponentPreview>
+
+### Estructura Double-Layer
+
+```tsx title="dialog.tsx"
+export function Dialog({ open, onClose, title, children }) {
+  if (!open) return null;
+
+  return (
+    {/* Backdrop */}
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+      {/* Outer shell — double-layer */}
+      <div className="rounded-3xl border border-[#DEDEDE] bg-[#F6F6F6] p-3 shadow-[0_0_2px_rgba(11,15,16,0.12)]">
+        {/* Inner panel */}
+        <div className="rounded-[1.25rem] bg-white p-9">
+          <h3 className="font-funnel-display text-2xl font-normal">
+            {title}
+          </h3>
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+## Anatomia
+
+Estructura double-layer del Dialog:
+
+```
+Backdrop: rgba(0,0,0,0.40)
+┌─ Outer Shell ─────────────────────────┐
+│  bg: #F6F6F6 (dark: #171717)          │
+│  border: 1px #DEDEDE (dark: #2A2A2A)  │
+│  border-radius: 24px                  │
+│  padding: 12px                        │
+│  shadow: 0 0 2px rgba(11,15,16,0.12)  │
+│  Close X: 40x40, top 28 right 28     │
+│                                        │
+│  ┌─ Inner Panel ──────────────────┐    │
+│  │  bg: #FFFFFF (dark: #1E1E1E)   │    │
+│  │  border-radius: 20px           │    │
+│  │  padding: 36px                 │    │
+│  │                                │    │
+│  │  Title (Funnel Display 400     │    │
+│  │         24px)                  │    │
+│  │  margin-top: 8px               │    │
+│  │  Desc (Ubuntu Sans 400 16px)   │    │
+│  │  margin-top: 28px              │    │
+│  │  [Footer: flex-end gap 10px]   │    │
+│  │    Secondary + Primary btn     │    │
+│  │    h40 r12 Mono 500 14px       │    │
+│  │                                │    │
+│  └─────────────────────────────────┘    │
+└────────────────────────────────────────┘
+```
+
+| Capa | Token | Valor |
+|------|-------|-------|
+| Backdrop | — | rgba(0,0,0,0.40) |
+| Outer bg | `--ds-neutral-bg` | #F6F6F6 (dark: #171717) |
+| Outer border | `--ds-neutral-border` | 1px #DEDEDE (dark: #2A2A2A) |
+| Outer radius | `--ds-radius-2xl` | 24px |
+| Outer padding | `--ds-space-3` | 12px |
+| Outer shadow | — | 0 0 2px rgba(11,15,16,0.12) |
+| Inner bg | `--ds-neutral-surface` | #FFFFFF (dark: #1E1E1E) |
+| Inner radius | `--ds-radius-xl` | 20px |
+| Inner padding | — | 36px |
+| Title font | — | Funnel Display 400 24px |
+| Desc font | — | Ubuntu Sans 400 16px |
+| Title-desc gap | — | 8px (margin-top) |
+| Footer gap | — | 10px |
+| Footer margin-top | — | 28px |
+| Button height | — | 40px |
+| Button radius | `--ds-radius-lg` | 12px |
+| Button font | — | Ubuntu Sans Mono 500 14px |
+| Close button | — | 40x40, icon 16px, top 28 right 28 |
+| Destructive bg | — | #EC221F |
+| Danger icon | — | 48x48, r12, bg #FEE9E7 |
+
+## Props
+
+<PropsTable
+  props={[
+    {
+      name: 'title',
+      type: 'string',
+      description: 'Título del dialog, renderizado en Funnel Display 400 24px.',
+    },
+    {
+      name: 'description',
+      type: 'string',
+      description: 'Texto descriptivo debajo del título, renderizado en Ubuntu Sans 400 16px.',
+    },
+    {
+      name: 'variant',
+      type: "'confirmation' | 'destructive'",
+      default: "'confirmation'",
+      description: 'Tipo de dialog. Destructive usa botón rojo (#EC221F) y puede incluir icono de advertencia.',
+    },
+    {
+      name: 'size',
+      type: "'sm' | 'md' | 'lg'",
+      default: "'md'",
+      description: 'Ancho máximo del dialog: sm (400px), md (605px), lg (605px).',
+    },
+    {
+      name: 'showCloseButton',
+      type: 'boolean',
+      default: 'true',
+      description: 'Muestra un botón X de 40x40 para cerrar en la esquina superior derecha.',
+    },
+    {
+      name: 'children',
+      type: 'ReactNode',
+      description: 'Contenido del cuerpo del dialog.',
+    },
+  ]}
+/>
+
+## Guías de Uso
+
+<DoDont type="do">
+  Usa Dialog para confirmaciones y advertencias de acciones destructivas que requieren atención inmediata del usuario.
+</DoDont>
+
+<DoDont type="dont">
+  No uses Dialog para mostrar contenido largo o formularios complejos. Usa Side Panel en su lugar.
+</DoDont>
+
+<DoDont type="do">
+  Incluye siempre una acción para cerrar el dialog — ya sea un botón "Cancelar" o el botón X.
+</DoDont>
+
+<DoDont type="dont">
+  No apiles múltiples dialogs uno encima de otro. Simplifica el flujo para evitar modals anidados.
+</DoDont>

@@ -1,0 +1,74 @@
+---
+title: Suavizado de Esquinas
+description: Corner smoothing al 60% para esquinas organicas
+---
+
+El suavizado de esquinas (corner smoothing) es una tecnica que produce bordes redondeados mas organicos y naturales, similares a los que usa iOS/macOS, en contraste con el `border-radius` estandar de CSS.
+
+## Que es Corner Smoothing
+
+El `border-radius` estandar de CSS produce una curva circular exacta. El corner smoothing aplica una curva continua (superelipse) que transiciona de forma mas gradual entre el borde recto y la curva, resultando en esquinas que se sienten mas suaves y naturales al ojo.
+
+La diferencia es sutil pero perceptible: las esquinas con smoothing se ven mas "pulidas" y evitan el aspecto geometrico rigido del border-radius puro.
+
+## Valor del DS
+
+El Design System aplica un **60% de corner smoothing** en todos los radios. Este valor fue elegido porque:
+
+- Produce una curva notablemente mas suave que el border-radius puro
+- Mantiene la forma reconocible del radio original
+- Es consistente con el lenguaje visual organico del DS
+
+## Implementacion
+
+El DS utiliza el plugin `tailwind-corner-smoothing` para aplicar smoothing via clases de utilidad:
+
+```tsx
+<div className="rounded-xl corner-smooth-60">
+  Contenido con esquinas suavizadas
+</div>
+```
+
+Si el plugin no esta disponible, el smoothing se puede lograr con CSS nativo usando la propiedad experimental `corner-shape`:
+
+```css
+.smooth-corners {
+  border-radius: var(--ds-radius-xl);
+  /* Propiedad experimental - soporte limitado */
+  corner-shape: superellipse;
+}
+```
+
+## Comparacion visual
+
+| Tipo | Curva | Resultado |
+|---|---|---|
+| `border-radius` estandar | Arco circular | Transicion abrupta entre recto y curvo |
+| Corner smoothing 60% | Superelipse | Transicion gradual y organica |
+
+La diferencia es mas evidente en radios grandes (xl, 2xl, 3xl) y en elementos con fondo solido donde el borde es protagonista.
+
+## Cuando usar
+
+El corner smoothing se aplica a **todos** los elementos redondeados del DS:
+
+- Botones y controles interactivos
+- Tarjetas y contenedores
+- Modales y dialogos
+- Inputs y selects
+- Badges y tags
+- Avatares (excepto los circulares que usan `radius-full`)
+
+No se excluye ningun componente con radios del smoothing. Es una propiedad global del sistema visual.
+
+## Referencia tecnica
+
+El smoothing se basa en el concepto de superelipse (curva de Lame), donde la formula `|x/a|^n + |y/b|^n = 1` controla la forma de la curva. Un valor de `n=2` produce un circulo perfecto (border-radius puro), mientras que valores mayores producen esquinas mas cuadradas con transiciones mas suaves.
+
+Tecnologias disponibles:
+
+| Tecnologia | Soporte | Uso |
+|---|---|---|
+| `tailwind-corner-smoothing` | Plugin Tailwind | Clase `corner-smooth-60` |
+| `corner-shape: superellipse` | CSS experimental | Soporte limitado en navegadores |
+| Canvas/SVG path | Universal | Para casos donde CSS no es suficiente |

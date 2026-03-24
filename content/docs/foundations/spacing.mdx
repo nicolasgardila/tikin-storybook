@@ -1,0 +1,76 @@
+---
+title: Espaciado
+description: 19 tokens de espaciado de 0 a 64px
+---
+
+## Escala de Espaciado
+
+El sistema de espaciado de Black Cash esta basado en una unidad de **4px**. Todos los tokens son multiplos de esta unidad base, creando ritmo visual consistente en toda la interfaz.
+
+---
+
+## Tokens
+
+| Token | CSS Variable | Valor | Uso comun |
+|-------|-------------|-------|-----------|
+| 0 | `--ds-space-0` | 0px | Reset de espaciado |
+| 0.5 | `--ds-space-0.5` | 2px | Micro ajustes, bordes internos |
+| 1 | `--ds-space-1` | 4px | Spacing inline, gaps de iconos |
+| 1.5 | `--ds-space-1.5` | 6px | Padding compacto fino |
+| 2 | `--ds-space-2` | 8px | Padding compacto, gaps pequenos |
+| 2.5 | `--ds-space-2.5` | 10px | Gaps intermedios |
+| 3 | `--ds-space-3` | 12px | Gap de contenedor interno (doble capa) |
+| 3.5 | `--ds-space-3.5` | 14px | Padding intermedio |
+| 4 | `--ds-space-4` | 16px | Padding estandar, espaciado de campos |
+| 4.5 | `--ds-space-4.5` | 18px | Padding extendido |
+| 5 | `--ds-space-5` | 20px | Padding de seccion |
+| 6 | `--ds-space-6` | 24px | Padding de tarjeta, padding de dialogo |
+| 7 | `--ds-space-7` | 28px | Padding de componente grande |
+| 8 | `--ds-space-8` | 32px | Margenes de seccion |
+| 9 | `--ds-space-9` | 36px | Gaps grandes |
+| 10 | `--ds-space-10` | 40px | Espaciado de seccion de pagina |
+| 11 | `--ds-space-11` | 44px | Alturas de componente (botones) |
+| 12 | `--ds-space-12` | 48px | Espaciado de seccion grande |
+| 14 | `--ds-space-14` | 56px | Espaciado extra grande |
+| 16 | `--ds-space-16` | 64px | Token de espaciado maximo |
+
+---
+
+## Uso en Codigo
+
+```tsx
+{/* Padding de tarjeta con gap interno */}
+<div
+  className="p-[var(--ds-space-6)]"
+  style={{ gap: 'var(--ds-space-3)' }}
+>
+  <h3>Titulo</h3>
+  <p>Contenido</p>
+</div>
+
+{/* Espaciado entre secciones */}
+<section className="mb-[var(--ds-space-8)]">
+  <div className="space-y-[var(--ds-space-4)]">
+    <input className="p-[var(--ds-space-3)]" />
+    <input className="p-[var(--ds-space-3)]" />
+  </div>
+</section>
+```
+
+---
+
+## Principios
+
+### Cuando usar cada nivel
+
+| Nivel | Rango | Contexto |
+|-------|-------|----------|
+| Micro | 0-2 (0-8px) | Dentro de componentes: icon gaps, inline spacing |
+| Interno | 3-4 (12-16px) | Padding interno de componentes: inputs, chips, tags |
+| Componente | 5-6 (20-24px) | Padding de tarjetas, dialogos, paneles |
+| Seccion | 8-12 (32-48px) | Separacion entre secciones y grupos |
+| Layout | 14-16 (56-64px) | Margenes de pagina, separacion mayor |
+
+### Regla de consistencia
+
+Usar siempre tokens del sistema en lugar de valores arbitrarios. Si un espaciado no encaja en ningun token, elegir el mas cercano — la consistencia visual es mas importante que la precision al pixel.

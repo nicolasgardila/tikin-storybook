@@ -1,0 +1,210 @@
+---
+title: OTP Input
+description: Campos individuales para ingreso de codigos de verificacion OTP
+status: stable
+---
+
+
+<OTPInputPlayground />
+
+## Instalacion
+
+```tsx
+import { DSOTPInput } from '@/components/ds/ds-otp-input'
+```
+
+## Uso
+
+```tsx title="otp-input.tsx"
+import { DSOTPInput } from '@/components/ds/ds-otp-input'
+
+export default function Example() {
+  return (
+    <DSOTPInput length={4} size="md" state="default" />
+  )
+}
+```
+
+## Ejemplos
+
+### 4 Digitos
+
+Entrada OTP de 4 campos para codigos cortos.
+
+<ComponentPreview>
+  <div style={{ display: 'flex', gap: '8px' }}>
+    <div style={{ width: '48px', height: '56px', borderRadius: '12px', border: '0.5px solid var(--preview-border)', backgroundColor: 'var(--preview-surface)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-ubuntu-sans-mono), ui-monospace, monospace', fontSize: '24px', fontWeight: 500, color: 'inherit' }}>
+    </div>
+    <div style={{ width: '48px', height: '56px', borderRadius: '12px', border: '0.5px solid var(--preview-border)', backgroundColor: 'var(--preview-surface)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-ubuntu-sans-mono), ui-monospace, monospace', fontSize: '24px', fontWeight: 500, color: 'inherit' }}>
+    </div>
+    <div style={{ width: '48px', height: '56px', borderRadius: '12px', border: '0.5px solid var(--preview-border)', backgroundColor: 'var(--preview-surface)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-ubuntu-sans-mono), ui-monospace, monospace', fontSize: '24px', fontWeight: 500, color: 'inherit' }}>
+    </div>
+    <div style={{ width: '48px', height: '56px', borderRadius: '12px', border: '0.5px solid var(--preview-border)', backgroundColor: 'var(--preview-surface)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-ubuntu-sans-mono), ui-monospace, monospace', fontSize: '24px', fontWeight: 500, color: 'inherit' }}>
+    </div>
+  </div>
+</ComponentPreview>
+
+### 6 Digitos
+
+Entrada OTP de 6 campos con separador central para codigos de verificacion estandar.
+
+<ComponentPreview>
+  <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+    <div style={{ width: '48px', height: '56px', borderRadius: '12px', border: '0.5px solid var(--preview-border)', backgroundColor: 'var(--preview-surface)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-ubuntu-sans-mono), ui-monospace, monospace', fontSize: '24px', fontWeight: 500, color: 'inherit' }}>
+    </div>
+    <div style={{ width: '48px', height: '56px', borderRadius: '12px', border: '0.5px solid var(--preview-border)', backgroundColor: 'var(--preview-surface)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-ubuntu-sans-mono), ui-monospace, monospace', fontSize: '24px', fontWeight: 500, color: 'inherit' }}>
+    </div>
+    <div style={{ width: '48px', height: '56px', borderRadius: '12px', border: '0.5px solid var(--preview-border)', backgroundColor: 'var(--preview-surface)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-ubuntu-sans-mono), ui-monospace, monospace', fontSize: '24px', fontWeight: 500, color: 'inherit' }}>
+    </div>
+    <div style={{ width: '12px', height: '2px', borderRadius: '1px', backgroundColor: 'var(--preview-border)', flexShrink: 0 }} />
+    <div style={{ width: '48px', height: '56px', borderRadius: '12px', border: '0.5px solid var(--preview-border)', backgroundColor: 'var(--preview-surface)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-ubuntu-sans-mono), ui-monospace, monospace', fontSize: '24px', fontWeight: 500, color: 'inherit' }}>
+    </div>
+    <div style={{ width: '48px', height: '56px', borderRadius: '12px', border: '0.5px solid var(--preview-border)', backgroundColor: 'var(--preview-surface)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-ubuntu-sans-mono), ui-monospace, monospace', fontSize: '24px', fontWeight: 500, color: 'inherit' }}>
+    </div>
+    <div style={{ width: '48px', height: '56px', borderRadius: '12px', border: '0.5px solid var(--preview-border)', backgroundColor: 'var(--preview-surface)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-ubuntu-sans-mono), ui-monospace, monospace', fontSize: '24px', fontWeight: 500, color: 'inherit' }}>
+    </div>
+  </div>
+</ComponentPreview>
+
+### Completado
+
+Todos los digitos ingresados.
+
+<ComponentPreview>
+  <div style={{ display: 'flex', gap: '8px' }}>
+    <div style={{ width: '48px', height: '56px', borderRadius: '12px', border: '0.5px solid var(--preview-border)', backgroundColor: 'var(--preview-surface)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-ubuntu-sans-mono), ui-monospace, monospace', fontSize: '24px', fontWeight: 500, color: 'inherit' }}>
+      3
+    </div>
+    <div style={{ width: '48px', height: '56px', borderRadius: '12px', border: '0.5px solid var(--preview-border)', backgroundColor: 'var(--preview-surface)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-ubuntu-sans-mono), ui-monospace, monospace', fontSize: '24px', fontWeight: 500, color: 'inherit' }}>
+      8
+    </div>
+    <div style={{ width: '48px', height: '56px', borderRadius: '12px', border: '0.5px solid var(--preview-border)', backgroundColor: 'var(--preview-surface)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-ubuntu-sans-mono), ui-monospace, monospace', fontSize: '24px', fontWeight: 500, color: 'inherit' }}>
+      4
+    </div>
+    <div style={{ width: '48px', height: '56px', borderRadius: '12px', border: '0.5px solid var(--preview-border)', backgroundColor: 'var(--preview-surface)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-ubuntu-sans-mono), ui-monospace, monospace', fontSize: '24px', fontWeight: 500, color: 'inherit' }}>
+      1
+    </div>
+  </div>
+</ComponentPreview>
+
+### Error
+
+Estado de error con bordes rojos, fondo de error y mensaje.
+
+<ComponentPreview>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+    <div style={{ display: 'flex', gap: '8px' }}>
+      <div style={{ width: '48px', height: '56px', borderRadius: '12px', border: '0.5px solid #EC221F', backgroundColor: 'var(--preview-error-bg, #FEE9E7)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-ubuntu-sans-mono), ui-monospace, monospace', fontSize: '24px', fontWeight: 500, color: '#EC221F' }}>
+        9
+      </div>
+      <div style={{ width: '48px', height: '56px', borderRadius: '12px', border: '0.5px solid #EC221F', backgroundColor: 'var(--preview-error-bg, #FEE9E7)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-ubuntu-sans-mono), ui-monospace, monospace', fontSize: '24px', fontWeight: 500, color: '#EC221F' }}>
+        2
+      </div>
+      <div style={{ width: '48px', height: '56px', borderRadius: '12px', border: '0.5px solid #EC221F', backgroundColor: 'var(--preview-error-bg, #FEE9E7)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-ubuntu-sans-mono), ui-monospace, monospace', fontSize: '24px', fontWeight: 500, color: '#EC221F' }}>
+        7
+      </div>
+      <div style={{ width: '48px', height: '56px', borderRadius: '12px', border: '0.5px solid #EC221F', backgroundColor: 'var(--preview-error-bg, #FEE9E7)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-ubuntu-sans-mono), ui-monospace, monospace', fontSize: '24px', fontWeight: 500, color: '#EC221F' }}>
+        5
+      </div>
+    </div>
+    <span style={{ fontFamily: 'var(--font-ubuntu-sans), system-ui, sans-serif', fontSize: '13px', fontWeight: 400, color: '#EC221F', display: 'flex', alignItems: 'center', gap: '6px' }}>
+      <svg style={{ width: '14px', height: '14px', flexShrink: 0 }} viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><circle cx="7" cy="7" r="5.5"/><line x1="7" y1="4.5" x2="7" y2="7.5"/><circle cx="7" cy="9.5" r="0.5" fill="currentColor" stroke="none"/></svg>
+      Codigo incorrecto. Intenta de nuevo.
+    </span>
+  </div>
+</ComponentPreview>
+
+```tsx title="otp-input-usage.tsx"
+export function OTPInput({ length = 4, error = false }: { length?: 4 | 6; error?: boolean }) {
+  const [values, setValues] = useState<string[]>(Array(length).fill(''));
+  const inputRefs = useRef<HTMLInputElement[]>([]);
+
+  const handleChange = (index: number, value: string) => {
+    if (!/^\d*$/.test(value)) return;
+    const newValues = [...values];
+    newValues[index] = value.slice(-1);
+    setValues(newValues);
+    if (value && index < length - 1) {
+      inputRefs.current[index + 1]?.focus();
+    }
+  };
+
+  return (
+    <div className="flex flex-col gap-2">
+      <div className="flex gap-2">
+        {values.map((val, i) => (
+          <input
+            key={i}
+            ref={(el) => { if (el) inputRefs.current[i] = el; }}
+            type="text"
+            inputMode="numeric"
+            maxLength={1}
+            value={val}
+            onChange={(e) => handleChange(i, e.target.value)}
+            className={`w-12 h-14 rounded-xl border-[0.5px] bg-white text-center font-mono text-2xl font-medium text-[#0B0B0B] outline-none ${
+              error ? 'border-[#EC221F] bg-[#FEE9E7] text-[#EC221F]' : val ? 'border-[#DEDEDE]' : 'border-[#DEDEDE]'
+            } focus:border-[#0B0B0B] focus:shadow-[0_0_0_1px_#0B0B0B]`}
+          />
+        ))}
+      </div>
+      {error && (
+        <span className="text-[13px] font-['Ubuntu_Sans'] text-[#EC221F] flex items-center gap-1.5">
+          Codigo incorrecto. Intenta de nuevo.
+        </span>
+      )}
+    </div>
+  );
+}
+```
+
+### Disabled
+
+Campos deshabilitados con colores atenuados.
+
+<ComponentPreview>
+  <div style={{ display: 'flex', gap: '8px' }}>
+    <div style={{ width: '48px', height: '56px', borderRadius: '12px', border: '0.5px solid var(--preview-border)', backgroundColor: 'var(--preview-muted-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-ubuntu-sans-mono), ui-monospace, monospace', fontSize: '24px', fontWeight: 500, color: 'inherit', opacity: 0.4 }}>
+    </div>
+    <div style={{ width: '48px', height: '56px', borderRadius: '12px', border: '0.5px solid var(--preview-border)', backgroundColor: 'var(--preview-muted-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-ubuntu-sans-mono), ui-monospace, monospace', fontSize: '24px', fontWeight: 500, color: 'inherit', opacity: 0.4 }}>
+    </div>
+    <div style={{ width: '48px', height: '56px', borderRadius: '12px', border: '0.5px solid var(--preview-border)', backgroundColor: 'var(--preview-muted-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-ubuntu-sans-mono), ui-monospace, monospace', fontSize: '24px', fontWeight: 500, color: 'inherit', opacity: 0.4 }}>
+    </div>
+    <div style={{ width: '48px', height: '56px', borderRadius: '12px', border: '0.5px solid var(--preview-border)', backgroundColor: 'var(--preview-muted-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-ubuntu-sans-mono), ui-monospace, monospace', fontSize: '24px', fontWeight: 500, color: 'inherit', opacity: 0.4 }}>
+    </div>
+  </div>
+</ComponentPreview>
+
+## Props
+
+<PropsTable
+  props={[
+    {
+      name: 'length',
+      type: 'number',
+      default: '4',
+      description: 'Cantidad de campos para el codigo OTP (maximo 6).',
+    },
+    {
+      name: 'size',
+      type: "'xs' | 'sm' | 'md' | 'lg'",
+      default: "'md'",
+      description: 'Tamano de las celdas. xs: 36x42, sm: 40x48, md: 48x56, lg: 52x60.',
+    },
+    {
+      name: 'state',
+      type: "'default' | 'active' | 'error' | 'disabled'",
+      default: "'default'",
+      description: 'Estado visual del componente. Error muestra bordes rojos y fondo #FEE9E7 con mensaje.',
+    },
+  ]}
+/>
+
+## Guias de Uso
+
+<DoDont type="do">
+  Usar autoFocus en el primer campo y avance automatico al siguiente al ingresar un digito.
+</DoDont>
+
+<DoDont type="dont">
+  No usar para inputs de texto general. Solo para codigos numericos de verificacion.
+</DoDont>

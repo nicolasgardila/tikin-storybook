@@ -1,0 +1,200 @@
+---
+title: Avatar
+description: Avatar circular con imagen, iniciales o fallback y indicador de estado
+status: stable
+---
+
+
+<AvatarPlayground />
+
+## Instalacion
+
+```tsx
+import { DSAvatar } from '@/components/ds/ds-avatar'
+```
+
+## Uso
+
+```tsx title="avatar.tsx"
+import { DSAvatar } from '@/components/ds/ds-avatar'
+
+export default function Example() {
+  return (
+    <DSAvatar initials="NG" size="40" showStatus status="online" />
+  )
+}
+```
+
+## Ejemplos
+
+### Con Iniciales
+
+Muestra las iniciales del usuario centradas dentro de un círculo. Usa fondo cálido `#E8E4DD` en light y `#2C2C2C` en dark con borde `0.5px`.
+
+<ComponentPreview>
+  <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+    <div style={{ width: '24px', height: '24px', borderRadius: '50%', backgroundColor: 'var(--preview-muted-bg)', border: '0.5px solid var(--preview-border)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontWeight: 600, fontSize: '9px', color: 'inherit', textTransform: 'uppercase', lineHeight: 1 }}>
+      NG
+    </div>
+    <div style={{ width: '32px', height: '32px', borderRadius: '50%', backgroundColor: 'var(--preview-muted-bg)', border: '0.5px solid var(--preview-border)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontWeight: 600, fontSize: '11px', color: 'inherit', textTransform: 'uppercase', lineHeight: 1 }}>
+      NG
+    </div>
+    <div style={{ width: '40px', height: '40px', borderRadius: '50%', backgroundColor: 'var(--preview-muted-bg)', border: '0.5px solid var(--preview-border)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontWeight: 600, fontSize: '14px', color: 'inherit', textTransform: 'uppercase', lineHeight: 1 }}>
+      NG
+    </div>
+    <div style={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: 'var(--preview-muted-bg)', border: '0.5px solid var(--preview-border)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontWeight: 600, fontSize: '16px', color: 'inherit', textTransform: 'uppercase', lineHeight: 1 }}>
+      NG
+    </div>
+    <div style={{ width: '64px', height: '64px', borderRadius: '50%', backgroundColor: 'var(--preview-muted-bg)', border: '0.5px solid var(--preview-border)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontWeight: 600, fontSize: '22px', color: 'inherit', textTransform: 'uppercase', lineHeight: 1 }}>
+      NG
+    </div>
+  </div>
+</ComponentPreview>
+
+```tsx title="avatar-initials.tsx"
+export function AvatarInitials({ initials, size = 40 }: { initials: string; size?: number }) {
+  const fontSizes: Record<number, number> = { 24: 9, 32: 11, 40: 14, 48: 16, 64: 22 };
+  return (
+    <div
+      style={{
+        width: size, height: size, fontSize: fontSizes[size],
+        borderRadius: '50%', backgroundColor: '#E8E4DD', border: '0.5px solid #DEDEDE',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontWeight: 600,
+        color: 'var(--preview-brand, #0B0B0B)', textTransform: 'uppercase', lineHeight: 1,
+      }}
+    >
+      {initials}
+    </div>
+  );
+}
+```
+
+### Con Indicador de Estado
+
+Un punto de color en la esquina inferior derecha indica el estado del usuario: online (`#14AE5C`), offline (`#B3B3B3`), busy (`#EC221F`), away (`#E8B931`).
+
+<ComponentPreview>
+  <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
+    <div style={{ position: 'relative', display: 'inline-flex', flexShrink: 0 }}>
+      <div style={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: 'var(--preview-muted-bg)', border: '0.5px solid var(--preview-border)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontWeight: 600, fontSize: '16px', color: 'inherit', textTransform: 'uppercase', lineHeight: 1, overflow: 'hidden' }}>
+        NG
+      </div>
+      <div style={{ position: 'absolute', bottom: '1px', right: '1px', width: '12px', height: '12px', borderRadius: '50%', backgroundColor: '#14AE5C', border: '2px solid var(--preview-surface)' }} />
+    </div>
+    <div style={{ position: 'relative', display: 'inline-flex', flexShrink: 0 }}>
+      <div style={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: 'var(--preview-muted-bg)', border: '0.5px solid var(--preview-border)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontWeight: 600, fontSize: '16px', color: 'inherit', textTransform: 'uppercase', lineHeight: 1, overflow: 'hidden' }}>
+        AL
+      </div>
+      <div style={{ position: 'absolute', bottom: '1px', right: '1px', width: '12px', height: '12px', borderRadius: '50%', backgroundColor: '#B3B3B3', border: '2px solid var(--preview-surface)' }} />
+    </div>
+    <div style={{ position: 'relative', display: 'inline-flex', flexShrink: 0 }}>
+      <div style={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: 'var(--preview-muted-bg)', border: '0.5px solid var(--preview-border)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontWeight: 600, fontSize: '16px', color: 'inherit', textTransform: 'uppercase', lineHeight: 1, overflow: 'hidden' }}>
+        LP
+      </div>
+      <div style={{ position: 'absolute', bottom: '1px', right: '1px', width: '12px', height: '12px', borderRadius: '50%', backgroundColor: '#EC221F', border: '2px solid var(--preview-surface)' }} />
+    </div>
+    <div style={{ position: 'relative', display: 'inline-flex', flexShrink: 0 }}>
+      <div style={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: 'var(--preview-muted-bg)', border: '0.5px solid var(--preview-border)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontWeight: 600, fontSize: '16px', color: 'inherit', textTransform: 'uppercase', lineHeight: 1, overflow: 'hidden' }}>
+        JR
+      </div>
+      <div style={{ position: 'absolute', bottom: '1px', right: '1px', width: '12px', height: '12px', borderRadius: '50%', backgroundColor: '#E8B931', border: '2px solid var(--preview-surface)' }} />
+    </div>
+  </div>
+</ComponentPreview>
+
+```tsx title="avatar-status.tsx"
+export function AvatarWithStatus({ initials, status }: { initials: string; status: 'online' | 'offline' | 'busy' | 'away' }) {
+  const statusColors: Record<string, string> = { online: '#14AE5C', offline: '#B3B3B3', busy: '#EC221F', away: '#E8B931' };
+  return (
+    <div style={{ position: 'relative', display: 'inline-flex' }}>
+      <div style={{ width: 48, height: 48, borderRadius: '50%', backgroundColor: '#E8E4DD', border: '0.5px solid #DEDEDE', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontWeight: 600, fontSize: 16, color: 'var(--preview-brand, #0B0B0B)', textTransform: 'uppercase', overflow: 'hidden' }}>
+        {initials}
+      </div>
+      <div style={{ position: 'absolute', bottom: 1, right: 1, width: 12, height: 12, borderRadius: '50%', backgroundColor: statusColors[status], border: '2px solid #FAFAFA' }} />
+    </div>
+  );
+}
+```
+
+### Tamaños
+
+Todos los tamaños disponibles: 24, 32, 40, 48 y 64px.
+
+<ComponentPreview>
+  <div style={{ display: 'flex', alignItems: 'end', gap: '12px' }}>
+    <div style={{ textAlign: 'center' }}>
+      <div style={{ width: '24px', height: '24px', borderRadius: '50%', backgroundColor: 'var(--preview-muted-bg)', border: '0.5px solid var(--preview-border)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontWeight: 600, fontSize: '9px', color: 'inherit', textTransform: 'uppercase', lineHeight: 1 }}>N</div>
+      <span style={{ fontSize: '10px', color: 'inherit', opacity: 0.5, marginTop: '4px', display: 'block' }}>24</span>
+    </div>
+    <div style={{ textAlign: 'center' }}>
+      <div style={{ width: '32px', height: '32px', borderRadius: '50%', backgroundColor: 'var(--preview-muted-bg)', border: '0.5px solid var(--preview-border)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontWeight: 600, fontSize: '11px', color: 'inherit', textTransform: 'uppercase', lineHeight: 1 }}>N</div>
+      <span style={{ fontSize: '10px', color: 'inherit', opacity: 0.5, marginTop: '4px', display: 'block' }}>32</span>
+    </div>
+    <div style={{ textAlign: 'center' }}>
+      <div style={{ width: '40px', height: '40px', borderRadius: '50%', backgroundColor: 'var(--preview-muted-bg)', border: '0.5px solid var(--preview-border)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontWeight: 600, fontSize: '14px', color: 'inherit', textTransform: 'uppercase', lineHeight: 1 }}>N</div>
+      <span style={{ fontSize: '10px', color: 'inherit', opacity: 0.5, marginTop: '4px', display: 'block' }}>40</span>
+    </div>
+    <div style={{ textAlign: 'center' }}>
+      <div style={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: 'var(--preview-muted-bg)', border: '0.5px solid var(--preview-border)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontWeight: 600, fontSize: '16px', color: 'inherit', textTransform: 'uppercase', lineHeight: 1 }}>N</div>
+      <span style={{ fontSize: '10px', color: 'inherit', opacity: 0.5, marginTop: '4px', display: 'block' }}>48</span>
+    </div>
+    <div style={{ textAlign: 'center' }}>
+      <div style={{ width: '64px', height: '64px', borderRadius: '50%', backgroundColor: 'var(--preview-muted-bg)', border: '0.5px solid var(--preview-border)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontWeight: 600, fontSize: '22px', color: 'inherit', textTransform: 'uppercase', lineHeight: 1 }}>N</div>
+      <span style={{ fontSize: '10px', color: 'inherit', opacity: 0.5, marginTop: '4px', display: 'block' }}>64</span>
+    </div>
+  </div>
+</ComponentPreview>
+
+## Props
+
+<PropsTable
+  props={[
+    {
+      name: 'size',
+      type: "'24' | '32' | '40' | '48' | '64'",
+      default: "'40'",
+      description: 'Tamaño del avatar en pixeles.',
+    },
+    {
+      name: 'initials',
+      type: 'string',
+      default: "'NG'",
+      description: 'Iniciales mostradas cuando no hay imagen.',
+    },
+    {
+      name: 'src',
+      type: 'string',
+      default: "''",
+      description: 'URL de la imagen del avatar.',
+    },
+    {
+      name: 'showStatus',
+      type: 'boolean',
+      default: 'false',
+      description: 'Muestra el indicador de estado en la esquina inferior derecha.',
+    },
+    {
+      name: 'status',
+      type: "'online' | 'offline' | 'busy' | 'away'",
+      default: "'online'",
+      description: 'Color del indicador de estado. online=#14AE5C, offline=#B3B3B3, busy=#EC221F, away=#E8B931.',
+    },
+    {
+      name: 'loading',
+      type: 'boolean',
+      default: 'false',
+      description: 'Muestra el avatar como skeleton con animacion de pulso.',
+    },
+  ]}
+/>
+
+## Guías de Uso
+
+<DoDont type="do">
+  Siempre proporcionar initials como fallback cuando la imagen puede no cargar.
+</DoDont>
+
+<DoDont type="dont">
+  No usar avatares menores a 24px, la legibilidad se pierde.
+</DoDont>

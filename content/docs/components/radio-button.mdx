@@ -1,0 +1,176 @@
+---
+title: Radio Button
+description: Radio button para seleccion unica en grupos de opciones
+status: stable
+---
+
+
+<RadioButtonPlayground />
+
+## Instalacion
+
+```tsx
+import { DSRadioButton } from '@/components/ds/ds-radio-button'
+```
+
+## Uso
+
+```tsx title="radio-button.tsx"
+import { DSRadioButton } from '@/components/ds/ds-radio-button'
+
+export default function Example() {
+  return (
+    <DSRadioButton
+      label="Transferencia bancaria"
+      checked={true}
+    />
+  )
+}
+```
+
+## Ejemplos
+
+### Default (No seleccionado)
+
+Radio button en estado inicial sin seleccionar.
+
+<ComponentPreview>
+  <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', fontFamily: 'var(--font-funnel-display), Funnel Display, sans-serif', fontSize: '14px', fontWeight: 400, color: 'inherit' }}>
+    <span style={{ width: '20px', height: '20px', borderRadius: '50%', border: '1.5px solid var(--preview-border)', backgroundColor: 'var(--preview-surface)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }} />
+    Opcion A
+  </label>
+</ComponentPreview>
+
+### Seleccionado
+
+Radio button en estado activo — circulo relleno con punto interior blanco.
+
+<ComponentPreview>
+  <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', fontFamily: 'var(--font-funnel-display), Funnel Display, sans-serif', fontSize: '14px', fontWeight: 600, color: 'inherit' }}>
+    <span style={{ width: '20px', height: '20px', borderRadius: '50%', border: '1.5px solid var(--preview-brand)', backgroundColor: 'var(--preview-brand)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+      <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: 'var(--preview-brand-on)' }} />
+    </span>
+    Opcion A
+  </label>
+</ComponentPreview>
+
+### Radio Group
+
+Grupo de opciones con una seleccionada.
+
+<ComponentPreview>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+    <label style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '6px 10px 6px 6px', borderRadius: '8px', cursor: 'pointer', fontFamily: 'var(--font-funnel-display), Funnel Display, sans-serif', fontSize: '14px', fontWeight: 600, color: 'inherit' }}>
+      <span style={{ width: '20px', height: '20px', borderRadius: '50%', border: '1.5px solid var(--preview-brand)', backgroundColor: 'var(--preview-brand)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+        <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: 'var(--preview-brand-on)' }} />
+      </span>
+      Transferencia bancaria
+    </label>
+    <label style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '6px 10px 6px 6px', borderRadius: '8px', cursor: 'pointer', fontFamily: 'var(--font-funnel-display), Funnel Display, sans-serif', fontSize: '14px', fontWeight: 400, color: 'inherit' }}>
+      <span style={{ width: '20px', height: '20px', borderRadius: '50%', border: '1.5px solid var(--preview-border)', backgroundColor: 'var(--preview-surface)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }} />
+      Tarjeta de debito
+    </label>
+    <label style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '6px 10px 6px 6px', borderRadius: '8px', cursor: 'pointer', fontFamily: 'var(--font-funnel-display), Funnel Display, sans-serif', fontSize: '14px', fontWeight: 400, color: 'inherit' }}>
+      <span style={{ width: '20px', height: '20px', borderRadius: '50%', border: '1.5px solid var(--preview-border)', backgroundColor: 'var(--preview-surface)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }} />
+      Efectivo
+    </label>
+  </div>
+</ComponentPreview>
+
+```tsx title="radio-group.tsx"
+export function RadioGroup() {
+  const [selected, setSelected] = useState('transfer');
+
+  const options = [
+    { value: 'transfer', label: 'Transferencia bancaria' },
+    { value: 'debit', label: 'Tarjeta de debito' },
+    { value: 'cash', label: 'Efectivo' },
+  ];
+
+  return (
+    <div className="flex flex-col gap-1">
+      {options.map((option) => (
+        <label
+          key={option.value}
+          className="flex items-center gap-2 py-1.5 px-2.5 pl-1.5 rounded-lg cursor-pointer text-sm font-['Funnel_Display'] text-[#1E1E1E]"
+          style={{ fontWeight: selected === option.value ? 600 : 400 }}
+        >
+          <span
+            className={`w-5 h-5 rounded-full border-[1.5px] inline-flex items-center justify-center shrink-0 ${
+              selected === option.value
+                ? 'border-[#0B0B0B] bg-[#0B0B0B]'
+                : 'border-[#D9D9D9] bg-white'
+            }`}
+          >
+            {selected === option.value && (
+              <span className="w-2 h-2 rounded-full bg-white" />
+            )}
+          </span>
+          {option.label}
+        </label>
+      ))}
+    </div>
+  );
+}
+```
+
+### Disabled
+
+Radio button deshabilitado con colores atenuados.
+
+<ComponentPreview>
+  <label style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '6px 10px 6px 6px', borderRadius: '8px', cursor: 'not-allowed', fontFamily: 'var(--font-funnel-display), Funnel Display, sans-serif', fontSize: '14px', fontWeight: 400, color: 'inherit', opacity: 0.5 }}>
+    <span style={{ width: '20px', height: '20px', borderRadius: '50%', border: '1.5px solid var(--preview-border)', backgroundColor: 'var(--preview-muted-bg)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }} />
+    Opcion deshabilitada
+  </label>
+</ComponentPreview>
+
+```tsx title="radio-disabled.tsx"
+export function RadioDisabled() {
+  return (
+    <label className="flex items-center gap-2 py-1.5 px-2.5 pl-1.5 rounded-lg cursor-not-allowed text-sm font-['Funnel_Display'] text-[#B3B3B3]">
+      <span className="w-5 h-5 rounded-full border-[1.5px] border-[#E6E6E6] bg-[#F5F5F5] shrink-0" />
+      Opcion deshabilitada
+    </label>
+  );
+}
+```
+
+### Interacciones
+
+El componente incluye feedback tactil al presionar: escala sutil (`scale 0.97`) con reduccion de opacidad, y un release con transicion spring natural. Este efecto se desactiva automaticamente en estados `disabled` y `loading`.
+
+## Props
+
+<PropsTable
+  props={[
+    {
+      name: 'checked',
+      type: 'boolean',
+      default: 'false',
+      description: 'Estado de seleccion del radio button.',
+    },
+    {
+      name: 'disabled',
+      type: 'boolean',
+      default: 'false',
+      description: 'Deshabilita el radio button e impide interaccion.',
+    },
+    {
+      name: 'label',
+      type: 'string',
+      default: "'Opcion 1'",
+      description: 'Texto visible junto al radio button.',
+    },
+  ]}
+/>
+
+## Guias de Uso
+
+<DoDont type="do">
+  Usar radio buttons para seleccion unica entre opciones mutuamente excluyentes.
+</DoDont>
+
+<DoDont type="dont">
+  No usar radio buttons si el usuario puede seleccionar multiples opciones. Usar Checkbox en su lugar.
+</DoDont>

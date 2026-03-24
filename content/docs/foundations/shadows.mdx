@@ -1,0 +1,59 @@
+---
+title: Sombras
+description: 5 niveles de sombra para elevacion visual
+---
+
+## Sistema de Sombras
+
+El sistema de sombras define 5 niveles de elevacion visual usando box-shadow. Cada nivel progresa en offset, blur y opacidad para crear una jerarquia clara de profundidad.
+
+## Escala de Tokens
+
+| Token | Variable CSS | Valor | Uso |
+|-------|-------------|-------|-----|
+| xs | `--ds-shadow-xs` | `0 1px 2px rgba(0,0,0,0.05)` | Botones en reposo, inputs |
+| sm | `--ds-shadow-sm` | `0 2px 4px rgba(0,0,0,0.06)` | Tarjetas en reposo, dropdowns |
+| md | `--ds-shadow-md` | `0 4px 8px rgba(0,0,0,0.08)` | Tarjetas elevadas, popovers |
+| lg | `--ds-shadow-lg` | `0 8px 16px rgba(0,0,0,0.1)` | Modales, dialogs |
+| xl | `--ds-shadow-xl` | `0 16px 32px rgba(0,0,0,0.12)` | Elementos flotantes principales |
+
+## Guia de Uso
+
+### Nivel xs — Sutil
+Para elementos que necesitan separacion minima del fondo. Botones en estado default, inputs con borde ligero.
+
+### Nivel sm — Tarjetas
+Sombra base para tarjetas y contenedores. Suficiente para distinguir del fondo sin llamar la atencion.
+
+### Nivel md — Elevado
+Para elementos que flotan sobre el contenido: tooltips, popovers, menus desplegables.
+
+### Nivel lg — Modal
+Sombras prominentes para modales, dialogs, y bottom sheets. Crean separacion clara del contenido detras.
+
+### Nivel xl — Flotante
+Maxima elevacion para elementos principales flotantes. Usado con moderacion para el elemento mas prominente de la interfaz.
+
+## Ejemplo de Uso
+
+```css
+/* Tarjeta con sombra de reposo y hover */
+.card {
+  box-shadow: var(--ds-shadow-sm);
+  transition: box-shadow 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: var(--ds-shadow-md);
+}
+
+/* Modal */
+.modal {
+  box-shadow: var(--ds-shadow-lg);
+}
+
+/* Menu flotante */
+.dropdown {
+  box-shadow: var(--ds-shadow-md);
+}
+```

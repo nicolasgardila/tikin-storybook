@@ -1,0 +1,186 @@
+---
+title: Checkbox
+description: Checkbox con label y estados checked, indeterminate, disabled
+status: stable
+---
+
+
+<CheckboxPlayground />
+
+## Instalacion
+
+```tsx
+import { DSCheckbox } from '@/components/ds/ds-checkbox'
+```
+
+## Uso
+
+```tsx title="checkbox.tsx"
+import { DSCheckbox } from '@/components/ds/ds-checkbox'
+
+export default function Example() {
+  return (
+    <DSCheckbox
+      label="Acepto los términos y condiciones"
+      checked={false}
+    />
+  )
+}
+```
+
+## Ejemplos
+
+### Unchecked
+
+Estado base sin selección.
+
+<ComponentPreview>
+  <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', fontFamily: 'var(--font-ubuntu-sans), Ubuntu Sans, sans-serif', fontSize: '14px', lineHeight: '1.3', fontWeight: 400, color: 'inherit' }}>
+    <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '20px', height: '20px', borderRadius: '5px', border: '1.5px solid var(--preview-border)', backgroundColor: 'var(--preview-surface)', flexShrink: 0 }} />
+    Acepto los términos y condiciones
+  </label>
+</ComponentPreview>
+
+```tsx title="checkbox-unchecked.tsx"
+export function Checkbox() {
+  return (
+    <label className="flex items-center gap-2 cursor-pointer font-['Ubuntu_Sans'] text-sm text-[#1E1E1E]">
+      <span className="inline-flex items-center justify-center w-5 h-5 rounded-[5px] border-[1.5px] border-[#D9D9D9] bg-white shrink-0" />
+      Acepto los términos y condiciones
+    </label>
+  );
+}
+```
+
+### Checked
+
+Estado seleccionado con fondo oscuro y cuadrado interior blanco.
+
+<ComponentPreview>
+  <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', fontFamily: 'var(--font-ubuntu-sans), Ubuntu Sans, sans-serif', fontSize: '14px', lineHeight: '1.3', fontWeight: 600, color: 'inherit' }}>
+    <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '20px', height: '20px', borderRadius: '5px', border: '1.5px solid var(--preview-brand)', backgroundColor: 'var(--preview-brand)', flexShrink: 0 }}>
+      <span style={{ width: '10px', height: '10px', borderRadius: '2px', backgroundColor: 'var(--preview-brand-on)' }} />
+    </span>
+    Acepto los términos y condiciones
+  </label>
+</ComponentPreview>
+
+```tsx title="checkbox-checked.tsx"
+export function CheckboxChecked() {
+  return (
+    <label className="flex items-center gap-2 cursor-pointer font-['Ubuntu_Sans'] text-sm font-semibold text-[#1E1E1E]">
+      <span className="inline-flex items-center justify-center w-5 h-5 rounded-[5px] border-[1.5px] border-[#0B0B0B] bg-[#0B0B0B] shrink-0">
+        <span className="w-2.5 h-2.5 rounded-[2px] bg-white" />
+      </span>
+      Acepto los términos y condiciones
+    </label>
+  );
+}
+```
+
+### Indeterminate
+
+Estado parcial, usado en selecciones de grupo cuando solo algunos items están seleccionados.
+
+<ComponentPreview>
+  <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', fontFamily: 'var(--font-ubuntu-sans), Ubuntu Sans, sans-serif', fontSize: '14px', lineHeight: '1.3', fontWeight: 400, color: 'inherit' }}>
+    <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '20px', height: '20px', borderRadius: '5px', border: '1.5px solid var(--preview-brand)', backgroundColor: 'var(--preview-brand)', flexShrink: 0 }}>
+      <span style={{ width: '10px', height: '2px', borderRadius: '1px', backgroundColor: 'var(--preview-brand-on)' }} />
+    </span>
+    Seleccionar todo
+  </label>
+</ComponentPreview>
+
+```tsx title="checkbox-indeterminate.tsx"
+export function CheckboxIndeterminate() {
+  return (
+    <label className="flex items-center gap-2 cursor-pointer font-['Ubuntu_Sans'] text-sm text-[#1E1E1E]">
+      <span className="inline-flex items-center justify-center w-5 h-5 rounded-[5px] border-[1.5px] border-[#0B0B0B] bg-[#0B0B0B] shrink-0">
+        <span className="w-2.5 h-[2px] rounded-[1px] bg-white" />
+      </span>
+      Seleccionar todo
+    </label>
+  );
+}
+```
+
+### Estado Disabled
+
+Checkbox deshabilitado con colores atenuados.
+
+<ComponentPreview>
+  <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'not-allowed', fontFamily: 'var(--font-ubuntu-sans), Ubuntu Sans, sans-serif', fontSize: '14px', lineHeight: '1.3', fontWeight: 400, color: 'inherit', opacity: 0.5 }}>
+    <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '20px', height: '20px', borderRadius: '5px', border: '1.5px solid var(--preview-border)', backgroundColor: 'var(--preview-muted-bg)', flexShrink: 0 }} />
+    Opción no disponible
+  </label>
+</ComponentPreview>
+
+```tsx title="checkbox-disabled.tsx"
+export function CheckboxDisabled() {
+  return (
+    <label className="flex items-center gap-2 cursor-not-allowed font-['Ubuntu_Sans'] text-sm text-[#B3B3B3]">
+      <span className="inline-flex items-center justify-center w-5 h-5 rounded-[5px] border-[1.5px] border-[#E6E6E6] bg-[#F5F5F5] shrink-0" />
+      Opción no disponible
+    </label>
+  );
+}
+```
+
+### Interacciones
+
+El componente incluye feedback tactil al presionar: escala sutil (`scale 0.97`) con reduccion de opacidad, y un release con transicion spring natural. Este efecto se desactiva automaticamente en estados `disabled` y `loading`.
+
+## Props
+
+<PropsTable
+  props={[
+    {
+      name: 'checked',
+      type: 'boolean',
+      default: 'false',
+      description: 'Estado de selección del checkbox.',
+    },
+    {
+      name: 'indeterminate',
+      type: 'boolean',
+      default: 'false',
+      description: 'Estado parcial para selecciones de grupo.',
+    },
+    {
+      name: 'disabled',
+      type: 'boolean',
+      default: 'false',
+      description: 'Deshabilita el checkbox e impide interacción.',
+    },
+    {
+      name: 'label',
+      type: 'string',
+      default: "'Acepto los terminos'",
+      description: 'Texto descriptivo junto al checkbox.',
+    },
+    {
+      name: 'size',
+      type: "'sm' | 'md'",
+      default: "'md'",
+      description: 'Tamaño del checkbox. sm (desktop): 20px, md (mobile): 24px.',
+    },
+  ]}
+/>
+
+## Guías de Uso
+
+<DoDont type="do">
+  Usa Checkbox para opciones independientes donde el usuario puede activar o desactivar cada una sin afectar las demás.
+</DoDont>
+
+<DoDont type="dont">
+  No uses Checkbox para selección exclusiva (donde solo una opción puede estar activa). Usa Radio Buttons en ese caso.
+</DoDont>
+
+<DoDont type="do">
+  Incluye siempre un label descriptivo junto al checkbox. El área de click debe incluir el label completo.
+</DoDont>
+
+<DoDont type="dont">
+  No uses un checkbox sin label visible. Un checkbox aislado no comunica su propósito al usuario.
+</DoDont>

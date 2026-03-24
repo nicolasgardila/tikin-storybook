@@ -1,0 +1,181 @@
+---
+title: Status Chips
+description: Etiquetas de estado con 6 variantes semanticas de color
+status: stable
+---
+
+
+<StatusChipsPlayground />
+
+## Instalacion
+
+```tsx
+import { DSStatusChips } from '@/components/ds/ds-status-chips'
+```
+
+## Uso
+
+```tsx title="status-chips.tsx"
+import { DSStatusChips } from '@/components/ds/ds-status-chips'
+
+export default function Example() {
+  return (
+    <DSStatusChips variant="success" label="Completado" />
+  )
+}
+```
+
+## Ejemplos
+
+### Success
+
+Para estados positivos: completado, aprobado, activo.
+
+<ComponentPreview>
+  <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+    <DSStatusChips variant="success" label="Completado" />
+    <DSStatusChips variant="success" label="Aprobado" />
+    <DSStatusChips variant="success" label="Activo" />
+  </div>
+</ComponentPreview>
+
+```tsx title="chip-success.tsx"
+<DSStatusChips variant="success" label="Completado" />
+```
+
+### Warning
+
+Para estados de atencion: pendiente, en revision, requiere accion.
+
+<ComponentPreview>
+  <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+    <DSStatusChips variant="warning" label="Pendiente" />
+    <DSStatusChips variant="warning" label="En revision" />
+  </div>
+</ComponentPreview>
+
+```tsx title="chip-warning.tsx"
+<DSStatusChips variant="warning" label="Pendiente" />
+```
+
+### Error
+
+Para estados negativos: rechazado, fallido, cancelado.
+
+<ComponentPreview>
+  <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+    <DSStatusChips variant="error" label="Rechazado" />
+    <DSStatusChips variant="error" label="Fallido" />
+    <DSStatusChips variant="error" label="Cancelado" />
+  </div>
+</ComponentPreview>
+
+```tsx title="chip-error.tsx"
+<DSStatusChips variant="error" label="Rechazado" />
+```
+
+### Info
+
+Para estados informativos: en proceso, enviado, programado.
+
+<ComponentPreview>
+  <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+    <DSStatusChips variant="info" label="En proceso" />
+    <DSStatusChips variant="info" label="Enviado" />
+    <DSStatusChips variant="info" label="Programado" />
+  </div>
+</ComponentPreview>
+
+```tsx title="chip-info.tsx"
+<DSStatusChips variant="info" label="En proceso" />
+```
+
+### Neutral
+
+Para estados generales: borrador, archivado, inactivo.
+
+<ComponentPreview>
+  <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+    <DSStatusChips variant="neutral" label="Borrador" />
+    <DSStatusChips variant="neutral" label="Archivado" />
+    <DSStatusChips variant="neutral" label="Inactivo" />
+  </div>
+</ComponentPreview>
+
+```tsx title="chip-neutral.tsx"
+<DSStatusChips variant="neutral" label="Borrador" />
+```
+
+### Brand (Solid)
+
+Para estados destacados con fondo solido brand: nuevo, premium, destacado.
+
+<ComponentPreview>
+  <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+    <DSStatusChips variant="brand" label="Nuevo" />
+    <DSStatusChips variant="brand" label="Premium" />
+    <DSStatusChips variant="brand" label="Destacado" />
+  </div>
+</ComponentPreview>
+
+```tsx title="chip-brand.tsx"
+<DSStatusChips variant="brand" label="Nuevo" />
+```
+
+### Todas las Variantes
+
+Vista completa de los 6 tipos de chip lado a lado.
+
+<ComponentPreview>
+  <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center' }}>
+    <DSStatusChips variant="success" label="Success" />
+    <DSStatusChips variant="warning" label="Warning" />
+    <DSStatusChips variant="error" label="Error" />
+    <DSStatusChips variant="info" label="Info" />
+    <DSStatusChips variant="neutral" label="Neutral" />
+    <DSStatusChips variant="brand" label="Brand" />
+  </div>
+</ComponentPreview>
+
+## Props
+
+<PropsTable
+  props={[
+    {
+      name: 'variant',
+      type: "'success' | 'warning' | 'error' | 'info' | 'neutral' | 'brand'",
+      default: "'success'",
+      description: 'Categoria de color del chip. Determina el esquema bg/text/border.',
+    },
+    {
+      name: 'label',
+      type: 'string',
+      default: "'Activo'",
+      description: 'Texto del chip. Se muestra en uppercase automaticamente.',
+    },
+    {
+      name: 'size',
+      type: "'xs' | 'sm' | 'md'",
+      default: "'sm'",
+      description: 'Tamano del chip. xs=24px, sm=28px, md=32px de altura.',
+    },
+  ]}
+/>
+
+## Guias de Uso
+
+<DoDont type="do">
+  Usa Status Chips para indicadores de estado en tablas, listas y cards: Completado, Pendiente, Rechazado, En proceso.
+</DoDont>
+
+<DoDont type="dont">
+  No uses Status Chips para acciones interactivas. Usa Buttons en su lugar.
+</DoDont>
+
+<DoDont type="do">
+  Mantene consistencia en el uso de variantes: success para estados positivos, warning para atencion, error para negativos.
+</DoDont>
+
+<DoDont type="dont">
+  No mezcles variantes arbitrariamente. Cada color tiene un significado semantico que debe respetarse en toda la app.
+</DoDont>

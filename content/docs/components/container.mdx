@@ -1,0 +1,201 @@
+---
+title: Container
+description: Contenedor double-layer con shell exterior y panel interior
+status: stable
+---
+
+
+<ContainerPlayground />
+
+## Instalacion
+
+```tsx
+import { DSContainer } from '@/components/ds/ds-container'
+```
+
+## Uso
+
+```tsx title="container.tsx"
+import { DSContainer } from '@/components/ds/ds-container'
+
+export default function Example() {
+  return (
+    <DSContainer variant="double" padding="default">
+      <h3>Confirmar Transferencia</h3>
+      <p>Monto: $1,200.00</p>
+    </DSContainer>
+  )
+}
+```
+
+## Ejemplos
+
+### Double-Layer (Default)
+
+El patrón signature: shell exterior `#F6F6F6` con borde `#DEDEDE` y radio 24px, panel interior blanco con radio 20px.
+
+<ComponentPreview>
+  <div style={{ borderRadius: '24px', border: '1px solid var(--preview-border)', backgroundColor: 'var(--preview-muted-bg)', padding: '12px', width: '380px' }}>
+    <div style={{ borderRadius: '20px', backgroundColor: 'var(--preview-surface)', padding: '24px', fontFamily: 'var(--font-ubuntu-sans), system-ui, sans-serif' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+        <span style={{ fontFamily: 'var(--font-funnel-display), system-ui, sans-serif', fontSize: '1.25rem', fontWeight: 400, color: 'inherit' }}>Confirmar Transferencia</span>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.875rem' }}>
+            <span style={{ color: 'inherit', opacity: 0.6 }}>Destinatario</span>
+            <span style={{ color: 'inherit' }}>Juan Pérez</span>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.875rem' }}>
+            <span style={{ color: 'inherit', opacity: 0.6 }}>Monto</span>
+            <span style={{ color: 'inherit' }}>$1,200.00</span>
+          </div>
+        </div>
+        <button style={{ borderRadius: '12px', backgroundColor: 'var(--preview-brand)', padding: '8px 20px', height: '40px', fontSize: '13px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--preview-brand-on)', border: 'none', cursor: 'pointer', marginTop: '8px', fontFamily: 'var(--font-ubuntu-sans-mono), ui-monospace, monospace' }}>Confirmar</button>
+      </div>
+    </div>
+  </div>
+</ComponentPreview>
+
+```tsx title="container-double-layer.tsx"
+export function ContainerDoubleLayer() {
+  return (
+    <div className="rounded-[24px] border border-[#DEDEDE] bg-[#F6F6F6] p-3">
+      <div className="rounded-[20px] bg-white p-6">
+        {children}
+      </div>
+    </div>
+  );
+}
+```
+
+### Simple
+
+Contenedor de una sola capa con padding. Sin estructura doble, para contenido que no necesita la separación visual.
+
+<ComponentPreview>
+  <div style={{ borderRadius: '24px', border: '1px solid var(--preview-border)', backgroundColor: 'var(--preview-surface)', padding: '24px', width: '380px', fontFamily: 'var(--font-ubuntu-sans), system-ui, sans-serif' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+      <span style={{ fontFamily: 'var(--font-funnel-display), system-ui, sans-serif', fontSize: '1.125rem', fontWeight: 400, color: 'inherit' }}>Información de Cuenta</span>
+      <div style={{ fontSize: '0.875rem', color: 'inherit', opacity: 0.7, lineHeight: 1.6 }}>
+        Tu cuenta está activa y verificada. Puedes realizar transferencias, pagos y consultar tu saldo en cualquier momento.
+      </div>
+    </div>
+  </div>
+</ComponentPreview>
+
+```tsx title="container-simple.tsx"
+export function ContainerSimple() {
+  return (
+    <div className="rounded-[24px] border border-[#DEDEDE] bg-white p-6">
+      {children}
+    </div>
+  );
+}
+```
+
+### Warm
+
+Variante cálida del double-layer: shell exterior `#F1EFEB` con borde `#E8E4DD`, panel interior blanco. Para contextos financieros y wallet.
+
+<ComponentPreview>
+  <div style={{ borderRadius: '24px', border: '1px solid var(--preview-border)', backgroundColor: 'var(--preview-muted-bg)', padding: '12px', width: '380px' }}>
+    <div style={{ borderRadius: '20px', backgroundColor: 'var(--preview-surface)', padding: '24px', fontFamily: 'var(--font-ubuntu-sans), system-ui, sans-serif' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+        <span style={{ fontFamily: 'var(--font-funnel-display), system-ui, sans-serif', fontSize: '1.25rem', fontWeight: 400, color: 'inherit' }}>Mi Wallet</span>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.875rem' }}>
+            <span style={{ color: 'inherit', opacity: 0.6 }}>Saldo Disponible</span>
+            <span style={{ color: 'inherit', fontWeight: 500 }}>$48,320.00</span>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.875rem' }}>
+            <span style={{ color: 'inherit', opacity: 0.6 }}>Fondos Retenidos</span>
+            <span style={{ color: 'inherit' }}>$2,150.00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ComponentPreview>
+
+```tsx title="container-warm.tsx"
+export function ContainerWarm() {
+  return (
+    <div className="rounded-[24px] border border-[#E8E4DD] bg-[#F1EFEB] p-3">
+      <div className="rounded-[20px] bg-white p-6">
+        {children}
+      </div>
+    </div>
+  );
+}
+```
+
+## Anatomía del Double-Layer
+
+```
++-- Shell exterior (r24, p12) ------------------+
+|  bg: #F6F6F6 | border: 1px #DEDEDE            |
+|                                                |
+|  +-- Panel interior (r20, p24/p36) ---------+  |
+|  |  bg: #FFFFFF                              |  |
+|  |                                           |  |
+|  |  Contenido aquí                           |  |
+|  |                                           |  |
+|  +-------------------------------------------+  |
+|                                                |
++------------------------------------------------+
+```
+
+## Especificaciones
+
+| Propiedad | Neutral | Warm | Dark |
+|-----------|---------|------|------|
+| Shell bg | `#F6F6F6` | `#F1EFEB` | `#171717` |
+| Shell border | `1px #DEDEDE` | `1px #E8E4DD` | `1px #2A2A2A` |
+| Shell radius | 24px | 24px | 24px |
+| Shell padding | 12px | 12px | 12px |
+| Panel bg | `#FFFFFF` | `#FFFFFF` | `#1E1E1E` |
+| Panel radius | 20px | 20px | 20px |
+| Panel padding | 24px (panel) / 36px (dialog) | 24px / 36px | 24px / 36px |
+| Shadow (neutral) | `0 0 2px rgba(11,15,16,0.12)` | — | `0 0 4px rgba(0,0,0,0.30)` |
+
+## Props
+
+<PropsTable
+  props={[
+    {
+      name: 'variant',
+      type: "'double' | 'simple' | 'warm'",
+      default: "'double'",
+      description: 'Tipo de contenedor. Double usa el patrón de doble capa, simple usa una sola capa, warm aplica tonos cálidos.',
+    },
+    {
+      name: 'padding',
+      type: "'default' | 'compact'",
+      default: "'default'",
+      description: 'Padding del panel interior. Default usa 24px, compact usa 16px.',
+    },
+    {
+      name: 'children',
+      type: 'ReactNode',
+      description: 'Contenido del panel interior.',
+      required: true,
+    },
+  ]}
+/>
+
+## Guías de Uso
+
+<DoDont type="do">
+  Usa el double-layer para dialogs, panels y áreas de contenido complejo que necesitan separarse visualmente del fondo.
+</DoDont>
+
+<DoDont type="dont">
+  No anides contenedores double-layer. Un solo nivel de doble capa es suficiente — anidarlos crea demasiada profundidad visual.
+</DoDont>
+
+<DoDont type="do">
+  Usa la variante warm para contenedores en contextos financieros (wallet, cuentas, transacciones) y neutral para UI genérica.
+</DoDont>
+
+<DoDont type="dont">
+  No uses el contenedor simple cuando necesitas separación visual clara del fondo. El double-layer comunica mejor la jerarquía de contenido.
+</DoDont>

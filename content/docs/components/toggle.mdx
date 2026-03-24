@@ -1,0 +1,213 @@
+---
+title: Toggle
+description: Switch de activacion/desactivacion con estados on/off
+status: stable
+---
+
+
+<TogglePlayground />
+
+## Instalacion
+
+```tsx
+import { DSToggle } from '@/components/ds/ds-toggle'
+```
+
+## Uso
+
+```tsx title="toggle.tsx"
+import { DSToggle } from '@/components/ds/ds-toggle'
+
+export default function Example() {
+  return (
+    <DSToggle
+      checked={false}
+      label="Notificaciones push"
+      onChange={(checked) => console.log(checked)}
+    />
+  )
+}
+```
+
+## Ejemplos
+
+### Estado Off
+
+El toggle en estado desactivado muestra el track en gris con el thumb posicionado a la izquierda.
+
+<ComponentPreview>
+  <div style={{ display: 'inline-block', width: '44px', height: '24px', borderRadius: '12px', backgroundColor: 'var(--preview-border)', position: 'relative', cursor: 'pointer' }}>
+    <div style={{ width: '20px', height: '20px', borderRadius: '50%', backgroundColor: 'var(--preview-surface)', position: 'absolute', top: '2px', left: '2px', transition: 'left 200ms ease', boxShadow: '0 1px 3px rgba(0,0,0,0.15)' }} />
+  </div>
+</ComponentPreview>
+
+```tsx title="toggle-off.tsx"
+export function ToggleOff() {
+  return (
+    <div className="inline-block w-[44px] h-[24px] rounded-[12px] bg-[#DEDEDE] relative cursor-pointer">
+      <div className="w-[20px] h-[20px] rounded-full bg-white absolute top-[2px] left-[2px] shadow-sm transition-[left] duration-200 ease-in-out" />
+    </div>
+  );
+}
+```
+
+### Estado On
+
+El toggle activado muestra el track en color brand con el thumb posicionado a la derecha.
+
+<ComponentPreview>
+  <div style={{ display: 'inline-block', width: '44px', height: '24px', borderRadius: '12px', backgroundColor: 'var(--preview-brand)', position: 'relative', cursor: 'pointer' }}>
+    <div style={{ width: '20px', height: '20px', borderRadius: '50%', backgroundColor: 'var(--preview-surface)', position: 'absolute', top: '2px', left: '22px', transition: 'left 200ms ease', boxShadow: '0 1px 3px rgba(0,0,0,0.15)' }} />
+  </div>
+</ComponentPreview>
+
+```tsx title="toggle-on.tsx"
+export function ToggleOn() {
+  return (
+    <div className="inline-block w-[44px] h-[24px] rounded-[12px] bg-[#0B0B0B] relative cursor-pointer">
+      <div className="w-[20px] h-[20px] rounded-full bg-white absolute top-[2px] left-[22px] shadow-sm transition-[left] duration-200 ease-in-out" />
+    </div>
+  );
+}
+```
+
+### Con Label
+
+Toggle acompañado de texto descriptivo para indicar la función del interruptor.
+
+<ComponentPreview>
+  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+    <div style={{ display: 'inline-block', width: '44px', height: '24px', borderRadius: '12px', backgroundColor: 'var(--preview-brand)', position: 'relative', cursor: 'pointer', flexShrink: 0 }}>
+      <div style={{ width: '20px', height: '20px', borderRadius: '50%', backgroundColor: 'var(--preview-surface)', position: 'absolute', top: '2px', left: '22px', boxShadow: '0 1px 3px rgba(0,0,0,0.15)' }} />
+    </div>
+    <span style={{ fontSize: '14px', color: 'inherit' }}>Notificaciones push</span>
+  </div>
+</ComponentPreview>
+
+```tsx title="toggle-with-label.tsx"
+export function ToggleWithLabel() {
+  return (
+    <div className="flex items-center gap-3">
+      <div className="inline-block w-[44px] h-[24px] rounded-[12px] bg-[#0B0B0B] relative cursor-pointer shrink-0">
+        <div className="w-[20px] h-[20px] rounded-full bg-white absolute top-[2px] left-[22px] shadow-sm" />
+      </div>
+      <span className="text-sm">Notificaciones push</span>
+    </div>
+  );
+}
+```
+
+### Deshabilitado
+
+Estado disabled con opacidad reducida. No permite interaccion.
+
+<ComponentPreview>
+  <div style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
+    <div style={{ display: 'inline-block', width: '44px', height: '24px', borderRadius: '12px', backgroundColor: 'var(--preview-border)', position: 'relative', cursor: 'not-allowed', opacity: 0.5 }}>
+      <div style={{ width: '20px', height: '20px', borderRadius: '50%', backgroundColor: 'var(--preview-surface)', position: 'absolute', top: '2px', left: '2px', boxShadow: '0 1px 3px rgba(0,0,0,0.15)' }} />
+    </div>
+    <div style={{ display: 'inline-block', width: '44px', height: '24px', borderRadius: '12px', backgroundColor: 'var(--preview-brand)', position: 'relative', cursor: 'not-allowed', opacity: 0.5 }}>
+      <div style={{ width: '20px', height: '20px', borderRadius: '50%', backgroundColor: 'var(--preview-surface)', position: 'absolute', top: '2px', left: '22px', boxShadow: '0 1px 3px rgba(0,0,0,0.15)' }} />
+    </div>
+  </div>
+</ComponentPreview>
+
+```tsx title="toggle-disabled.tsx"
+export function ToggleDisabled() {
+  return (
+    <div className="flex gap-6 items-center">
+      {/* Off + Disabled */}
+      <div className="inline-block w-[44px] h-[24px] rounded-[12px] bg-[#DEDEDE] relative cursor-not-allowed opacity-50">
+        <div className="w-[20px] h-[20px] rounded-full bg-white absolute top-[2px] left-[2px] shadow-sm" />
+      </div>
+      {/* On + Disabled */}
+      <div className="inline-block w-[44px] h-[24px] rounded-[12px] bg-[#0B0B0B] relative cursor-not-allowed opacity-50">
+        <div className="w-[20px] h-[20px] rounded-full bg-white absolute top-[2px] left-[22px] shadow-sm" />
+      </div>
+    </div>
+  );
+}
+```
+
+### Interacciones
+
+El componente incluye feedback tactil al presionar: escala sutil (`scale 0.97`) con reduccion de opacidad, y un release con transicion spring natural. Este efecto se desactiva automaticamente en estados `disabled` y `loading`.
+
+## Anatomia
+
+Estructura del Toggle switch:
+
+```
+┌──────────────────────────────────────┐
+│  Label Text (Ubuntu Sans, 16px)      │
+│  gap: 12px                           │
+│                                      │
+│  Track: 44px × 24px                  │
+│  ┌────────────────────────────────┐  │
+│  │ ┌────┐                        │  │
+│  │ │thumb│  ←→  2px inset        │  │
+│  │ │20×20│                        │  │
+│  │ └────┘                        │  │
+│  └────────────────────────────────┘  │
+│  border-radius: 12px (track)         │
+│  border-radius: 10px (thumb)         │
+│  transition: 200ms ease              │
+└──────────────────────────────────────┘
+```
+
+| Parte | Valor |
+|-------|-------|
+| Track | 44 x 24px, r12 |
+| Thumb | 20 x 20px, r10 |
+| Inset | 2px from track edge |
+| Label gap | 12px |
+| Off color | #DEDEDE (track), #FFFFFF (thumb) |
+| On color | #0B0B0B (track), #FFFFFF (thumb) |
+
+## Props
+
+<PropsTable
+  props={[
+    {
+      name: 'checked',
+      type: 'boolean',
+      default: 'false',
+      description: 'Estado actual del toggle (on/off).',
+    },
+    {
+      name: 'disabled',
+      type: 'boolean',
+      default: 'false',
+      description: 'Deshabilita el toggle e impide interaccion.',
+    },
+    {
+      name: 'label',
+      type: 'string',
+      description: 'Texto descriptivo que acompana al toggle.',
+    },
+    {
+      name: 'size',
+      type: "'sm' | 'md'",
+      default: "'md'",
+      description: 'Tamano del toggle. md = 44x24px, sm = 36x20px.',
+    },
+  ]}
+/>
+
+## Guias de Uso
+
+<DoDont type="do">
+  Usa Toggle para configuraciones binarias de activacion/desactivacion como notificaciones, modo oscuro, o preferencias.
+</DoDont>
+
+<DoDont type="dont">
+  No uses Toggle para acciones que requieren confirmacion. Usa un Button con dialogo de confirmacion en su lugar.
+</DoDont>
+
+<DoDont type="do">
+  Siempre incluye un label descriptivo junto al toggle para que el usuario entienda que esta activando.
+</DoDont>
+
+<DoDont type="dont">
+  No uses Toggle para seleccion entre multiples opciones. Usa Radio Buttons o un Select en su lugar.
+</DoDont>

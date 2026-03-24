@@ -1,0 +1,235 @@
+---
+title: Accordion
+description: Secciones colapsables con chevron rotativo para contenido expandible
+status: stable
+---
+
+
+<AccordionPlayground />
+
+### Item Colapsado
+
+Estado cerrado con chevron apuntando hacia abajo.
+
+<ComponentPreview>
+  <div style={{ width: '100%', borderRadius: '20px', border: '0.5px solid var(--preview-border)', overflow: 'hidden' }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '16px', cursor: 'pointer' }}>
+      <div style={{ flex: 1 }}>
+        <span style={{ fontFamily: 'var(--font-funnel-display), sans-serif', fontSize: '15px', fontWeight: 400, color: 'inherit' }}>Como cambio mi contrasena?</span>
+      </div>
+      <div style={{ width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" style={{ opacity: 0.35, transition: 'transform 200ms ease' }}>
+          <path d="M4 6l4 4 4-4" />
+        </svg>
+      </div>
+    </div>
+  </div>
+</ComponentPreview>
+
+```tsx title="accordion-collapsed.tsx"
+export function AccordionItem({ title, content, isOpen, onToggle }) {
+  return (
+    <div className="border-b border-[#DEDEDE]">
+      <button
+        className="flex w-full items-center justify-between p-4"
+        onClick={onToggle}
+      >
+        <span className="text-base font-medium text-[#0B0B0B]">{title}</span>
+        <ChevronIcon
+          className={`h-4 w-4 text-[#999999] transition-transform duration-200 ${
+            isOpen ? 'rotate-180' : ''
+          }`}
+        />
+      </button>
+      {isOpen && (
+        <div className="px-4 pb-4 text-sm text-[#666666]">{content}</div>
+      )}
+    </div>
+  );
+}
+```
+
+### Item Expandido
+
+Estado abierto con chevron rotado 180 grados y contenido visible.
+
+<ComponentPreview>
+  <div style={{ width: '100%', borderRadius: '20px', border: '0.5px solid var(--preview-border)', overflow: 'hidden' }}>
+    <div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '16px', cursor: 'pointer' }}>
+        <div style={{ flex: 1 }}>
+          <span style={{ fontFamily: 'var(--font-funnel-display), sans-serif', fontSize: '15px', fontWeight: 400, color: 'inherit' }}>Como cambio mi contrasena?</span>
+        </div>
+        <div style={{ width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" style={{ opacity: 0.35, transform: 'rotate(180deg)', transition: 'transform 200ms ease' }}>
+            <path d="M4 6l4 4 4-4" />
+          </svg>
+        </div>
+      </div>
+      <div style={{ padding: '0 16px 16px 16px', fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontSize: '14px', color: 'inherit', opacity: 0.65, lineHeight: '1.5' }}>
+        Ve a Configuracion, selecciona Seguridad y luego Cambiar contrasena. Ingresa tu contrasena actual y la nueva contrasena dos veces para confirmar.
+      </div>
+    </div>
+  </div>
+</ComponentPreview>
+
+```tsx title="accordion-expanded.tsx"
+<AccordionItem
+  title="Como cambio mi contrasena?"
+  content="Ve a Configuracion, selecciona Seguridad y luego Cambiar contrasena."
+  isOpen={true}
+  onToggle={handleToggle}
+/>
+```
+
+### Multiples Items
+
+Grupo de accordion items, uno expandido.
+
+<ComponentPreview>
+  <div style={{ width: '100%', borderRadius: '20px', border: '0.5px solid var(--preview-border)', overflow: 'hidden' }}>
+    <div style={{ borderBottom: '0.5px solid var(--preview-border)' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '16px', cursor: 'pointer' }}>
+        <div style={{ flex: 1 }}>
+          <span style={{ fontFamily: 'var(--font-funnel-display), sans-serif', fontSize: '15px', fontWeight: 400, color: 'inherit' }}>Como activo mi tarjeta?</span>
+        </div>
+        <div style={{ width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" style={{ opacity: 0.35, transform: 'rotate(180deg)', transition: 'transform 200ms ease' }}>
+            <path d="M4 6l4 4 4-4" />
+          </svg>
+        </div>
+      </div>
+      <div style={{ padding: '0 16px 16px 16px', fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontSize: '14px', color: 'inherit', opacity: 0.65, lineHeight: '1.5' }}>
+        Abre la app, ve a la seccion Tarjetas y selecciona "Activar tarjeta". Sigue las instrucciones en pantalla para completar la activacion.
+      </div>
+    </div>
+    <div style={{ borderBottom: '0.5px solid var(--preview-border)' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '16px', cursor: 'pointer' }}>
+        <div style={{ flex: 1 }}>
+          <span style={{ fontFamily: 'var(--font-funnel-display), sans-serif', fontSize: '15px', fontWeight: 400, color: 'inherit' }}>Como veo mis movimientos?</span>
+        </div>
+        <div style={{ width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" style={{ opacity: 0.35, transition: 'transform 200ms ease' }}>
+            <path d="M4 6l4 4 4-4" />
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '16px', cursor: 'pointer' }}>
+        <div style={{ flex: 1 }}>
+          <span style={{ fontFamily: 'var(--font-funnel-display), sans-serif', fontSize: '15px', fontWeight: 400, color: 'inherit' }}>Como contacto soporte?</span>
+        </div>
+        <div style={{ width: '20px', height: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" style={{ opacity: 0.35, transition: 'transform 200ms ease' }}>
+            <path d="M4 6l4 4 4-4" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</ComponentPreview>
+
+```tsx title="accordion-group.tsx"
+export function AccordionGroup() {
+  const [openIndex, setOpenIndex] = useState(0);
+
+  const items = [
+    {
+      title: "Como activo mi tarjeta?",
+      content: "Abre la app, ve a la seccion Tarjetas y selecciona Activar tarjeta.",
+    },
+    {
+      title: "Como veo mis movimientos?",
+      content: "En la pantalla principal, desliza hacia abajo para ver tus movimientos recientes.",
+    },
+    {
+      title: "Como contacto soporte?",
+      content: "Ve a Configuracion > Ayuda > Contactar soporte.",
+    },
+  ];
+
+  return (
+    <div>
+      {items.map((item, i) => (
+        <AccordionItem
+          key={i}
+          title={item.title}
+          content={item.content}
+          isOpen={openIndex === i}
+          onToggle={() => setOpenIndex(openIndex === i ? -1 : i)}
+        />
+      ))}
+    </div>
+  );
+}
+```
+
+### Interacciones
+
+El componente incluye feedback tactil al presionar: escala sutil (`scale 0.97`) con reduccion de opacidad, y un release con transicion spring natural. Este efecto se desactiva automaticamente en estados `disabled` y `loading`.
+
+## Props
+
+<PropsTable
+  props={[
+    {
+      name: 'items',
+      type: 'AccordionItem[]',
+      description: 'Array de items con title y content.',
+      required: true,
+    },
+    {
+      name: 'defaultOpen',
+      type: 'number',
+      default: '-1',
+      description: 'Indice del item abierto por defecto. -1 para ninguno.',
+    },
+    {
+      name: 'allowMultiple',
+      type: 'boolean',
+      default: 'false',
+      description: 'Permite tener multiples items abiertos simultaneamente.',
+    },
+    {
+      name: 'onChange',
+      type: '(index: number) => void',
+      description: 'Callback cuando un item se abre o cierra.',
+    },
+  ]}
+/>
+
+### Props de AccordionItem
+
+<PropsTable
+  props={[
+    {
+      name: 'title',
+      type: 'string',
+      description: 'Texto del header del item.',
+      required: true,
+    },
+    {
+      name: 'content',
+      type: 'ReactNode',
+      description: 'Contenido que se muestra al expandir.',
+      required: true,
+    },
+    {
+      name: 'disabled',
+      type: 'boolean',
+      default: 'false',
+      description: 'Deshabilita la interaccion con el item.',
+    },
+  ]}
+/>
+
+## Guias de Uso
+
+<DoDont type="do">
+  Usa para FAQs, configuraciones agrupadas, o contenido largo que se puede segmentar.
+</DoDont>
+
+<DoDont type="dont">
+  No ocultes informacion critica dentro de un accordion que el usuario debe ver siempre.
+</DoDont>

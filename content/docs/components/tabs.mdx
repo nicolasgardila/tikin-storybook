@@ -1,0 +1,163 @@
+---
+title: Tabs
+description: Tabs con variantes Contained y Underline para navegacion entre secciones
+status: stable
+---
+
+
+<TabsPlayground />
+
+## Instalacion
+
+```tsx
+import { DSTabs } from '@/components/ds/ds-tabs'
+```
+
+## Uso
+
+```tsx title="tabs.tsx"
+import { DSTabs } from '@/components/ds/ds-tabs'
+
+export default function Example() {
+  return (
+    <DSTabs
+      variant="contained"
+      tabs={['General', 'Seguridad', 'Notificaciones']}
+      activeTab={0}
+      onChange={(index) => console.log(index)}
+    />
+  )
+}
+```
+
+## Ejemplos
+
+### Contained
+
+Tabs con fondo contenedor y tab activa destacada con fondo blanco.
+
+<ComponentPreview>
+  <div style={{ display: 'inline-flex', alignItems: 'center', backgroundColor: 'var(--preview-surface, #FDFDFD)', borderRadius: '12px', padding: '4px', border: '1px solid var(--preview-border)' }}>
+    <button style={{ borderRadius: '10px', backgroundColor: 'var(--preview-muted-bg, #EEEEEE)', padding: '6px 12px', fontSize: '14px', lineHeight: '20px', fontFamily: 'var(--font-ubuntu-sans-mono), ui-monospace, monospace', fontWeight: 500, textTransform: 'uppercase', color: 'inherit', border: 'none', cursor: 'pointer' }}>
+      General
+    </button>
+    <button style={{ borderRadius: '3px', backgroundColor: 'transparent', padding: '6px 12px', fontSize: '14px', lineHeight: '20px', fontFamily: 'var(--font-ubuntu-sans-mono), ui-monospace, monospace', fontWeight: 400, textTransform: 'uppercase', color: 'inherit', opacity: 0.65, border: 'none', cursor: 'pointer' }}>
+      Seguridad
+    </button>
+    <button style={{ borderRadius: '3px', backgroundColor: 'transparent', padding: '6px 12px', fontSize: '14px', lineHeight: '20px', fontFamily: 'var(--font-ubuntu-sans-mono), ui-monospace, monospace', fontWeight: 400, textTransform: 'uppercase', color: 'inherit', opacity: 0.65, border: 'none', cursor: 'pointer' }}>
+      Notificaciones
+    </button>
+  </div>
+</ComponentPreview>
+
+```tsx title="tabs-contained.tsx"
+export function TabsContained() {
+  const [activeTab, setActiveTab] = useState(0);
+  const tabs = ['General', 'Seguridad', 'Notificaciones'];
+
+  return (
+    <div className="inline-flex items-center bg-[#F6F6F6] rounded-xl p-1 gap-0.5">
+      {tabs.map((tab, i) => (
+        <button
+          key={tab}
+          onClick={() => setActiveTab(i)}
+          className={`rounded-xl px-4 py-2 text-sm font-mono font-medium uppercase tracking-wider border-none cursor-pointer transition-colors ${
+            activeTab === i
+              ? 'bg-white text-[#0B0B0B] shadow-sm'
+              : 'bg-transparent text-[#999999]'
+          }`}
+        >
+          {tab}
+        </button>
+      ))}
+    </div>
+  );
+}
+```
+
+### Underline
+
+Tabs con linea inferior en la tab activa, sin fondo contenedor.
+
+<ComponentPreview>
+  <div style={{ display: 'inline-flex', alignItems: 'center', borderBottom: '0.5px solid var(--preview-border)' }}>
+    <button style={{ padding: '10px 16px', fontSize: '14px', lineHeight: '20px', fontFamily: 'var(--font-ubuntu-sans-mono), ui-monospace, monospace', fontWeight: 500, textTransform: 'uppercase', color: 'inherit', border: 'none', borderBottom: '2px solid currentColor', cursor: 'pointer', backgroundColor: 'transparent', marginBottom: '-0.5px' }}>
+      Movimientos
+    </button>
+    <button style={{ padding: '10px 16px', fontSize: '14px', lineHeight: '20px', fontFamily: 'var(--font-ubuntu-sans-mono), ui-monospace, monospace', fontWeight: 400, textTransform: 'uppercase', color: 'inherit', opacity: 0.45, border: 'none', borderBottom: '2px solid transparent', cursor: 'pointer', backgroundColor: 'transparent', marginBottom: '-0.5px' }}>
+      Favoritos
+    </button>
+    <button style={{ padding: '10px 16px', fontSize: '14px', lineHeight: '20px', fontFamily: 'var(--font-ubuntu-sans-mono), ui-monospace, monospace', fontWeight: 400, textTransform: 'uppercase', color: 'inherit', opacity: 0.45, border: 'none', borderBottom: '2px solid transparent', cursor: 'pointer', backgroundColor: 'transparent', marginBottom: '-0.5px' }}>
+      Programados
+    </button>
+  </div>
+</ComponentPreview>
+
+```tsx title="tabs-underline.tsx"
+export function TabsUnderline() {
+  const [activeTab, setActiveTab] = useState(0);
+  const tabs = ['Movimientos', 'Favoritos', 'Programados'];
+
+  return (
+    <div className="inline-flex items-center gap-6">
+      {tabs.map((tab, i) => (
+        <button
+          key={tab}
+          onClick={() => setActiveTab(i)}
+          className={`py-2 text-sm font-mono font-medium uppercase tracking-wider bg-transparent border-none cursor-pointer transition-colors ${
+            activeTab === i
+              ? 'text-[#0B0B0B] border-b-2 border-[#0B0B0B]'
+              : 'text-[#999999] border-b-2 border-transparent'
+          }`}
+        >
+          {tab}
+        </button>
+      ))}
+    </div>
+  );
+}
+```
+
+### Interacciones
+
+El componente incluye feedback tactil al presionar: escala sutil (`scale 0.97`) con reduccion de opacidad, y un release con transicion spring natural. Este efecto se desactiva automaticamente en estados `disabled` y `loading`.
+
+## Props
+
+<PropsTable
+  props={[
+    {
+      name: 'variant',
+      type: "'contained' | 'underline'",
+      default: "'contained'",
+      description: 'Estilo visual de los tabs.',
+    },
+    {
+      name: 'activeTab',
+      type: 'number',
+      default: '0',
+      description: 'Indice del tab activo.',
+    },
+    {
+      name: 'tabs',
+      type: 'string',
+      description: 'Labels de cada tab separados por coma (ej: "General, Seguridad, Notificaciones").',
+    },
+    {
+      name: 'size',
+      type: "'sm' | 'md'",
+      default: "'md'",
+      description: 'Tamano de los tabs. md = desktop, sm = mobile.',
+    },
+  ]}
+/>
+
+## Guias de Uso
+
+<DoDont type="do">
+  Usar Contained para secciones dentro de un card. Usar Underline para navegacion de pagina.
+</DoDont>
+
+<DoDont type="dont">
+  No mezclar variantes Contained y Underline en el mismo contexto.
+</DoDont>

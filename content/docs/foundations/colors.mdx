@@ -1,0 +1,112 @@
+---
+title: Colores
+description: Sistema de color semantico con tonos warm y neutral
+---
+
+## Sistema de Color
+
+Black Cash utiliza un sistema **dual de tonos** para crear separacion visual entre contextos de interfaz:
+
+- **Warm** — paneles, tarjetas, wallet, fondos de pagina. Transmite calidez y confianza.
+- **Neutral** — dialogos, tabs, inputs, contenedores funcionales. Transmite precision y claridad.
+
+Cada tono tiene tres niveles semanticos: **background**, **surface** y **border**, creando profundidad sin depender de sombras.
+
+---
+
+## Explorador de Colores
+
+Haz clic en cualquier swatch para copiar la variable CSS.
+
+<ColorVisualizer />
+
+---
+
+## Warm Tone
+
+Usado en vistas principales, paneles laterales y tarjetas de wallet.
+
+| Token | CSS Variable | Hex | Uso |
+|-------|-------------|-----|-----|
+| warm-bg | `--ds-warm-bg` | `#FAF8F4` | Fondo de pagina, vistas de wallet |
+| warm-surface | `--ds-warm-surface` | `#F1EFEB` | Superficies de tarjetas, paneles laterales |
+| warm-border | `--ds-warm-border` | `#E8E4DD` | Bordes de contenedores organicos, divisores de tarjeta |
+
+---
+
+## Neutral Tone
+
+Usado en dialogos, tabs, inputs y contenedores funcionales.
+
+| Token | CSS Variable | Hex | Uso |
+|-------|-------------|-----|-----|
+| neutral-bg | `--ds-neutral-bg` | `#F6F6F6` | Fondo de dialogos, contenedores de tabs |
+| neutral-surface | `--ds-neutral-surface` | `#FFFFFF` | Paneles internos, fondo de inputs |
+| neutral-border | `--ds-neutral-border` | `#DEDEDE` | Bordes funcionales, bordes de inputs |
+
+---
+
+## Brand
+
+El color de marca se usa para elementos primarios de accion y enfasis.
+
+| Token | CSS Variable | Valor Light | Valor Dark | Uso |
+|-------|-------------|-------------|------------|-----|
+| brand | `--ds-brand` | `#0B0B0B` | `#FFFFFF` | Color primario de marca, botones principales |
+| brand-on | `--ds-brand-on` | `#FFFFFF` | `#0B0B0B` | Texto sobre superficies brand |
+
+---
+
+## Texto y Estado
+
+Colores de texto e iconos usados transversalmente en todos los componentes.
+
+### Texto
+
+| Nombre | Hex | Uso |
+|--------|-----|-----|
+| Primary | `#0B0B0B` | Texto principal, titulos, labels |
+| Secondary | `#666666` | Texto secundario, descripciones |
+| Muted | `#999999` | Texto deshabilitado, placeholders |
+
+### Estado
+
+| Nombre | Hex | Uso |
+|--------|-----|-----|
+| Success | `#2ECC71` | Confirmaciones, transacciones exitosas |
+| Error | `#E74C3C` | Errores, validaciones fallidas |
+| Warning | `#F39C12` | Alertas, acciones que requieren atencion |
+
+---
+
+## Dark Mode
+
+Los tonos **Warm** y **Neutral** se mantienen constantes en dark mode — representan tokens de componente, no el tema del sitio. Solo el color **Brand** se invierte:
+
+- Light: `--ds-brand: #0B0B0B` / `--ds-brand-on: #FFFFFF`
+- Dark: `--ds-brand: #FFFFFF` / `--ds-brand-on: #0B0B0B`
+
+Esto permite que los previews de componentes se rendericen con los mismos colores independientemente del tema de la documentacion.
+
+---
+
+## Uso en Codigo
+
+```tsx
+{/* Usando CSS variables directamente con Tailwind */}
+<div className="bg-[var(--ds-warm-bg)] border border-[var(--ds-warm-border)]">
+  <span className="text-[var(--ds-brand)]">Texto principal</span>
+</div>
+
+{/* Tarjeta sobre superficie warm */}
+<div className="bg-[var(--ds-warm-surface)] rounded-[var(--ds-radius-md)] p-[var(--ds-space-6)]">
+  <h3 className="text-[#0B0B0B]">Titulo</h3>
+  <p className="text-[#666666]">Descripcion secundaria</p>
+</div>
+
+{/* Input sobre superficie neutral */}
+<input
+  className="bg-[var(--ds-neutral-surface)] border border-[var(--ds-neutral-border)] rounded-[var(--ds-radius-sm)]"
+  placeholder="Escribe aqui..."
+/>
+```

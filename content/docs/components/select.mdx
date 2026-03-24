@@ -1,0 +1,257 @@
+---
+title: Select
+description: Selector desplegable con variantes y estados
+status: stable
+---
+
+
+<SelectPlayground />
+
+## Instalacion
+
+```tsx
+import { DSSelect } from '@/components/ds/ds-select'
+```
+
+## Uso
+
+```tsx title="select.tsx"
+import { DSSelect } from '@/components/ds/ds-select'
+
+export default function Example() {
+  return (
+    <DSSelect
+      placeholder="Seleccionar..."
+      options={[
+        { value: '1', label: 'Opción 1' },
+        { value: '2', label: 'Opción 2' },
+      ]}
+    />
+  )
+}
+```
+
+## Ejemplos
+
+### Default
+
+Selector en su estado base con opción placeholder.
+
+<ComponentPreview>
+  <div style={{ width: '100%', maxWidth: '320px' }}>
+    <div style={{ borderRadius: '12px', border: '0.5px solid var(--preview-border)', backgroundColor: 'var(--preview-surface)', padding: '12px 16px', fontSize: '16px', fontFamily: 'var(--font-ubuntu-sans), Ubuntu Sans, sans-serif', color: 'inherit', opacity: 0.6, display: 'flex', alignItems: 'center', justifyContent: 'space-between', cursor: 'pointer' }}>
+      <span>Seleccionar...</span>
+      <svg style={{ width: '16px', height: '16px', flexShrink: 0 }} viewBox="0 0 16 16" fill="none">
+        <path d="M4 6L8 10L12 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    </div>
+    <div style={{ marginTop: '4px', borderRadius: '12px', border: '0.5px solid var(--preview-border)', backgroundColor: 'var(--preview-surface)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', overflow: 'hidden' }}>
+      <div style={{ padding: '8px 12px', fontSize: '16px', fontFamily: 'var(--font-ubuntu-sans), Ubuntu Sans, sans-serif', color: 'inherit', cursor: 'pointer' }}>Opción 1</div>
+      <div style={{ padding: '8px 12px', fontSize: '16px', fontFamily: 'var(--font-ubuntu-sans), Ubuntu Sans, sans-serif', color: 'inherit', backgroundColor: 'var(--preview-muted-bg)', cursor: 'pointer' }}>Opción 2</div>
+      <div style={{ padding: '8px 12px', fontSize: '16px', fontFamily: 'var(--font-ubuntu-sans), Ubuntu Sans, sans-serif', color: 'inherit', cursor: 'pointer' }}>Opción 3</div>
+    </div>
+  </div>
+</ComponentPreview>
+
+```tsx title="select-default.tsx"
+export function Select() {
+  return (
+    <div className="relative w-full max-w-xs">
+      <select
+        defaultValue=""
+        className="w-full appearance-none rounded-xl border-[0.5px] border-[#DEDEDE] bg-white px-4 py-3 pr-10 text-base font-['Ubuntu_Sans'] text-[#0B0B0B] outline-none focus:border-[#0B0B0B] focus:shadow-[0_0_0_1px_#0B0B0B] cursor-pointer"
+      >
+        <option value="" disabled>Seleccionar...</option>
+        <option value="1">Opción 1</option>
+        <option value="2">Opción 2</option>
+        <option value="3">Opción 3</option>
+      </select>
+      <svg className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4" viewBox="0 0 16 16" fill="none">
+        <path d="M4 6L8 10L12 6" stroke="#0B0B0B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    </div>
+  );
+}
+```
+
+### Con Label
+
+Selector con label superior para contexto.
+
+<ComponentPreview>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', width: '100%', maxWidth: '320px' }}>
+    <label style={{ fontSize: '14px', fontWeight: 500, fontFamily: 'var(--font-ubuntu-sans), Ubuntu Sans, sans-serif', color: 'inherit' }}>País de residencia</label>
+    <div style={{ width: '100%' }}>
+      <div style={{ borderRadius: '12px', border: '0.5px solid var(--preview-border)', backgroundColor: 'var(--preview-surface)', padding: '12px 16px', fontSize: '16px', fontFamily: 'var(--font-ubuntu-sans), Ubuntu Sans, sans-serif', color: 'inherit', display: 'flex', alignItems: 'center', justifyContent: 'space-between', cursor: 'pointer' }}>
+        <span>Colombia</span>
+        <svg style={{ width: '16px', height: '16px', flexShrink: 0 }} viewBox="0 0 16 16" fill="none">
+          <path d="M4 6L8 10L12 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </div>
+    </div>
+  </div>
+</ComponentPreview>
+
+```tsx title="select-label.tsx"
+export function SelectWithLabel() {
+  return (
+    <div className="flex flex-col gap-1.5 w-full max-w-xs">
+      <label className="text-sm font-medium font-['Ubuntu_Sans'] text-[#0B0B0B]">
+        País de residencia
+      </label>
+      <div className="relative w-full">
+        <select
+          defaultValue=""
+          className="w-full appearance-none rounded-xl border-[0.5px] border-[#DEDEDE] bg-white px-4 py-3 pr-10 text-base font-['Ubuntu_Sans'] text-[#0B0B0B] outline-none focus:border-[#0B0B0B] focus:shadow-[0_0_0_1px_#0B0B0B] cursor-pointer"
+        >
+          <option value="" disabled>Seleccionar país...</option>
+          <option value="co">Colombia</option>
+          <option value="mx">México</option>
+          <option value="ar">Argentina</option>
+        </select>
+        <svg className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4" viewBox="0 0 16 16" fill="none">
+          <path d="M4 6L8 10L12 6" stroke="#0B0B0B" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+```
+
+### Estado Disabled
+
+Selector deshabilitado con colores atenuados.
+
+<ComponentPreview>
+  <div style={{ width: '100%', maxWidth: '320px' }}>
+    <div style={{ borderRadius: '12px', border: '0.5px solid var(--preview-border)', backgroundColor: 'var(--preview-muted-bg)', padding: '12px 16px', fontSize: '16px', fontFamily: 'var(--font-ubuntu-sans), Ubuntu Sans, sans-serif', color: 'inherit', display: 'flex', alignItems: 'center', justifyContent: 'space-between', cursor: 'not-allowed', opacity: 0.5 }}>
+      <span>No disponible</span>
+      <svg style={{ width: '16px', height: '16px', flexShrink: 0 }} viewBox="0 0 16 16" fill="none">
+        <path d="M4 6L8 10L12 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    </div>
+  </div>
+</ComponentPreview>
+
+```tsx title="select-disabled.tsx"
+export function SelectDisabled() {
+  return (
+    <div className="relative w-full max-w-xs">
+      <select
+        disabled
+        defaultValue=""
+        className="w-full appearance-none rounded-xl border-[0.5px] border-[#E6E6E6] bg-[#F5F5F5] px-4 py-3 pr-10 text-base font-['Ubuntu_Sans'] text-[#0B0B0B] opacity-50 outline-none cursor-not-allowed"
+      >
+        <option value="" disabled>No disponible</option>
+      </select>
+      <svg className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4" viewBox="0 0 16 16" fill="none">
+        <path d="M4 6L8 10L12 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    </div>
+  );
+}
+```
+
+### Estado de Error
+
+Borde rojo con fondo sutil de error y mensaje de feedback debajo.
+
+<ComponentPreview>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '100%', maxWidth: '320px' }}>
+    <div style={{ borderRadius: '12px', border: '1px solid #EC221F', backgroundColor: 'var(--preview-error-bg, #FEE9E7)', padding: '12px 16px', fontSize: '16px', fontFamily: 'var(--font-ubuntu-sans), Ubuntu Sans, sans-serif', color: 'inherit', display: 'flex', alignItems: 'center', justifyContent: 'space-between', cursor: 'pointer' }}>
+      <span>Seleccionar...</span>
+      <svg style={{ width: '16px', height: '16px', flexShrink: 0 }} viewBox="0 0 16 16" fill="none">
+        <path d="M4 6L8 10L12 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    </div>
+    <span style={{ fontSize: '13px', fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontWeight: 400, color: '#EC221F', lineHeight: 1.2, margin: 0, padding: 0, display: 'block' }}>Selecciona una opción válida</span>
+  </div>
+</ComponentPreview>
+
+```tsx title="select-error.tsx"
+export function SelectError() {
+  return (
+    <div className="flex flex-col gap-2 w-full max-w-xs">
+      <div className="rounded-xl border border-[#EC221F] bg-[#FEE9E7] px-4 py-3 text-base font-['Ubuntu_Sans'] text-[#0B0B0B] flex items-center justify-between cursor-pointer">
+        <span>Seleccionar...</span>
+        <svg className="w-4 h-4 shrink-0" viewBox="0 0 16 16" fill="none">
+          <path d="M4 6L8 10L12 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </div>
+      <span className="text-[13px] font-['Ubuntu_Sans'] text-[#EC221F] leading-[1.2]">
+        Selecciona una opción válida
+      </span>
+    </div>
+  );
+}
+```
+
+## Props
+
+<PropsTable
+  props={[
+    {
+      name: 'size',
+      type: "'sm' | 'md' | 'lg'",
+      default: "'md'",
+      description: 'Tamaño del selector. Afecta padding y font-size.',
+    },
+    {
+      name: 'label',
+      type: 'string',
+      description: 'Texto del label superior.',
+    },
+    {
+      name: 'placeholder',
+      type: 'string',
+      default: "'Seleccionar...'",
+      description: 'Texto de la opción placeholder.',
+    },
+    {
+      name: 'options',
+      type: 'Array<{ value: string; label: string }>',
+      description: 'Lista de opciones del selector.',
+      required: true,
+    },
+    {
+      name: 'value',
+      type: 'string',
+      description: 'Valor controlado del selector.',
+    },
+    {
+      name: 'onChange',
+      type: '(e: ChangeEvent) => void',
+      description: 'Callback al seleccionar una opción.',
+    },
+    {
+      name: 'disabled',
+      type: 'boolean',
+      default: 'false',
+      description: 'Deshabilita el selector e impide interacción.',
+    },
+    {
+      name: 'fullWidth',
+      type: 'boolean',
+      default: 'false',
+      description: 'El selector ocupa el 100% del ancho disponible.',
+    },
+  ]}
+/>
+
+## Guías de Uso
+
+<DoDont type="do">
+  Usa Select cuando hay entre 4 y 15 opciones. Para menos opciones, considera Radio Buttons. Para más, considera un campo con búsqueda.
+</DoDont>
+
+<DoDont type="dont">
+  No uses Select para opciones binarias (sí/no). Usa un Checkbox o Switch en su lugar.
+</DoDont>
+
+<DoDont type="do">
+  Incluye siempre una opción placeholder como "Seleccionar..." para indicar que no se ha elegido nada.
+</DoDont>
+
+<DoDont type="dont">
+  No pre-selecciones una opción a menos que sea un valor por defecto genuino. El usuario debe tomar la decisión conscientemente.
+</DoDont>

@@ -1,0 +1,150 @@
+---
+title: Segmented Control
+description: Control segmentado para alternar entre opciones mutuamente excluyentes
+status: stable
+---
+
+
+<SegmentedControlPlayground />
+
+## Instalacion
+
+```tsx
+import { DSSegmentedControl } from '@/components/ds/ds-segmented-control'
+```
+
+## Uso
+
+```tsx title="segmented-control.tsx"
+import { DSSegmentedControl } from '@/components/ds/ds-segmented-control'
+
+export default function Example() {
+  return (
+    <DSSegmentedControl
+      tabs="Enviados, Recibidos"
+      activeTab={0}
+      size="md"
+    />
+  )
+}
+```
+
+## Ejemplos
+
+### Default (2 segmentos)
+
+Control segmentado con dos opciones.
+
+<ComponentPreview>
+  <div style={{ display: 'inline-flex', alignItems: 'center', backgroundColor: 'var(--preview-muted-bg)', borderRadius: '14px', padding: '3px', border: '1px solid var(--preview-border)' }}>
+    <button style={{ borderRadius: '12px', backgroundColor: 'var(--preview-brand)', padding: '8px 16px', fontSize: '13px', fontFamily: 'var(--font-ubuntu-sans-mono), ui-monospace, monospace', fontWeight: 500, textTransform: 'uppercase', color: 'var(--preview-brand-on)', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+      Enviados
+    </button>
+    <button style={{ borderRadius: '12px', backgroundColor: 'transparent', padding: '8px 16px', fontSize: '13px', fontFamily: 'var(--font-ubuntu-sans-mono), ui-monospace, monospace', fontWeight: 400, textTransform: 'uppercase', color: 'rgba(11,11,11,0.50)', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+      Recibidos
+    </button>
+  </div>
+</ComponentPreview>
+
+### 3 Segmentos
+
+Control segmentado con tres opciones.
+
+<ComponentPreview>
+  <div style={{ display: 'inline-flex', alignItems: 'center', backgroundColor: 'var(--preview-muted-bg)', borderRadius: '14px', padding: '3px', border: '1px solid var(--preview-border)' }}>
+    <button style={{ borderRadius: '12px', backgroundColor: 'var(--preview-brand)', padding: '8px 16px', fontSize: '13px', fontFamily: 'var(--font-ubuntu-sans-mono), ui-monospace, monospace', fontWeight: 500, textTransform: 'uppercase', color: 'var(--preview-brand-on)', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+      Todos
+    </button>
+    <button style={{ borderRadius: '12px', backgroundColor: 'transparent', padding: '8px 16px', fontSize: '13px', fontFamily: 'var(--font-ubuntu-sans-mono), ui-monospace, monospace', fontWeight: 400, textTransform: 'uppercase', color: 'rgba(11,11,11,0.50)', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+      Ingresos
+    </button>
+    <button style={{ borderRadius: '12px', backgroundColor: 'transparent', padding: '8px 16px', fontSize: '13px', fontFamily: 'var(--font-ubuntu-sans-mono), ui-monospace, monospace', fontWeight: 400, textTransform: 'uppercase', color: 'rgba(11,11,11,0.50)', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+      Egresos
+    </button>
+  </div>
+</ComponentPreview>
+
+### Con Iconos
+
+Segmentos con icono y texto.
+
+<ComponentPreview>
+  <div style={{ display: 'inline-flex', alignItems: 'center', backgroundColor: 'var(--preview-muted-bg)', borderRadius: '14px', padding: '3px', border: '1px solid var(--preview-border)' }}>
+    <button style={{ borderRadius: '12px', backgroundColor: 'var(--preview-brand)', padding: '8px 16px', fontSize: '13px', fontFamily: 'var(--font-ubuntu-sans-mono), ui-monospace, monospace', fontWeight: 500, textTransform: 'uppercase', color: 'var(--preview-brand-on)', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px' }}>
+      <svg viewBox="0 0 256 256" fill="currentColor" style={{ width: '14px', height: '14px' }}>
+        <path d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48ZM40,112H216v48H40Zm0-48H216v32H40ZM216,192H40V176H216v16Z"/>
+      </svg>
+      Lista
+    </button>
+    <button style={{ borderRadius: '12px', backgroundColor: 'transparent', padding: '8px 16px', fontSize: '13px', fontFamily: 'var(--font-ubuntu-sans-mono), ui-monospace, monospace', fontWeight: 400, textTransform: 'uppercase', color: 'rgba(11,11,11,0.50)', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px' }}>
+      <svg viewBox="0 0 256 256" fill="currentColor" style={{ width: '14px', height: '14px', color: 'rgba(11,11,11,0.40)' }}>
+        <path d="M216,48H40A16,16,0,0,0,24,64V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V64A16,16,0,0,0,216,48ZM104,192H40V64h64Zm112,0H120V64h96Z"/>
+      </svg>
+      Grid
+    </button>
+  </div>
+</ComponentPreview>
+
+```tsx title="segmented-control-usage.tsx"
+export function SegmentedControl() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const segments = ['Todo', 'Ingresos', 'Gastos'];
+
+  return (
+    <div className="inline-flex items-center bg-[#F6F6F6] rounded-xl p-1 gap-0.5">
+      {segments.map((segment, i) => (
+        <button
+          key={segment}
+          onClick={() => setActiveIndex(i)}
+          className={`rounded-lg px-5 py-2 text-sm font-medium border-none cursor-pointer h-9 flex items-center transition-all duration-200 ${
+            activeIndex === i
+              ? 'bg-white text-[#0B0B0B] shadow-sm'
+              : 'bg-transparent text-[#999999]'
+          }`}
+        >
+          {segment}
+        </button>
+      ))}
+    </div>
+  );
+}
+```
+
+### Interacciones
+
+El componente incluye feedback tactil al presionar: escala sutil (`scale 0.97`) con reduccion de opacidad, y un release con transicion spring natural. Este efecto se desactiva automaticamente en estados `disabled` y `loading`.
+
+## Props
+
+<PropsTable
+  props={[
+    {
+      name: 'tabs',
+      type: 'string',
+      default: "'Tab 1, Tab 2, Tab 3'",
+      description: 'Lista de segmentos separados por coma.',
+    },
+    {
+      name: 'activeTab',
+      type: 'number',
+      default: '0',
+      description: 'Indice del segmento activo (base 0).',
+    },
+    {
+      name: 'size',
+      type: "'sm' | 'md'",
+      default: "'md'",
+      description: 'Tamano del control. sm: 11px/6px 12px, md: 13px/8px 16px.',
+    },
+  ]}
+/>
+
+## Guias de Uso
+
+<DoDont type="do">
+  Usar para alternar entre 2 a 4 vistas o modos dentro del mismo contexto.
+</DoDont>
+
+<DoDont type="dont">
+  No usar para mas de 5 opciones. Considerar Tabs o Select en su lugar.
+</DoDont>

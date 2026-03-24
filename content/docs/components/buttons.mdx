@@ -1,0 +1,180 @@
+---
+title: Buttons
+description: Primary, Secondary, Icon, Ghost y Link — todos los estilos de botón
+status: stable
+---
+
+
+<ButtonsPlayground />
+
+## Instalacion
+
+```tsx
+import { DSButton } from '@/components/ds/ds-button'
+```
+
+## Uso
+
+```tsx title="button.tsx"
+import { DSButton } from '@/components/ds/ds-button'
+
+export default function Example() {
+  return (
+    <DSButton variant="primary" size="md">
+      Continuar
+    </DSButton>
+  )
+}
+```
+
+## Ejemplos
+
+### Primary Button
+
+El botón principal para acciones primarias. Fondo oscuro con texto claro.
+
+<ComponentPreview>
+  <button style={{ borderRadius: '12px', backgroundColor: 'var(--preview-brand)', padding: '8px 20px', height: '40px', fontSize: '14px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--preview-brand-on)', border: 'none', cursor: 'pointer', fontFamily: 'var(--font-ubuntu-sans-mono), ui-monospace, monospace', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>Continuar</button>
+</ComponentPreview>
+
+```tsx title="primary-button.tsx"
+export function PrimaryButton() {
+  return (
+    <button className="rounded-xl bg-[#0B0B0B] px-6 py-3 text-sm font-medium uppercase tracking-wider text-white">
+      Continuar
+    </button>
+  );
+}
+```
+
+### Secondary Button
+
+Para acciones secundarias. Borde sutil con fondo transparente.
+
+<ComponentPreview>
+  <button style={{ borderRadius: '12px', border: '1px solid var(--preview-border)', backgroundColor: 'transparent', padding: '8px 20px', height: '40px', fontSize: '14px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'inherit', cursor: 'pointer', fontFamily: 'var(--font-ubuntu-sans-mono), ui-monospace, monospace', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>Cancelar</button>
+</ComponentPreview>
+
+```tsx title="secondary-button.tsx"
+export function SecondaryButton() {
+  return (
+    <button className="rounded-xl border border-[#DEDEDE] bg-transparent px-6 py-3 text-sm font-medium uppercase tracking-wider text-[#0B0B0B]">
+      Cancelar
+    </button>
+  );
+}
+```
+
+### Ghost Button
+
+Para acciones terciarias. Sin borde ni fondo.
+
+<ComponentPreview>
+  <button style={{ borderRadius: '12px', backgroundColor: 'transparent', padding: '8px 20px', height: '40px', fontSize: '14px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'inherit', border: 'none', cursor: 'pointer', fontFamily: 'var(--font-ubuntu-sans-mono), ui-monospace, monospace', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>Ver mas</button>
+</ComponentPreview>
+
+```tsx title="ghost-button.tsx"
+export function GhostButton() {
+  return (
+    <button className="rounded-xl px-6 py-3 text-sm font-medium text-[#0B0B0B] hover:bg-[#F6F6F6]">
+      Ver más
+    </button>
+  );
+}
+```
+
+### Interacciones
+
+El componente incluye feedback tactil al presionar: escala sutil (`scale 0.97`) con reduccion de opacidad, y un release con transicion spring natural. Este efecto se desactiva automaticamente en estados `disabled` y `loading`.
+
+## Anatomia
+
+Estructura interna del boton Primary:
+
+```
+┌─────────────────────────────────────┐
+│           padding-y: 8px            │
+│  ┌─────────────────────────────┐    │
+│  │  [Icon]  LABEL TEXT  [Icon] │    │
+│  │   20px    14px/500    20px  │    │
+│  │         gap: 8px           │    │
+│  └─────────────────────────────┘    │
+│           padding-x: 20px           │
+│         border-radius: 12px         │
+│      font: Ubuntu Sans Mono         │
+│     transform: uppercase            │
+│     tracking: 0.05em                │
+│         height: 40px (md)           │
+└─────────────────────────────────────┘
+```
+
+| Parte | Token | Valor |
+|-------|-------|-------|
+| Padding horizontal | `--ds-space-5` | 20px |
+| Padding vertical | `--ds-space-2` | 8px |
+| Border radius | `--ds-radius-md` | 12px |
+| Icon size | — | 20px |
+| Gap (icon-label) | `--ds-space-2` | 8px |
+| Font | Ubuntu Sans Mono | 14px / 500 |
+| Height (md) | `--ds-height-md` | 40px |
+
+## Props
+
+<PropsTable
+  props={[
+    {
+      name: 'variant',
+      type: "'primary' | 'secondary' | 'ghost'",
+      default: "'primary'",
+      description: 'Estilo visual del botón.',
+    },
+    {
+      name: 'size',
+      type: "'sm' | 'md' | 'lg'",
+      default: "'md'",
+      description: 'Tamaño del botón. Afecta padding y font-size.',
+    },
+    {
+      name: 'disabled',
+      type: 'boolean',
+      default: 'false',
+      description: 'Deshabilita el botón e impide interacción.',
+    },
+    {
+      name: 'fullWidth',
+      type: 'boolean',
+      default: 'false',
+      description: 'El botón ocupa el 100% del ancho disponible.',
+    },
+    {
+      name: 'loading',
+      type: 'boolean',
+      default: 'false',
+      description: 'Muestra un spinner y deshabilita la interacción.',
+    },
+    {
+      name: 'children',
+      type: 'ReactNode',
+      default: "'Continuar'",
+      description: 'Contenido del botón (texto o icono + texto).',
+    },
+  ]}
+/>
+
+## Guías de Uso
+
+<DoDont type="do">
+  Usa el botón Primary para la acción principal de cada pantalla. Solo debe haber un Primary visible por contexto.
+</DoDont>
+
+<DoDont type="dont">
+  No uses múltiples botones Primary en la misma vista. Usa Secondary o Ghost para acciones alternativas.
+</DoDont>
+
+<DoDont type="do">
+  Usa texto uppercase en Ubuntu Sans Mono para los labels de botón, siguiendo el patrón tipográfico del DS.
+</DoDont>
+
+<DoDont type="dont">
+  No uses sentence case o lowercase para labels de botón. El DS usa uppercase con tracking amplio para CTAs.
+</DoDont>

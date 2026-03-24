@@ -1,0 +1,93 @@
+---
+title: Sistema de Grillas
+description: Sistema de columnas 12/8/4 y layouts con sidebar
+---
+
+El sistema de grillas define la estructura de columnas responsiva que organiza el contenido en todas las interfaces del Design System.
+
+## Visualizador de Grilla
+
+Explora el sistema de columnas seleccionando un breakpoint. Las columnas se muestran con gutter y margenes correspondientes.
+
+<GridVisualizer />
+
+## Sistema de Columnas
+
+El DS utiliza un sistema de grillas responsivo que adapta el numero de columnas segun el breakpoint del viewport. Esto garantiza layouts consistentes y predecibles en todos los dispositivos.
+
+| Breakpoint | Columnas | Gutter | Margen | Ancho maximo |
+|---|---|---|---|---|
+| Desktop (&gt;1024px) | 12 | 16px (`--ds-space-4`) | 24px (`--ds-space-6`) | 1280px |
+| Tablet (768-1024px) | 8 | 16px (`--ds-space-4`) | 20px (`--ds-space-5`) | 100% |
+| Mobile (&lt;768px) | 4 | 12px (`--ds-space-3`) | 16px (`--ds-space-4`) | 100% |
+
+## Desktop (12 columnas)
+
+La grilla de 12 columnas es la base para layouts complejos en desktop. Permite divisiones en mitades (6+6), tercios (4+4+4), cuartos (3+3+3+3) y combinaciones asimetricas como contenido principal + panel lateral (8+4).
+
+- **Gutter:** 16px (`--ds-space-4`)
+- **Margen lateral:** 24px (`--ds-space-6`)
+- **Ancho maximo:** 1280px
+- **Uso:** Dashboards, layouts complejos, areas de contenido principal
+
+## Tablet (8 columnas)
+
+En tablets la grilla se reduce a 8 columnas, manteniendo proporciones similares al desktop pero con menos divisiones posibles.
+
+- **Gutter:** 16px (`--ds-space-4`)
+- **Margen lateral:** 20px (`--ds-space-5`)
+- **Uso:** Layouts simplificados, contenido de lectura, formularios
+
+## Mobile (4 columnas)
+
+En mobile se usan 4 columnas con gutters y margenes reducidos para maximizar el espacio de contenido en pantallas pequenas.
+
+- **Gutter:** 12px (`--ds-space-3`)
+- **Margen lateral:** 16px (`--ds-space-4`)
+- **Uso:** Contenido lineal, tarjetas apiladas, navegacion simplificada
+
+## Layouts con Sidebar
+
+El DS define dos patrones principales de layout con sidebar:
+
+### Side Panel
+
+Panel lateral de ancho fijo con area de contenido flexible. Se usa para filtros, detalles secundarios o navegacion contextual.
+
+- **Ancho del sidebar:** 320px (fijo)
+- **Contenido:** Flexible, ocupa el espacio restante
+- **En mobile:** El sidebar colapsa debajo del contenido o se convierte en un drawer
+
+### Navegacion
+
+En desktop se muestra un sidebar de navegacion persistente. En mobile se reemplaza por una tab bar inferior, siguiendo patrones nativos de cada plataforma.
+
+- **Desktop:** Sidebar fijo a la izquierda con links de navegacion
+- **Mobile:** Tab bar inferior con iconos y labels
+
+## Uso en codigo
+
+```html
+<!-- Grilla responsiva basica -->
+<div class="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-4">
+  <div class="col-span-4 md:col-span-8 lg:col-span-8">Contenido principal</div>
+  <div class="col-span-4 md:col-span-8 lg:col-span-4">Panel lateral</div>
+</div>
+```
+
+```html
+<!-- Layout con sidebar fijo -->
+<div class="flex">
+  <aside class="w-80 shrink-0 hidden lg:block">Sidebar</aside>
+  <main class="flex-1 min-w-0">Contenido</main>
+</div>
+```
+
+```html
+<!-- Grilla de tarjetas responsiva -->
+<div class="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-4">
+  <div class="col-span-4">Tarjeta 1</div>
+  <div class="col-span-4">Tarjeta 2</div>
+  <div class="col-span-4">Tarjeta 3</div>
+</div>
+```

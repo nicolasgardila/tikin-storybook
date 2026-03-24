@@ -1,0 +1,293 @@
+---
+title: TextField
+description: Campo de texto con floating label, 4 tamaños y 6 estados
+status: stable
+---
+
+
+<TextFieldPlayground />
+
+## Instalacion
+
+```tsx
+import { DSTextField } from '@/components/ds/ds-text-field'
+```
+
+## Uso
+
+```tsx title="text-field.tsx"
+import { DSTextField } from '@/components/ds/ds-text-field'
+
+export default function Example() {
+  return (
+    <DSTextField
+      label="Email"
+      placeholder="tu@email.com"
+      size="md"
+    />
+  )
+}
+```
+
+## Ejemplos
+
+### Default
+
+Estado base — el label ocupa todo el espacio interno como placeholder.
+
+<ComponentPreview>
+  <div style={{ width: '100%', maxWidth: '325px', height: '48px', borderRadius: '12px', border: '0.5px solid var(--preview-border)', backgroundColor: 'var(--preview-surface)', padding: '0 16px', display: 'flex', alignItems: 'center', boxSizing: 'border-box', cursor: 'text' }}>
+    <span style={{ fontSize: '16px', fontFamily: 'var(--font-funnel-display), sans-serif', fontWeight: 400, color: 'inherit', opacity: 0.5, lineHeight: 1.2 }}>Label</span>
+  </div>
+</ComponentPreview>
+
+```tsx title="text-field-default.tsx"
+export function TextField() {
+  return (
+    <div className="relative h-12 w-full max-w-[325px] rounded-xl border-[0.5px] border-[#DEDEDE] bg-white px-4 flex items-center cursor-text">
+      <span className="text-base font-['Funnel_Display'] text-[#0B0B0B] opacity-50">
+        Label
+      </span>
+    </div>
+  );
+}
+```
+
+### Active (Focused)
+
+Al hacer clic, el label se reduce a 10px y sube, el cursor aparece debajo.
+
+<ComponentPreview>
+  <div style={{ width: '100%', maxWidth: '325px', height: '48px', borderRadius: '12px', border: '0.5px solid var(--preview-brand)', backgroundColor: 'var(--preview-surface)', padding: '8px 16px', display: 'flex', flexDirection: 'column', justifyContent: 'center', boxSizing: 'border-box', boxShadow: '0 0 0 1px var(--preview-brand)', overflow: 'hidden' }}>
+    <span style={{ fontSize: '10px', fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontWeight: 400, color: 'inherit', opacity: 0.5, lineHeight: '12px', margin: 0, padding: 0, display: 'block' }}>Label</span>
+    <span style={{ fontSize: '14px', fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontWeight: 400, color: 'inherit', lineHeight: '18px', margin: 0, padding: 0, display: 'block' }}>Placeholder</span>
+  </div>
+</ComponentPreview>
+
+```tsx title="text-field-active.tsx"
+export function TextFieldActive() {
+  return (
+    <div className="relative h-12 w-full max-w-[325px] rounded-xl border-[0.5px] border-[#0B0B0B] bg-white px-4 flex flex-col justify-center shadow-[0_0_0_1px_#0B0B0B]">
+      <span className="text-[10px] font-['Ubuntu_Sans'] text-[#0B0B0B] opacity-50 leading-[12px]">
+        Label
+      </span>
+      <span className="text-sm font-['Ubuntu_Sans'] text-[#0B0B0B] leading-[16px]">
+        Placeholder
+      </span>
+    </div>
+  );
+}
+```
+
+### Con Valor (Filled)
+
+Campo con valor ingresado — el label permanece reducido arriba del valor.
+
+<ComponentPreview>
+  <div style={{ width: '100%', maxWidth: '325px', height: '48px', borderRadius: '12px', border: '0.5px solid var(--preview-border)', backgroundColor: 'var(--preview-surface)', padding: '8px 16px', display: 'flex', flexDirection: 'column', justifyContent: 'center', boxSizing: 'border-box', overflow: 'hidden' }}>
+    <span style={{ fontSize: '10px', fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontWeight: 400, color: 'inherit', opacity: 0.5, lineHeight: '12px', margin: 0, padding: 0, display: 'block' }}>Label</span>
+    <span style={{ fontSize: '14px', fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontWeight: 400, color: 'inherit', lineHeight: '18px', margin: 0, padding: 0, display: 'block' }}>Placeholder</span>
+  </div>
+</ComponentPreview>
+
+```tsx title="text-field-filled.tsx"
+export function TextFieldFilled() {
+  return (
+    <div className="relative h-12 w-full max-w-[325px] rounded-xl border-[0.5px] border-[#DEDEDE] bg-white px-4 flex flex-col justify-center">
+      <span className="text-[10px] font-['Ubuntu_Sans'] text-[#0B0B0B] opacity-50 leading-[12px]">
+        Label
+      </span>
+      <span className="text-sm font-['Ubuntu_Sans'] text-[#0B0B0B] leading-[16px]">
+        Placeholder
+      </span>
+    </div>
+  );
+}
+```
+
+### Estado de Error
+
+Borde rojo con fondo sutil de error y mensaje de feedback debajo.
+
+<ComponentPreview>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '100%', maxWidth: '325px' }}>
+    <div style={{ height: '48px', borderRadius: '12px', border: '1px solid #EC221F', backgroundColor: 'var(--preview-error-bg, #FEE9E7)', padding: '8px 16px', display: 'flex', flexDirection: 'column', justifyContent: 'center', boxSizing: 'border-box', overflow: 'hidden' }}>
+      <span style={{ fontSize: '10px', fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontWeight: 400, color: 'inherit', opacity: 0.5, lineHeight: '12px', margin: 0, padding: 0, display: 'block' }}>Label</span>
+      <span style={{ fontSize: '14px', fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontWeight: 400, color: '#EC221F', lineHeight: '18px', margin: 0, padding: 0, display: 'block' }}>Placeholder</span>
+    </div>
+    <span style={{ fontSize: '13px', fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontWeight: 400, color: '#EC221F', lineHeight: 1.2, margin: 0, padding: 0, display: 'block' }}>Feedback error</span>
+  </div>
+</ComponentPreview>
+
+```tsx title="text-field-error.tsx"
+export function TextFieldError() {
+  return (
+    <div className="flex flex-col gap-2 w-full max-w-[325px]">
+      <div className="h-12 rounded-xl border border-[#EC221F] bg-[#FEE9E7] px-4 flex flex-col justify-center">
+        <span className="text-[10px] font-['Ubuntu_Sans'] text-[#0B0B0B] opacity-50 leading-[12px]">
+          Label
+        </span>
+        <span className="text-sm font-['Ubuntu_Sans'] text-[#EC221F] leading-[16px]">
+          Placeholder
+        </span>
+      </div>
+      <span className="text-[13px] font-['Ubuntu_Sans'] text-[#EC221F] leading-[1.2]">
+        Feedback error
+      </span>
+    </div>
+  );
+}
+```
+
+### Estado Disabled
+
+Campo deshabilitado con fondo y borde atenuados.
+
+<ComponentPreview>
+  <div style={{ width: '100%', maxWidth: '325px', height: '48px', borderRadius: '12px', border: '0.5px solid var(--preview-border)', backgroundColor: 'var(--preview-muted-bg)', padding: '8px 16px', display: 'flex', flexDirection: 'column', justifyContent: 'center', boxSizing: 'border-box', cursor: 'not-allowed', opacity: 0.5, overflow: 'hidden' }}>
+    <span style={{ fontSize: '10px', fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontWeight: 400, color: 'inherit', opacity: 0.5, lineHeight: '12px', margin: 0, padding: 0, display: 'block' }}>Label</span>
+    <span style={{ fontSize: '14px', fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontWeight: 400, color: 'inherit', opacity: 0.5, lineHeight: '18px', margin: 0, padding: 0, display: 'block' }}>Placeholder</span>
+  </div>
+</ComponentPreview>
+
+```tsx title="text-field-disabled.tsx"
+export function TextFieldDisabled() {
+  return (
+    <div className="h-12 w-full max-w-[325px] rounded-xl border-[0.5px] border-[#E6E6E6] bg-[#F5F5F5] px-4 flex flex-col justify-center cursor-not-allowed opacity-50">
+      <span className="text-[10px] font-['Ubuntu_Sans'] text-[#0B0B0B] opacity-50 leading-[12px]">
+        Label
+      </span>
+      <span className="text-sm font-['Ubuntu_Sans'] text-[#0B0B0B] opacity-50 leading-[16px]">
+        Placeholder
+      </span>
+    </div>
+  );
+}
+```
+
+### Tamaños
+
+El TextField viene en 4 tamaños con diferentes alturas y radios.
+
+| Tamaño | Altura | Radius | Padding | Font size |
+|--------|--------|--------|---------|-----------|
+| xs | 32px | 6px | 4px 8px | 12px |
+| sm | 40px | 8px | 8px 12px | 14px |
+| md | 48px | 12px | 12px 16px | 16px |
+| lg | 56px | 12px | 14px 16px | 16px |
+
+## Anatomia
+
+Estructura del TextField con floating label (tamaño md):
+
+```
+┌─────────────────────────────────────┐
+│  padding: 0 16px                    │
+│                                     │
+│  Label (Ubuntu Sans, 10px, 0.5 op)  │
+│  Value (Ubuntu Sans, 14px)          │
+│                                     │
+│         border: 0.5px #DEDEDE       │
+│         border-radius: 12px         │
+│         height: 48px                │
+│         bg: white                   │
+└─────────────────────────────────────┘
+gap: 8px (si hay error)
+Feedback (Ubuntu Sans, 13px, #EC221F)
+```
+
+| Parte | Token | Valor |
+|-------|-------|-------|
+| Border (default) | — | 0.5px solid #DEDEDE |
+| Border (active) | — | 0.5px solid #0B0B0B + ring 1px |
+| Border (error) | — | 1px solid #EC221F |
+| Border radius (md) | `--ds-radius-lg` | 12px |
+| Height (md) | `--ds-height-md` | 48px |
+| Padding (md) | `--ds-space-4` | 0 16px |
+| Label font | Ubuntu Sans | 10px / 400 |
+| Value font | Ubuntu Sans | 14px / 400 |
+| Label default font | Funnel Display | 16px / 400 |
+| Error bg | — | #FEE9E7 |
+| Error color | — | #EC221F |
+| Feedback font | Ubuntu Sans | 13px / 400 |
+
+## Props
+
+<PropsTable
+  props={[
+    {
+      name: 'size',
+      type: "'xs' | 'sm' | 'md' | 'lg'",
+      default: "'md'",
+      description: 'Tamaño del campo. Afecta altura, padding, radius y font-size.',
+    },
+    {
+      name: 'state',
+      type: "'default' | 'pressed' | 'active' | 'disabled'",
+      default: "'default'",
+      description: 'Estado visual del campo.',
+    },
+    {
+      name: 'feedback',
+      type: "'default' | 'success' | 'error'",
+      default: "'default'",
+      description: 'Estado de validación del campo.',
+    },
+    {
+      name: 'label',
+      type: 'string',
+      default: "'Label'",
+      description: 'Texto del floating label dentro del campo.',
+    },
+    {
+      name: 'placeholder',
+      type: 'string',
+      description: 'Texto placeholder visible en estado active.',
+    },
+    {
+      name: 'error',
+      type: 'string',
+      description: 'Mensaje de error visible debajo del campo en estado error.',
+    },
+    {
+      name: 'showIcon',
+      type: 'boolean',
+      default: 'true',
+      description: 'Muestra icono a la derecha del campo (ej: ojo para password).',
+    },
+    {
+      name: 'disabled',
+      type: 'boolean',
+      default: 'false',
+      description: 'Deshabilita el campo e impide interacción.',
+    },
+    {
+      name: 'value',
+      type: 'string',
+      description: 'Valor controlado del campo.',
+    },
+    {
+      name: 'onChange',
+      type: '(e: ChangeEvent) => void',
+      description: 'Callback al cambiar el valor del campo.',
+    },
+  ]}
+/>
+
+## Guías de Uso
+
+<DoDont type="do">
+  El label vive dentro del campo y actúa como placeholder en estado default. Al activar el campo, el label se reduce y sube para dar espacio al valor.
+</DoDont>
+
+<DoDont type="dont">
+  No uses un label externo separado del input. El patrón floating label mantiene la asociación visual directa entre label y valor.
+</DoDont>
+
+<DoDont type="do">
+  Muestra mensajes de error específicos debajo del campo con el color de error (#EC221F) indicando cómo corregir el problema.
+</DoDont>
+
+<DoDont type="dont">
+  No uses mensajes genéricos como "Campo inválido". Indica claramente qué se espera (ej: "Ingresa un correo válido").
+</DoDont>

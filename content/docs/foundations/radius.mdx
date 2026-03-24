@@ -1,0 +1,65 @@
+---
+title: Radio de Bordes
+description: 10 tokens de radio para esquinas redondeadas
+---
+
+## Sistema de Radio
+
+El sistema de radio define 10 tokens para controlar el redondeo de esquinas en todos los componentes. Usamos corner smoothing al 60% (estilo iOS) para lograr curvas suaves y naturales en lugar del redondeo geometrico estandar del CSS.
+
+## Escala de Tokens
+
+| Token | Variable CSS | Valor | Uso |
+|-------|-------------|-------|-----|
+| xs | `--ds-radius-xs` | 4px | Badges, chips pequenos |
+| sm | `--ds-radius-sm` | 8px | Inputs, botones pequenos |
+| md | `--ds-radius-md` | 12px | Tarjetas, containers internos |
+| lg | `--ds-radius-lg` | 16px | Modales, sheets |
+| xl | `--ds-radius-xl` | 20px | Paneles interiores (double-layer) |
+| 2xl | `--ds-radius-2xl` | 24px | Containers exteriores (double-layer) |
+| 3xl | `--ds-radius-3xl` | 28px | Grandes paneles |
+| 4xl | `--ds-radius-4xl` | 32px | Bottom sheets |
+| full | `--ds-radius-full` | 9999px | Avatares, circulos |
+| pill | `--ds-radius-pill` | 44px | Status chips, tags |
+
+## Patron Double-Layer
+
+Cuando un contenedor tiene paneles internos, usamos el patron de doble capa para mantener la coherencia visual:
+
+- **Capa exterior** usa `--ds-radius-2xl` (24px)
+- **Capa interior** usa `--ds-radius-xl` (20px)
+
+La diferencia de 4px entre ambas capas coincide con el padding interno, creando un redondeo concentrico natural.
+
+```css
+/* Ejemplo: Tarjeta con panel interior */
+.card-outer {
+  border-radius: var(--ds-radius-2xl); /* 24px */
+  padding: var(--ds-space-1);          /* 4px */
+}
+
+.card-inner {
+  border-radius: var(--ds-radius-xl);  /* 20px */
+}
+```
+
+## Ejemplo de Uso
+
+```css
+/* Boton primario */
+.btn-primary {
+  border-radius: var(--ds-radius-sm);
+  height: var(--ds-height-md);
+}
+
+/* Avatar circular */
+.avatar {
+  border-radius: var(--ds-radius-full);
+}
+
+/* Chip de estado */
+.status-chip {
+  border-radius: var(--ds-radius-pill);
+  height: var(--ds-height-xs);
+}
+```

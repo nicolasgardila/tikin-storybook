@@ -1,0 +1,145 @@
+---
+title: Tipografia
+description: Funnel Display, Ubuntu Sans, Ubuntu Sans Mono -- roles y tamanos
+---
+
+## Sistema Tipografico
+
+Black Cash usa tres familias tipograficas, cada una con un rol especifico. Esta separacion garantiza jerarquia visual clara y consistencia en toda la aplicacion.
+
+---
+
+## Especimen Tipografico
+
+Vista interactiva de las tres familias a cada tamano de la escala. Usa el selector de peso para explorar variaciones.
+
+<TypeSpecimen />
+
+---
+
+## Funnel Display
+
+**Rol:** Titulos y labels de componente
+
+Tipografia display usada para toda la jerarquia de headings y titulos de componentes como dialogos, tarjetas y navegacion.
+
+| Propiedad | Valor |
+|-----------|-------|
+| CSS Variable | `var(--font-funnel-display)` |
+| Tailwind Utility | `font-ds-display` |
+| Pesos | Regular (400), Bold (700) |
+
+**Donde se usa:**
+- H1 a H5
+- Titulos de dialogo y tarjeta
+- Labels de navegacion
+- Labels de componentes
+
+```tsx
+<h1 className="font-ds-display text-5xl font-bold">Titulo Principal</h1>
+<h3 className="font-ds-display text-3xl">Subtitulo</h3>
+```
+
+---
+
+## Ubuntu Sans
+
+**Rol:** Texto de cuerpo
+
+Tipografia principal para todo el contenido textual de la aplicacion. Ofrece excelente legibilidad en multiples pesos.
+
+| Propiedad | Valor |
+|-----------|-------|
+| CSS Variable | `var(--font-ubuntu-sans)` |
+| Tailwind Utility | `font-ds-body` |
+| Pesos | Regular (400), Medium (500), Semi-bold (600), Bold (700) |
+
+**Donde se usa:**
+- Parrafos y descripciones
+- Labels de formulario
+- Tooltips
+- Metadata y textos auxiliares
+
+```tsx
+<p className="font-ds-body text-base">Texto de cuerpo principal</p>
+<span className="font-ds-body text-sm text-[#666666]">Descripcion secundaria</span>
+```
+
+---
+
+## Ubuntu Sans Mono
+
+**Rol:** Numeros y CTAs
+
+Tipografia monoespaciada usada para valores numericos y elementos de accion. Garantiza alineacion perfecta de digitos y consistencia visual en botones.
+
+| Propiedad | Valor |
+|-----------|-------|
+| CSS Variable | `var(--font-ubuntu-sans-mono)` |
+| Tailwind Utility | `font-ds-mono` |
+| Pesos | Regular (400), Medium (500), Bold (700) |
+
+**Donde se usa:**
+- Montos y balances
+- Botones (uppercase)
+- Tabs
+- Inputs OTP
+- Referencias y codigos
+
+```tsx
+<span className="font-ds-mono text-2xl font-bold">$1,250.00</span>
+<button className="font-ds-mono uppercase tracking-wider text-sm font-medium">
+  Continuar
+</button>
+```
+
+---
+
+## Escala de Tamanos
+
+| Token | Size | Line Height | Uso |
+|-------|------|-------------|-----|
+| xs | 12px | 16px | Captions, labels pequenos |
+| sm | 14px | 20px | Body secundario, tooltips |
+| base | 16px | 24px | Body principal |
+| lg | 18px | 28px | Subtitulos |
+| xl | 20px | 28px | H5 |
+| 2xl | 24px | 32px | H4 |
+| 3xl | 30px | 36px | H3 |
+| 4xl | 36px | 40px | H2 |
+| 5xl | 48px | 48px | H1 |
+
+---
+
+## Convenciones
+
+### Uppercase para CTAs
+
+Botones y tabs usan Ubuntu Sans Mono en uppercase para diferenciarse del texto de cuerpo:
+
+```tsx
+<button className="font-ds-mono uppercase tracking-wider">
+  Transferir
+</button>
+```
+
+### Tracking en Status Tags
+
+Los tags de estado usan un letter-spacing de `0.6px` para mejorar legibilidad en tamanos pequenos:
+
+```tsx
+<span className="font-ds-mono text-xs uppercase" style={{ letterSpacing: '0.6px' }}>
+  Aprobado
+</span>
+```
+
+### Regla General
+
+| Contexto | Familia | Peso tipico |
+|----------|---------|-------------|
+| Titulos y headings | Funnel Display | Bold (700) |
+| Texto de cuerpo | Ubuntu Sans | Regular (400) |
+| Labels importantes | Ubuntu Sans | Semi-bold (600) |
+| Montos y numeros | Ubuntu Sans Mono | Bold (700) |
+| Botones | Ubuntu Sans Mono | Medium (500) |
+| Captions | Ubuntu Sans | Regular (400) |

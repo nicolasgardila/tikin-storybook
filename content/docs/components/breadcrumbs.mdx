@@ -1,0 +1,214 @@
+---
+title: Breadcrumbs
+description: Ruta de navegacion jerarquica con enlaces separados por chevron
+status: stable
+---
+
+
+<BreadcrumbsPlayground />
+
+### Default
+
+Ruta de navegacion con separadores chevron. El ultimo item representa la pagina actual.
+
+<ComponentPreview>
+  <nav style={{ display: 'flex', alignItems: 'center', gap: '0px', fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontSize: '13px' }}>
+    <a href="#" style={{ color: 'inherit', opacity: 0.55, textDecoration: 'none', padding: '4px 0' }}>Inicio</a>
+    <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 4px', opacity: 0.25 }}>
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{ display: 'block' }}><path d="M4.5 2.5L8 6L4.5 9.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
+    </span>
+    <a href="#" style={{ color: 'inherit', opacity: 0.55, textDecoration: 'none', padding: '4px 0' }}>Productos</a>
+    <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 4px', opacity: 0.25 }}>
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{ display: 'block' }}><path d="M4.5 2.5L8 6L4.5 9.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
+    </span>
+    <span style={{ color: 'inherit', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', fontWeight: 500, padding: '4px 0' }}>Detalle</span>
+  </nav>
+</ComponentPreview>
+
+```tsx title="breadcrumbs-default.tsx"
+export function Breadcrumbs({ items }) {
+  return (
+    <nav className="flex items-center font-['Ubuntu_Sans'] text-sm">
+      {items.map((item, i) => (
+        <Fragment key={i}>
+          {i > 0 && (
+            <span className="text-[#999999] px-2">
+              <ChevronRight size={12} />
+            </span>
+          )}
+          {i === items.length - 1 ? (
+            <span className="font-semibold text-[#0B0B0B]">{item.label}</span>
+          ) : (
+            <a href={item.href} className="text-[#0B0B0B] hover:underline">
+              {item.label}
+            </a>
+          )}
+        </Fragment>
+      ))}
+    </nav>
+  );
+}
+```
+
+### With Icons
+
+Icono de home en el primer item para reforzar la jerarquia.
+
+<ComponentPreview>
+  <nav style={{ display: 'flex', alignItems: 'center', gap: '0px', fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontSize: '13px' }}>
+    <a href="#" style={{ color: 'inherit', opacity: 0.55, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '6px', padding: '4px 0' }}>
+      <svg width="14" height="14" viewBox="0 0 256 256" fill="currentColor" style={{ flexShrink: 0 }}><path d="M219.31,108.68l-80-80a16,16,0,0,0-22.62,0l-80,80A15.87,15.87,0,0,0,32,120v96a8,8,0,0,0,8,8H96a8,8,0,0,0,8-8V160h48v56a8,8,0,0,0,8,8h56a8,8,0,0,0,8-8V120A15.87,15.87,0,0,0,219.31,108.68ZM208,208H168V152a8,8,0,0,0-8-8H96a8,8,0,0,0-8,8v56H48V120l80-80,80,80Z"/></svg>
+      Inicio
+    </a>
+    <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 4px', opacity: 0.25 }}>
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{ display: 'block' }}><path d="M4.5 2.5L8 6L4.5 9.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
+    </span>
+    <a href="#" style={{ color: 'inherit', opacity: 0.55, textDecoration: 'none', padding: '4px 0' }}>Configuracion</a>
+    <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 4px', opacity: 0.25 }}>
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{ display: 'block' }}><path d="M4.5 2.5L8 6L4.5 9.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
+    </span>
+    <span style={{ color: 'inherit', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', fontWeight: 500, padding: '4px 0' }}>Perfil</span>
+  </nav>
+</ComponentPreview>
+
+```tsx title="breadcrumbs-icons.tsx"
+export function BreadcrumbsWithIcons({ items }) {
+  return (
+    <nav className="flex items-center font-['Ubuntu_Sans'] text-sm">
+      {items.map((item, i) => (
+        <Fragment key={i}>
+          {i > 0 && (
+            <span className="text-[#999999] px-2">
+              <ChevronRight size={12} />
+            </span>
+          )}
+          {i === items.length - 1 ? (
+            <span className="font-semibold text-[#0B0B0B]">{item.label}</span>
+          ) : (
+            <a href={item.href} className="text-[#0B0B0B] hover:underline flex items-center gap-1">
+              {item.icon && <item.icon size={16} />}
+              {item.label}
+            </a>
+          )}
+        </Fragment>
+      ))}
+    </nav>
+  );
+}
+```
+
+### Truncated
+
+Rutas largas con ellipsis en el medio para mantener la interfaz limpia.
+
+<ComponentPreview>
+  <nav style={{ display: 'flex', alignItems: 'center', gap: '0px', fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontSize: '13px' }}>
+    <a href="#" style={{ color: 'inherit', opacity: 0.55, textDecoration: 'none', padding: '4px 0' }}>Inicio</a>
+    <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 4px', opacity: 0.25 }}>
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{ display: 'block' }}><path d="M4.5 2.5L8 6L4.5 9.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
+    </span>
+    <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '24px', height: '24px', borderRadius: '6px', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', fontSize: '13px', letterSpacing: '1px', opacity: 0.4, cursor: 'pointer' }}>...</span>
+    <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 4px', opacity: 0.25 }}>
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{ display: 'block' }}><path d="M4.5 2.5L8 6L4.5 9.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
+    </span>
+    <a href="#" style={{ color: 'inherit', opacity: 0.55, textDecoration: 'none', padding: '4px 0' }}>Subcategoria</a>
+    <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 4px', opacity: 0.25 }}>
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{ display: 'block' }}><path d="M4.5 2.5L8 6L4.5 9.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
+    </span>
+    <span style={{ color: 'inherit', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', fontWeight: 500, padding: '4px 0' }}>Producto Final</span>
+  </nav>
+</ComponentPreview>
+
+```tsx title="breadcrumbs-truncated.tsx"
+export function TruncatedBreadcrumbs({ items, maxItems = 3 }) {
+  const truncated = items.length > maxItems;
+  const visible = truncated
+    ? [items[0], '...', ...items.slice(-2)]
+    : items;
+
+  return (
+    <nav className="flex items-center font-['Ubuntu_Sans'] text-sm">
+      {visible.map((item, i) => (
+        <Fragment key={i}>
+          {i > 0 && (
+            <span className="text-[#999999] px-2">
+              <ChevronRight size={12} />
+            </span>
+          )}
+          {item === '...' ? (
+            <span className="text-[#999999]">...</span>
+          ) : i === visible.length - 1 ? (
+            <span className="font-semibold text-[#0B0B0B]">{item.label}</span>
+          ) : (
+            <a href={item.href} className="text-[#0B0B0B] hover:underline">
+              {item.label}
+            </a>
+          )}
+        </Fragment>
+      ))}
+    </nav>
+  );
+}
+```
+
+## Props
+
+<PropsTable
+  props={[
+    {
+      name: 'items',
+      type: 'BreadcrumbItem[]',
+      description: 'Array de items del breadcrumb (ver sub-props abajo).',
+      required: true,
+    },
+    {
+      name: 'separator',
+      type: 'ReactNode',
+      default: 'chevron icon',
+      description: 'Elemento separador entre items.',
+    },
+    {
+      name: 'maxItems',
+      type: 'number',
+      description: 'Maximo de items visibles. Los intermedios se reemplazan con ellipsis.',
+    },
+    {
+      name: 'onNavigate',
+      type: '(href: string) => void',
+      description: 'Callback de navegacion personalizado (en lugar de link nativo).',
+    },
+  ]}
+/>
+
+### Item Sub-props
+
+<PropsTable
+  props={[
+    {
+      name: 'label',
+      type: 'string',
+      description: 'Texto del item del breadcrumb.',
+      required: true,
+    },
+    {
+      name: 'href',
+      type: 'string',
+      description: 'URL de destino. No aplica al ultimo item (pagina actual).',
+    },
+    {
+      name: 'icon',
+      type: 'ComponentType',
+      description: 'Icono opcional a mostrar antes del label.',
+    },
+  ]}
+/>
+
+## Guias de Uso
+
+<DoDont type="do">
+  Siempre incluye la pagina actual como ultimo item (no clickeable, con font-weight 600).
+</DoDont>
+
+<DoDont type="dont">
+  No uses breadcrumbs con menos de 2 niveles de profundidad. No aporta valor si solo hay un nivel.
+</DoDont>

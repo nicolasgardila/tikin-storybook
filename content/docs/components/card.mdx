@@ -1,0 +1,292 @@
+---
+title: Card
+description: Tarjeta con variantes warm, neutral, filled, elevated y outline
+status: stable
+---
+
+
+<CardPlayground />
+
+## Instalacion
+
+```tsx
+import { DSCard } from '@/components/ds/ds-card'
+```
+
+## Uso
+
+```tsx title="card.tsx"
+import { DSCard } from '@/components/ds/ds-card'
+
+export default function Example() {
+  return (
+    <DSCard variant="default" padding="default">
+      <h3>Cuenta de Ahorro</h3>
+      <p>$24,850.00</p>
+    </DSCard>
+  )
+}
+```
+
+## Ejemplos
+
+### Default (Warm)
+
+La variante por defecto usa el tono cálido del DS: borde `#E8E4DD`, fondo blanco, y border-radius de 24px.
+
+<ComponentPreview>
+  <div style={{ borderRadius: '24px', border: '0.5px solid var(--preview-border)', backgroundColor: 'var(--preview-surface)', padding: '20px', display: 'flex', flexDirection: 'column', gap: '16px', width: '320px', fontFamily: 'var(--font-ubuntu-sans), system-ui, sans-serif' }}>
+    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <span style={{ fontSize: '0.75rem', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'inherit', opacity: 0.6 }}>Cuenta de Ahorro</span>
+      <span style={{ fontSize: '0.625rem', color: 'inherit', opacity: 0.5 }}>MXN</span>
+    </div>
+    <div>
+      <span style={{ fontFamily: 'var(--font-funnel-display), system-ui, sans-serif', fontSize: '1.75rem', fontWeight: 400, color: 'inherit' }}>$24,850.00</span>
+    </div>
+    <div style={{ display: 'flex', gap: '8px' }}>
+      <span style={{ fontSize: '0.75rem', color: '#16A34A' }}>+2.4%</span>
+      <span style={{ fontSize: '0.75rem', color: 'inherit', opacity: 0.5 }}>este mes</span>
+    </div>
+  </div>
+</ComponentPreview>
+
+```tsx title="card-warm.tsx"
+export function CardWarm() {
+  return (
+    <div className="rounded-[24px] border-[0.5px] border-[#E8E4DD] bg-white p-5">
+      <div className="flex flex-col gap-4">
+        <span className="text-xs font-medium uppercase tracking-wider text-gray-500">
+          Cuenta de Ahorro
+        </span>
+        <span className="font-ds-display text-[1.75rem]">$24,850.00</span>
+      </div>
+    </div>
+  );
+}
+```
+
+### Neutral
+
+La variante neutral usa el borde `#DEDEDE` en lugar del cálido. Ideal para UI genérica fuera de contextos financieros.
+
+<ComponentPreview>
+  <div style={{ borderRadius: '24px', border: '0.5px solid var(--preview-border)', backgroundColor: 'var(--preview-surface)', padding: '20px', display: 'flex', flexDirection: 'column', gap: '16px', width: '320px', fontFamily: 'var(--font-ubuntu-sans), system-ui, sans-serif' }}>
+    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <span style={{ fontSize: '0.75rem', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'inherit', opacity: 0.6 }}>Notificaciones</span>
+    </div>
+    <div style={{ fontSize: '0.875rem', color: 'inherit', opacity: 0.7, lineHeight: 1.5 }}>
+      Tienes 3 notificaciones pendientes de revisar.
+    </div>
+  </div>
+</ComponentPreview>
+
+```tsx title="card-neutral.tsx"
+export function CardNeutral() {
+  return (
+    <div className="rounded-[24px] border-[0.5px] border-[#DEDEDE] bg-white p-5">
+      <div className="flex flex-col gap-4">
+        <span className="text-xs font-medium uppercase tracking-wider text-gray-500">
+          Notificaciones
+        </span>
+        <p className="text-sm text-gray-700">
+          Tienes 3 notificaciones pendientes de revisar.
+        </p>
+      </div>
+    </div>
+  );
+}
+```
+
+### Filled
+
+Fondo con superficie cálida `#F1EFEB` y borde `#E8E4DD`. Útil para cards que necesitan diferenciarse del fondo blanco.
+
+<ComponentPreview>
+  <div style={{ borderRadius: '24px', border: '0.5px solid var(--preview-border)', backgroundColor: 'var(--preview-muted-bg)', padding: '20px', display: 'flex', flexDirection: 'column', gap: '16px', width: '320px', fontFamily: 'var(--font-ubuntu-sans), system-ui, sans-serif' }}>
+    <div>
+      <span style={{ fontSize: '0.75rem', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'inherit', opacity: 0.6 }}>Resumen Semanal</span>
+    </div>
+    <div style={{ fontSize: '0.875rem', color: 'inherit', opacity: 0.7, lineHeight: 1.5 }}>
+      Has completado 12 de 15 tareas esta semana.
+    </div>
+  </div>
+</ComponentPreview>
+
+```tsx title="card-filled.tsx"
+export function CardFilled() {
+  return (
+    <div className="rounded-[24px] border-[0.5px] border-[#E8E4DD] bg-[#F1EFEB] p-5">
+      <div className="flex flex-col gap-4">
+        <span className="text-xs font-medium uppercase tracking-wider text-gray-500">
+          Resumen Semanal
+        </span>
+        <p className="text-sm text-gray-700">
+          Has completado 12 de 15 tareas esta semana.
+        </p>
+      </div>
+    </div>
+  );
+}
+```
+
+### Elevated
+
+Sin borde visible. Usa sombra `0 0 2px rgba(11,15,16,0.12)` para crear elevación sutil.
+
+<ComponentPreview>
+  <div style={{ borderRadius: '24px', border: 'none', backgroundColor: 'var(--preview-surface)', padding: '20px', display: 'flex', flexDirection: 'column', gap: '16px', width: '320px', boxShadow: '0 0 2px rgba(11,15,16,0.12)', fontFamily: 'var(--font-ubuntu-sans), system-ui, sans-serif' }}>
+    <div>
+      <span style={{ fontSize: '0.75rem', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'inherit', opacity: 0.6 }}>Actividad Reciente</span>
+    </div>
+    <div style={{ fontSize: '0.875rem', color: 'inherit', opacity: 0.7, lineHeight: 1.5 }}>
+      Transferencia enviada a Juan por $1,200.00
+    </div>
+  </div>
+</ComponentPreview>
+
+```tsx title="card-elevated.tsx"
+export function CardElevated() {
+  return (
+    <div className="rounded-[24px] bg-white p-5 shadow-[0_0_2px_rgba(11,15,16,0.12)]">
+      <div className="flex flex-col gap-4">
+        <span className="text-xs font-medium uppercase tracking-wider text-gray-500">
+          Actividad Reciente
+        </span>
+        <p className="text-sm text-gray-700">
+          Transferencia enviada a Juan por $1,200.00
+        </p>
+      </div>
+    </div>
+  );
+}
+```
+
+### Outline
+
+Fondo transparente con borde neutral `#DEDEDE`. Para cards sobre fondos con color.
+
+<ComponentPreview>
+  <div style={{ padding: '24px', backgroundColor: 'var(--preview-muted-bg)', borderRadius: '28px' }}>
+    <div style={{ borderRadius: '24px', border: '0.5px solid var(--preview-border)', backgroundColor: 'transparent', padding: '20px', display: 'flex', flexDirection: 'column', gap: '16px', width: '320px', fontFamily: 'var(--font-ubuntu-sans), system-ui, sans-serif' }}>
+      <div>
+        <span style={{ fontSize: '0.75rem', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'inherit', opacity: 0.6 }}>Configuración</span>
+      </div>
+      <div style={{ fontSize: '0.875rem', color: 'inherit', opacity: 0.7, lineHeight: 1.5 }}>
+        Ajusta tus preferencias de notificación y privacidad.
+      </div>
+    </div>
+  </div>
+</ComponentPreview>
+
+```tsx title="card-outline.tsx"
+export function CardOutline() {
+  return (
+    <div className="rounded-[24px] border-[0.5px] border-[#DEDEDE] bg-transparent p-5">
+      <div className="flex flex-col gap-4">
+        <span className="text-xs font-medium uppercase tracking-wider text-gray-500">
+          Configuración
+        </span>
+        <p className="text-sm text-gray-700">
+          Ajusta tus preferencias de notificación y privacidad.
+        </p>
+      </div>
+    </div>
+  );
+}
+```
+
+### Interacciones
+
+El componente incluye feedback tactil al presionar: escala sutil (`scale 0.97`) con reduccion de opacidad, y un release con transicion spring natural. Este efecto se desactiva automaticamente en estados `disabled` y `loading`.
+
+## Especificaciones
+
+| Propiedad | Valor |
+|-----------|-------|
+| Border radius | 24px |
+| Border width | 0.5px solid |
+| Warm border | `#E8E4DD` (dark: `#2A2826`) |
+| Neutral border | `#DEDEDE` (dark: `#333333`) |
+| Padding default | 20px |
+| Padding compact | 16px |
+| Gap default | 16px |
+| Gap compact | 12px |
+
+## Anatomia
+
+Estructura de la Card (variante default warm):
+
+```
+┌─────────────────────────────────────┐
+│  border: 0.5px #E8E4DD (warm)       │
+│  border-radius: 24px                │
+│  bg: #FFFFFF                         │
+│                                      │
+│  ┌─ Card Body ──────────────────┐   │
+│  │  padding: 20px                │   │
+│  │  gap: 16px                    │   │
+│  │                               │   │
+│  │  Title (Funnel Display)       │   │
+│  │  Subtitle (Ubuntu Sans)       │   │
+│  │  Content area                 │   │
+│  │                               │   │
+│  └───────────────────────────────┘   │
+│                                      │
+│  Compact variant: padding 16px,      │
+│  gap 12px                            │
+└──────────────────────────────────────┘
+```
+
+| Parte | Token | Valor |
+|-------|-------|-------|
+| Border | — | 0.5px solid |
+| Warm border | `--ds-warm-border` | #E8E4DD |
+| Neutral border | `--ds-neutral-border` | #DEDEDE |
+| Border radius | `--ds-radius-2xl` | 24px |
+| Body padding | `--ds-space-5` | 20px |
+| Body gap | `--ds-space-4` | 16px |
+| Compact padding | `--ds-space-4` | 16px |
+| Compact gap | `--ds-space-3` | 12px |
+
+## Props
+
+<PropsTable
+  props={[
+    {
+      name: 'variant',
+      type: "'default' | 'neutral' | 'filled' | 'elevated' | 'outline'",
+      default: "'default'",
+      description: 'Estilo visual de la tarjeta. Default usa tono warm, neutral usa tono frío.',
+    },
+    {
+      name: 'padding',
+      type: "'compact' | 'default'",
+      default: "'default'",
+      description: 'Tamaño del padding interno. Compact usa 16px y gap 12px.',
+    },
+    {
+      name: 'children',
+      type: 'ReactNode',
+      description: 'Contenido de la tarjeta.',
+      required: true,
+    },
+  ]}
+/>
+
+## Guías de Uso
+
+<DoDont type="do">
+  Usa cards warm (default) para contenido financiero, wallet y cuentas. El tono cálido comunica confianza y pertenencia.
+</DoDont>
+
+<DoDont type="dont">
+  No mezcles cards warm y neutral en el mismo contenedor. Mantén consistencia de tono dentro de cada sección.
+</DoDont>
+
+<DoDont type="do">
+  Usa la variante elevated para cards que flotan sobre el contenido, como actividad reciente o notificaciones rápidas.
+</DoDont>
+
+<DoDont type="dont">
+  No combines elevated con outline. Elige un solo método de separación visual: sombra o borde, no ambos.
+</DoDont>

@@ -1,0 +1,435 @@
+@import 'tailwindcss';
+@import 'fumadocs-ui/css/neutral.css';
+@import 'fumadocs-ui/css/preset.css';
+
+/* ==========================================================================
+   DS Font Families
+   ========================================================================== */
+
+@theme {
+  --font-ds-display: var(--font-funnel-display), system-ui, sans-serif;
+  --font-ds-body: var(--font-ubuntu-sans), system-ui, sans-serif;
+  --font-ds-mono: var(--font-ubuntu-sans-mono), ui-monospace, monospace;
+}
+
+/* ==========================================================================
+   DS Tokens — component preview values (not site chrome)
+   ========================================================================== */
+
+:root {
+  --ds-warm-bg: #FAF8F4;
+  --ds-warm-surface: #F1EFEB;
+  --ds-warm-border: #E8E4DD;
+  --ds-neutral-bg: #F6F6F6;
+  --ds-neutral-surface: #FFFFFF;
+  --ds-neutral-border: #DEDEDE;
+  --ds-brand: #0B0B0B;
+  --ds-brand-on: #FFFFFF;
+  --ds-space-0: 0px;
+  --ds-space-1: 4px;
+  --ds-space-2: 8px;
+  --ds-space-3: 12px;
+  --ds-space-4: 16px;
+  --ds-space-5: 20px;
+  --ds-space-6: 24px;
+  --ds-space-8: 32px;
+  --ds-space-10: 40px;
+  --ds-space-12: 48px;
+  --ds-space-16: 64px;
+  --ds-radius-xs: 4px;
+  --ds-radius-sm: 8px;
+  --ds-radius-md: 12px;
+  --ds-radius-lg: 16px;
+  --ds-radius-xl: 20px;
+  --ds-radius-2xl: 24px;
+  --ds-radius-3xl: 28px;
+  --ds-radius-4xl: 32px;
+  --ds-radius-full: 9999px;
+  --ds-radius-pill: 44px;
+  --ds-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --ds-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.06);
+  --ds-shadow-md: 0 4px 8px rgba(0, 0, 0, 0.08);
+  --ds-shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.1);
+  --ds-shadow-xl: 0 16px 32px rgba(0, 0, 0, 0.12);
+  --ds-border-thin: 1px;
+  --ds-border-regular: 1.5px;
+  --ds-border-medium: 2px;
+  --ds-border-thick: 3px;
+  --ds-height-xs: 28px;
+  --ds-height-sm: 32px;
+  --ds-height-md: 40px;
+  --ds-height-lg: 48px;
+  --ds-height-xl: 56px;
+}
+
+.dark {
+  --ds-brand: #FFFFFF;
+  --ds-brand-on: #0B0B0B;
+}
+
+/* ==========================================================================
+   Docs aliases — map --docs-* to --color-fd-* so components keep working
+   ========================================================================== */
+
+:root {
+  --docs-bg: var(--color-fd-background);
+  --docs-fg: var(--color-fd-foreground);
+  --docs-muted: var(--color-fd-muted-foreground);
+  --docs-border: var(--color-fd-border);
+  --docs-accent: var(--color-fd-accent);
+  --docs-accent-fg: var(--color-fd-accent-foreground);
+}
+
+/* ==========================================================================
+   FUMADOCS COLOR OVERRIDES — shadcn zinc palette (exact)
+   Override --color-fd-* variables so fumadocs renders with shadcn colors.
+   This is the most reliable way to theme fumadocs.
+   ========================================================================== */
+
+@theme {
+  /* Light mode — zinc white */
+  --color-fd-background: #FFFFFF;
+  --color-fd-foreground: #09090B;
+  --color-fd-muted: #F4F4F5;
+  --color-fd-muted-foreground: #71717A;
+  --color-fd-popover: #FFFFFF;
+  --color-fd-popover-foreground: #09090B;
+  --color-fd-card: #F4F4F5;
+  --color-fd-card-foreground: #09090B;
+  --color-fd-border: #E4E4E7;
+  --color-fd-primary: #18181B;
+  --color-fd-primary-foreground: #FAFAFA;
+  --color-fd-secondary: #F4F4F5;
+  --color-fd-secondary-foreground: #18181B;
+  --color-fd-accent: #F4F4F5;
+  --color-fd-accent-foreground: #18181B;
+  --color-fd-ring: #A1A1AA;
+}
+
+.dark {
+  --color-fd-background: #09090B;
+  --color-fd-foreground: #FAFAFA;
+  --color-fd-muted: #27272A;
+  --color-fd-muted-foreground: #A1A1AA;
+  --color-fd-popover: #09090B;
+  --color-fd-popover-foreground: #FAFAFA;
+  --color-fd-card: #171717;
+  --color-fd-card-foreground: #FAFAFA;
+  --color-fd-border: #27272A;
+  --color-fd-primary: #FAFAFA;
+  --color-fd-primary-foreground: #18181B;
+  --color-fd-secondary: #27272A;
+  --color-fd-secondary-foreground: #FAFAFA;
+  --color-fd-accent: #27272A;
+  --color-fd-accent-foreground: #FAFAFA;
+  --color-fd-ring: #52525B;
+}
+
+.dark #nd-sidebar {
+  --color-fd-muted: #1A1A1A;
+  --color-fd-secondary: #1E1E1E;
+  --color-fd-muted-foreground: #A1A1AA;
+}
+
+/* ==========================================================================
+   TYPOGRAPHY — match shadcn exactly
+   shadcn: Geist font, we use Ubuntu Sans (our DS font)
+   h1: 30px/600, h2: 24px/700 with border-bottom, h3: 20px/600
+   body: 14px, muted-foreground for descriptions
+   ========================================================================== */
+
+body {
+  font-family: var(--font-ubuntu-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.prose {
+  font-family: var(--font-ubuntu-sans), system-ui, sans-serif;
+}
+
+/* All headings */
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+  font-family: var(--font-ubuntu-sans), system-ui, sans-serif;
+  color: var(--color-fd-foreground);
+  letter-spacing: -0.02em;
+}
+
+/* h2 — shadcn: 24px, bold */
+.prose h2 {
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0;
+  border-bottom: none;
+  scroll-margin-top: 5rem;
+}
+
+/* h3 — shadcn: 20px, semibold */
+.prose h3 {
+  font-size: 1.25rem !important;
+  font-weight: 600 !important;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Paragraphs — shadcn uses muted-foreground */
+.prose p {
+  color: var(--color-fd-muted-foreground);
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+/* Inline code — shadcn style: small badge with accent bg */
+.prose :not(pre) > code {
+  font-family: var(--font-ubuntu-sans-mono), ui-monospace, monospace;
+  font-size: 0.8125rem;
+  background-color: var(--color-fd-muted);
+  border-radius: 0.375rem;
+  padding: 0.15rem 0.4rem;
+  font-weight: 500;
+  color: var(--color-fd-foreground);
+}
+
+/* Pre/code font */
+.prose code, .prose pre code {
+  font-family: var(--font-ubuntu-sans-mono), ui-monospace, monospace;
+}
+
+/* Page title (DocsTitle) — shadcn: ~30px, 600 */
+article > h1:first-of-type {
+  font-family: var(--font-ubuntu-sans), system-ui, sans-serif !important;
+  font-size: 1.875rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.2 !important;
+  color: var(--color-fd-foreground) !important;
+}
+
+/* Page description — shadcn: muted, ~16px */
+article > h1:first-of-type + p {
+  color: var(--color-fd-muted-foreground) !important;
+  font-size: 1.0625rem !important;
+  line-height: 1.625 !important;
+  margin-bottom: 1.5rem !important;
+}
+
+/* ==========================================================================
+   CODE BLOCKS — override fumadocs classes directly
+   fumadocs uses: .shiki, bg-fd-card, rounded-xl, shadow-sm, border
+   shadcn uses: rounded-lg, subtle border, no shadow, muted bg
+   ========================================================================== */
+
+/* The figure wrapper — fumadocs applies: bg-fd-card rounded-xl shadow-sm border */
+figure.shiki,
+figure.not-prose.overflow-hidden {
+  border-radius: 0.5rem !important;
+  box-shadow: none !important;
+  border: 1px solid var(--color-fd-border) !important;
+  background-color: var(--color-fd-card) !important;
+}
+
+/* Pre inside code blocks */
+figure.shiki pre,
+figure.not-prose pre {
+  background-color: var(--color-fd-card) !important;
+  font-size: 0.8125rem !important;
+  line-height: 1.7 !important;
+  padding: 1rem 1.25rem !important;
+}
+
+/* Code block title bar (file name) */
+figure.shiki > div:first-child,
+figure.not-prose > div:first-child {
+  background-color: var(--color-fd-card) !important;
+  border-bottom-color: var(--color-fd-border) !important;
+}
+
+/* Copy button — subtle, show on hover */
+figure.shiki button,
+figure.not-prose button {
+  opacity: 0.4;
+  transition: opacity 150ms ease;
+}
+figure.shiki:hover button,
+figure.not-prose:hover button {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   PREVIEW + CODE MERGE — shadcn style unified container
+   When a code block figure follows [data-preview-box], merge them.
+   ========================================================================== */
+
+/* Preview box: no bottom corners, no bottom border */
+[data-preview-box] {
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  border-bottom: none !important;
+  margin-bottom: 0 !important;
+}
+
+/* Code block after preview: no top corners, no top border, no margin-top */
+[data-preview-box] + figure {
+  margin-top: 0 !important;
+  border-top: none !important;
+  border-radius: 0 0 0.5rem 0.5rem !important;
+}
+
+/* ==========================================================================
+   SIDEBAR — match shadcn styling
+   ========================================================================== */
+
+/* Sidebar section headings */
+#nd-sidebar p,
+#nd-sidebar [data-sidebar-group-label] {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-fd-muted-foreground);
+}
+
+/* Sidebar links */
+#nd-sidebar a {
+  font-size: 0.8125rem;
+  color: var(--color-fd-muted-foreground);
+  transition: color 150ms ease, background-color 150ms ease;
+}
+
+#nd-sidebar a:hover {
+  color: var(--color-fd-foreground);
+}
+
+/* Active sidebar link */
+#nd-sidebar a[data-active="true"],
+#nd-sidebar a[aria-current="page"] {
+  color: var(--color-fd-foreground) !important;
+  font-weight: 500;
+  background-color: var(--color-fd-accent) !important;
+}
+
+/* ==========================================================================
+   TABLE — clean shadcn style
+   ========================================================================== */
+
+.prose table {
+  width: 100%;
+  font-size: 0.875rem;
+  border-collapse: collapse;
+}
+
+.prose table th {
+  font-weight: 500;
+  color: var(--color-fd-muted-foreground);
+  text-align: left;
+  padding: 0.75rem 1rem 0.75rem 0;
+  border-bottom: 1px solid var(--color-fd-border);
+}
+
+.prose table td {
+  padding: 0.75rem 1rem 0.75rem 0;
+  border-bottom: 1px solid var(--color-fd-border);
+  color: var(--color-fd-foreground);
+}
+
+/* ==========================================================================
+   Component Preview Reset — neutralize prose styles inside previews
+   ========================================================================== */
+
+.ds-preview-area table,
+.ds-preview-area th,
+.ds-preview-area td,
+.ds-preview-area thead,
+.ds-preview-area tbody,
+.ds-preview-area tr {
+  all: unset;
+  display: revert;
+}
+
+.ds-preview-area button {
+  all: unset;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   DS Pressable — tactile press/active state for interactive components
+   ========================================================================== */
+
+.ds-pressable {
+  transition: transform 150ms cubic-bezier(0.2, 0, 0, 1), opacity 150ms ease;
+}
+.ds-pressable:active {
+  transform: scale(0.97);
+  opacity: 0.85;
+}
+.ds-pressable:disabled:active,
+.ds-pressable[data-disabled="true"]:active {
+  transform: none;
+  opacity: inherit;
+}
+
+/* ==========================================================================
+   TOC (Table of Contents) — right sidebar "On This Page"
+   ========================================================================== */
+
+nav[aria-label="Table of Contents"] a,
+[data-toc] a {
+  font-size: 0.8125rem;
+  color: var(--color-fd-muted-foreground);
+  transition: color 150ms ease;
+}
+
+nav[aria-label="Table of Contents"] a:hover,
+[data-toc] a:hover {
+  color: var(--color-fd-foreground);
+}
+
+nav[aria-label="Table of Contents"] a[data-active="true"],
+[data-toc] a[data-active="true"] {
+  color: var(--color-fd-foreground);
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   NAV header — match shadcn
+   ========================================================================== */
+
+header nav a,
+#nd-docs-layout > header a {
+  font-size: 0.875rem;
+  color: var(--color-fd-muted-foreground);
+  transition: color 150ms ease;
+}
+
+header nav a:hover,
+#nd-docs-layout > header a:hover {
+  color: var(--color-fd-foreground);
+}
+
+/* ==========================================================================
+   Previous/Next links — shadcn footer nav
+   ========================================================================== */
+
+article + div a {
+  border-color: var(--color-fd-border);
+  border-radius: 0.5rem;
+  transition: background-color 150ms ease;
+}
+
+article + div a:hover {
+  background-color: var(--color-fd-accent);
+}
+
+/* ==========================================================================
+   DS Shared Keyframes — used by DS component previews
+   Moved here from inline <style> tags to avoid duplication
+   ========================================================================== */
+
+@keyframes ds-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes ds-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}

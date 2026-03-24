@@ -1,0 +1,52 @@
+---
+title: Bordes
+description: 4 tokens de ancho de borde
+---
+
+## Sistema de Bordes
+
+El sistema define 4 anchos de borde para diferentes contextos de UI. Los anchos van de 1px a 3px, cubriendo desde separadores sutiles hasta bordes de enfoque prominentes.
+
+## Anchos de Borde
+
+| Token | Variable CSS | Valor | Uso |
+|-------|-------------|-------|-----|
+| thin | `--ds-border-thin` | 1px | Separadores, bordes de tarjetas, lineas sutiles |
+| regular | `--ds-border-regular` | 1.5px | Bordes de inputs, contornos de botones |
+| medium | `--ds-border-medium` | 2px | Bordes activos, seleccion, focus visible |
+| thick | `--ds-border-thick` | 3px | Indicadores de estado, bordes de enfasis |
+
+## Colores de Borde
+
+Los colores de borde vienen del sistema de tonos:
+
+- **Tono calido:** `--ds-warm-border` (#E8E4DD) para tarjetas, paneles, wallet
+- **Tono neutro:** `--ds-neutral-border` (#DEDEDE) para inputs, dialogs, tabs
+
+Consulta la pagina de [Colores](/docs/foundations/colors) para la referencia completa de tonos.
+
+## Ejemplo de Uso
+
+```css
+/* Input con borde regular */
+.input {
+  border: var(--ds-border-regular) solid var(--ds-neutral-border);
+  border-radius: var(--ds-radius-sm);
+}
+
+/* Input con focus */
+.input:focus {
+  border-width: var(--ds-border-medium);
+  border-color: var(--ds-brand);
+}
+
+/* Separador sutil */
+.divider {
+  border-top: var(--ds-border-thin) solid var(--ds-warm-border);
+}
+
+/* Indicador de seleccion */
+.tab-active {
+  border-bottom: var(--ds-border-thick) solid var(--ds-brand);
+}
+```

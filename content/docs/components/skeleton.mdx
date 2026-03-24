@@ -1,0 +1,156 @@
+---
+title: Skeleton
+description: Placeholder animado para contenido en carga con formas de texto, círculo y rectángulo
+status: stable
+---
+
+
+<SkeletonPlayground />
+
+## Instalacion
+
+```tsx
+import { DSSkeleton } from '@/components/ds/ds-skeleton'
+```
+
+## Uso
+
+```tsx title="skeleton.tsx"
+import { DSSkeleton } from '@/components/ds/ds-skeleton'
+
+export default function Example() {
+  return (
+    <DSSkeleton variant="text" width="200px" height="16px" />
+  )
+}
+```
+
+## Ejemplos
+
+### Líneas de Texto
+
+Rectángulos con animación de pulso que simulan líneas de texto en carga.
+
+<ComponentPreview>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '100%' }}>
+    <div style={{ width: '100%', height: '14px', backgroundColor: 'var(--preview-muted-bg)', borderRadius: '4px', animation: 'ds-pulse 1.8s ease-in-out infinite' }} />
+    <div style={{ width: '80%', height: '14px', backgroundColor: 'var(--preview-muted-bg)', borderRadius: '4px', animation: 'ds-pulse 1.8s ease-in-out infinite', animationDelay: '0.15s' }} />
+    <div style={{ width: '60%', height: '14px', backgroundColor: 'var(--preview-muted-bg)', borderRadius: '4px', animation: 'ds-pulse 1.8s ease-in-out infinite', animationDelay: '0.3s' }} />
+  </div>
+</ComponentPreview>
+
+```tsx title="skeleton-text.tsx"
+export function SkeletonText({ lines = 3 }: { lines?: number }) {
+  const widths = ['100%', '80%', '60%'];
+  return (
+    <div className="flex flex-col gap-2">
+      {Array.from({ length: lines }).map((_, i) => (
+        <div
+          key={i}
+          className="animate-pulse"
+          style={{ width: widths[i % widths.length], height: 14, backgroundColor: '#EEEBE6', borderRadius: 4 }}
+        />
+      ))}
+    </div>
+  );
+}
+```
+
+### Círculo
+
+Para placeholders de avatares o imágenes circulares.
+
+<ComponentPreview>
+  <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+    <div style={{ width: '32px', height: '32px', borderRadius: '50%', backgroundColor: 'var(--preview-muted-bg)', animation: 'ds-pulse 1.8s ease-in-out infinite' }} />
+    <div style={{ width: '40px', height: '40px', borderRadius: '50%', backgroundColor: 'var(--preview-muted-bg)', animation: 'ds-pulse 1.8s ease-in-out infinite' }} />
+    <div style={{ width: '48px', height: '48px', borderRadius: '50%', backgroundColor: 'var(--preview-muted-bg)', animation: 'ds-pulse 1.8s ease-in-out infinite' }} />
+    <div style={{ width: '64px', height: '64px', borderRadius: '50%', backgroundColor: 'var(--preview-muted-bg)', animation: 'ds-pulse 1.8s ease-in-out infinite' }} />
+  </div>
+</ComponentPreview>
+
+```tsx title="skeleton-circle.tsx"
+export function SkeletonCircle({ size = 40 }: { size?: number }) {
+  return (
+    <div
+      className="rounded-full animate-pulse"
+      style={{ width: size, height: size, backgroundColor: '#EEEBE6' }}
+    />
+  );
+}
+```
+
+### Card Skeleton
+
+Composición de círculo y líneas de texto simulando una tarjeta en carga.
+
+<ComponentPreview>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', padding: '20px', border: '0.5px solid var(--preview-border)', borderRadius: '24px', maxWidth: '270px', width: '100%', backgroundColor: 'var(--preview-surface)' }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+      <div style={{ width: '40px', height: '40px', borderRadius: '50%', backgroundColor: 'var(--preview-muted-bg)', flexShrink: 0, animation: 'ds-pulse 1.8s ease-in-out infinite' }} />
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', flex: 1 }}>
+        <div style={{ width: '120px', height: '14px', backgroundColor: 'var(--preview-muted-bg)', borderRadius: '4px', animation: 'ds-pulse 1.8s ease-in-out infinite' }} />
+        <div style={{ width: '60px', height: '10px', backgroundColor: 'var(--preview-muted-bg)', borderRadius: '3px', animation: 'ds-pulse 1.8s ease-in-out infinite' }} />
+      </div>
+    </div>
+    <div style={{ display: 'flex', alignItems: 'baseline', gap: '4px' }}>
+      <div style={{ width: '180px', height: '28px', backgroundColor: 'var(--preview-muted-bg)', borderRadius: '6px', animation: 'ds-pulse 1.8s ease-in-out infinite' }} />
+      <div style={{ width: '28px', height: '10px', backgroundColor: 'var(--preview-muted-bg)', borderRadius: '3px', animation: 'ds-pulse 1.8s ease-in-out infinite' }} />
+    </div>
+  </div>
+</ComponentPreview>
+
+```tsx title="skeleton-card.tsx"
+export function SkeletonCard() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 16, padding: 20, border: '0.5px solid var(--preview-border, #E8E4DD)', borderRadius: 24, maxWidth: 270, width: '100%', backgroundColor: 'var(--preview-surface, #FFFFFF)' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+        <div style={{ width: 40, height: 40, borderRadius: '50%', backgroundColor: '#EEEBE6', flexShrink: 0 }} className="animate-pulse" />
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flex: 1 }}>
+          <div style={{ width: 120, height: 14, backgroundColor: '#EEEBE6', borderRadius: 4 }} className="animate-pulse" />
+          <div style={{ width: 60, height: 10, backgroundColor: '#EEEBE6', borderRadius: 3 }} className="animate-pulse" />
+        </div>
+      </div>
+      <div style={{ display: 'flex', alignItems: 'baseline', gap: 4 }}>
+        <div style={{ width: 180, height: 28, backgroundColor: '#EEEBE6', borderRadius: 6 }} className="animate-pulse" />
+        <div style={{ width: 28, height: 10, backgroundColor: '#EEEBE6', borderRadius: 3 }} className="animate-pulse" />
+      </div>
+    </div>
+  );
+}
+```
+
+## Props
+
+<PropsTable
+  props={[
+    {
+      name: 'variant',
+      type: "'text' | 'circle' | 'rectangle'",
+      default: "'text'",
+      description: 'Forma del skeleton. Circle usa border-radius 50%, rectangle usa 8px, text usa 4px.',
+    },
+    {
+      name: 'width',
+      type: 'string',
+      default: "'200px'",
+      description: 'Ancho del skeleton. Para circle, tambien se usa como height si no se especifica.',
+    },
+    {
+      name: 'height',
+      type: 'string',
+      default: "'16px'",
+      description: 'Alto del skeleton. En variant circle, se iguala al width automaticamente.',
+    },
+  ]}
+/>
+
+## Guías de Uso
+
+<DoDont type="do">
+  Usar skeletons que reflejen la estructura del contenido real que reemplazarán.
+</DoDont>
+
+<DoDont type="dont">
+  No usar skeletons para contenido que carga instantáneamente (menos de 200ms).
+</DoDont>

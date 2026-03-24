@@ -1,0 +1,219 @@
+---
+title: Chip
+description: Etiquetas interactivas con variantes de color, estados y boton de eliminar
+status: stable
+---
+
+
+<ChipPlayground />
+
+### Default
+
+Chip basico con estilo outlined para etiquetas interactivas.
+
+<ComponentPreview>
+  <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+    <span style={{ display: 'inline-flex', alignItems: 'center', height: '32px', padding: '0 12px', borderRadius: '44px', backgroundColor: 'var(--preview-surface)', border: '0.5px solid var(--preview-border)', color: 'inherit', fontSize: '13px', fontWeight: 500, fontFamily: 'var(--font-ubuntu-sans-mono), monospace', textTransform: 'uppercase', cursor: 'pointer' }}>
+      Todos
+    </span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', height: '32px', padding: '0 12px', borderRadius: '44px', backgroundColor: 'var(--preview-surface)', border: '0.5px solid var(--preview-border)', color: 'inherit', fontSize: '13px', fontWeight: 500, fontFamily: 'var(--font-ubuntu-sans-mono), monospace', textTransform: 'uppercase', cursor: 'pointer' }}>
+      COP
+    </span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', height: '32px', padding: '0 12px', borderRadius: '44px', backgroundColor: 'var(--preview-surface)', border: '0.5px solid var(--preview-border)', color: 'inherit', fontSize: '13px', fontWeight: 500, fontFamily: 'var(--font-ubuntu-sans-mono), monospace', textTransform: 'uppercase', cursor: 'pointer' }}>
+      EUR
+    </span>
+  </div>
+</ComponentPreview>
+
+```tsx title="chip-default.tsx"
+export function Chip({ label }: { label: string }) {
+  return (
+    <span className="inline-flex items-center h-8 px-3 rounded-[44px] border-[0.5px] border-[#DEDEDE] bg-white text-[#0B0B0B] text-[13px] font-medium font-mono uppercase cursor-pointer">
+      {label}
+    </span>
+  );
+}
+```
+
+### Con Boton de Cerrar
+
+Chip removible con icono X para descartar.
+
+<ComponentPreview>
+  <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', height: '32px', padding: '0 12px', borderRadius: '44px', backgroundColor: 'var(--preview-surface)', border: '0.5px solid var(--preview-border)', color: 'inherit', fontSize: '13px', fontWeight: 500, fontFamily: 'var(--font-ubuntu-sans-mono), monospace', textTransform: 'uppercase', cursor: 'pointer' }}>
+      COP
+      <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '16px', height: '16px', color: 'rgba(11,11,11,0.35)', marginLeft: '-2px', marginRight: '-2px' }}>
+        <svg width="10" height="10" viewBox="0 0 256 256" fill="currentColor"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z" /></svg>
+      </span>
+    </span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', height: '32px', padding: '0 12px', borderRadius: '44px', backgroundColor: 'var(--preview-brand)', border: '0.5px solid var(--preview-brand)', color: 'var(--preview-brand-on)', fontSize: '13px', fontWeight: 500, fontFamily: 'var(--font-ubuntu-sans-mono), monospace', textTransform: 'uppercase', cursor: 'pointer' }}>
+      Enviados
+      <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '16px', height: '16px', color: 'rgba(255,255,255,0.6)', marginLeft: '-2px', marginRight: '-2px' }}>
+        <svg width="10" height="10" viewBox="0 0 256 256" fill="currentColor"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z" /></svg>
+      </span>
+    </span>
+  </div>
+</ComponentPreview>
+
+```tsx title="chip-removable.tsx"
+export function ChipRemovable({ label, onRemove }: { label: string; onRemove: () => void }) {
+  return (
+    <span className="inline-flex items-center gap-1.5 h-8 px-3 rounded-[44px] border-[0.5px] border-[#DEDEDE] bg-white text-[#0B0B0B] text-[13px] font-medium font-mono uppercase cursor-pointer">
+      {label}
+      <button onClick={onRemove} className="text-[#0B0B0B]/35 w-4 h-4 flex items-center justify-center -mx-0.5">
+        <XIcon className="w-2.5 h-2.5" />
+      </button>
+    </span>
+  );
+}
+```
+
+### Selected
+
+Estado seleccionado con colores invertidos.
+
+<ComponentPreview>
+  <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+    <span style={{ display: 'inline-flex', alignItems: 'center', height: '32px', padding: '0 12px', borderRadius: '44px', backgroundColor: 'var(--preview-brand)', border: '0.5px solid var(--preview-brand)', color: 'var(--preview-brand-on)', fontSize: '13px', fontWeight: 500, fontFamily: 'var(--font-ubuntu-sans-mono), monospace', textTransform: 'uppercase', cursor: 'pointer' }}>
+      Seleccionado
+    </span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', height: '32px', padding: '0 12px', borderRadius: '44px', backgroundColor: 'var(--preview-surface)', border: '0.5px solid var(--preview-border)', color: 'inherit', fontSize: '13px', fontWeight: 500, fontFamily: 'var(--font-ubuntu-sans-mono), monospace', textTransform: 'uppercase', cursor: 'pointer' }}>
+      No seleccionado
+    </span>
+  </div>
+</ComponentPreview>
+
+```tsx title="chip-selected.tsx"
+export function ChipToggle({ label, selected }: { label: string; selected: boolean }) {
+  return (
+    <span className={`inline-flex items-center h-8 px-3 rounded-[44px] border-[0.5px] text-[13px] font-medium font-mono uppercase cursor-pointer ${
+      selected ? 'bg-[#0B0B0B] border-[#0B0B0B] text-white' : 'bg-white border-[#DEDEDE] text-[#0B0B0B]'
+    }`}>
+      {label}
+    </span>
+  );
+}
+```
+
+### Sizes
+
+Tres tamagnas disponibles: sm (28px), md (32px), lg (36px).
+
+<ComponentPreview>
+  <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+    <span style={{ display: 'inline-flex', alignItems: 'center', height: '28px', padding: '0 10px', borderRadius: '44px', backgroundColor: 'var(--preview-surface)', border: '0.5px solid var(--preview-border)', color: 'inherit', fontSize: '11px', fontWeight: 500, fontFamily: 'var(--font-ubuntu-sans-mono), monospace', textTransform: 'uppercase', cursor: 'pointer' }}>
+      Small
+    </span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', height: '32px', padding: '0 12px', borderRadius: '44px', backgroundColor: 'var(--preview-surface)', border: '0.5px solid var(--preview-border)', color: 'inherit', fontSize: '13px', fontWeight: 500, fontFamily: 'var(--font-ubuntu-sans-mono), monospace', textTransform: 'uppercase', cursor: 'pointer' }}>
+      Medium
+    </span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', height: '36px', padding: '0 14px', borderRadius: '44px', backgroundColor: 'var(--preview-surface)', border: '0.5px solid var(--preview-border)', color: 'inherit', fontSize: '14px', fontWeight: 500, fontFamily: 'var(--font-ubuntu-sans-mono), monospace', textTransform: 'uppercase', cursor: 'pointer' }}>
+      Large
+    </span>
+  </div>
+</ComponentPreview>
+
+### Status Tags
+
+Tags de estado (produccion) con Ubuntu Mono, border-radius 44px, colores semanticos.
+
+<ComponentPreview>
+  <div style={{ display: 'flex', gap: '8px', alignItems: 'center', flexWrap: 'wrap' }}>
+    <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '4px 8px', borderRadius: '44px', backgroundColor: 'color-mix(in srgb, #059669 15%, transparent)', color: 'var(--preview-brand, #0B0B0B)', fontSize: '12px', fontWeight: 400, fontFamily: 'var(--font-ubuntu-sans-mono), monospace', letterSpacing: '0.6px', textTransform: 'uppercase', border: '0.5px solid rgba(0,0,0,0.08)' }}>
+      Nuevo
+    </span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '4px 8px', borderRadius: '44px', backgroundColor: '#CFF7D3', color: '#02542D', fontSize: '12px', fontWeight: 400, fontFamily: 'var(--font-ubuntu-sans-mono), monospace', letterSpacing: '0.6px', textTransform: 'uppercase', border: '0.5px solid rgba(0,0,0,0.08)' }}>
+      Exitosa
+    </span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '4px 8px', borderRadius: '44px', backgroundColor: 'color-mix(in srgb, #D97706 15%, transparent)', color: 'var(--preview-brand, #0B0B0B)', fontSize: '12px', fontWeight: 400, fontFamily: 'var(--font-ubuntu-sans-mono), monospace', letterSpacing: '0.6px', textTransform: 'uppercase', border: '0.5px solid rgba(0,0,0,0.08)' }}>
+      Pendiente
+    </span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '4px 8px', borderRadius: '44px', backgroundColor: '#FDD3D0', color: '#900B09', fontSize: '12px', fontWeight: 400, fontFamily: 'var(--font-ubuntu-sans-mono), monospace', letterSpacing: '0.6px', textTransform: 'uppercase', border: '0.5px solid rgba(0,0,0,0.08)' }}>
+      Fallido
+    </span>
+    <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '4px 8px', borderRadius: '44px', backgroundColor: '#E3E3E3', color: '#434343', fontSize: '12px', fontWeight: 400, fontFamily: 'var(--font-ubuntu-sans-mono), monospace', letterSpacing: '0.6px', textTransform: 'uppercase', border: '0.5px solid rgba(0,0,0,0.08)' }}>
+      Expirado
+    </span>
+  </div>
+</ComponentPreview>
+
+```tsx title="chip-variants.tsx"
+const statusColors = {
+  nuevo:     { bg: '#C1F5C1', color: 'var(--preview-brand, #0B0B0B)' },
+  exitosa:   { bg: '#CFF7D3', color: '#02542D' },
+  pendiente: { bg: '#FDDC72', color: 'var(--preview-brand, #0B0B0B)' },
+  fallido:   { bg: '#FDD3D0', color: '#900B09' },
+  expirado:  { bg: '#E3E3E3', color: '#434343' },
+};
+
+export function StatusTag({ label, variant }: { label: string; variant: keyof typeof statusColors }) {
+  const { bg, color } = statusColors[variant];
+  return (
+    <span style={{ backgroundColor: bg, color, borderRadius: '44px', padding: '4px 8px', fontSize: '12px', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', letterSpacing: '0.6px', textTransform: 'uppercase', border: '0.5px solid rgba(0,0,0,0.08)' }}>
+      {label}
+    </span>
+  );
+}
+```
+
+### Interacciones
+
+El componente incluye feedback tactil al presionar: escala sutil (`scale 0.97`) con reduccion de opacidad, y un release con transicion spring natural. Este efecto se desactiva automaticamente en estados `disabled` y `loading`.
+
+## Props
+
+<PropsTable
+  props={[
+    {
+      name: 'label',
+      type: 'string',
+      description: 'Texto visible del chip.',
+      required: true,
+    },
+    {
+      name: 'variant',
+      type: "'default' | 'info' | 'success' | 'warning' | 'error'",
+      default: "'default'",
+      description: 'Variante de color semantica.',
+    },
+    {
+      name: 'selected',
+      type: 'boolean',
+      default: 'false',
+      description: 'Estado seleccionado con colores invertidos.',
+    },
+    {
+      name: 'removable',
+      type: 'boolean',
+      default: 'false',
+      description: 'Muestra el icono X para eliminar el chip.',
+    },
+    {
+      name: 'onRemove',
+      type: '() => void',
+      description: 'Callback al presionar el boton de eliminar.',
+    },
+    {
+      name: 'onClick',
+      type: '() => void',
+      description: 'Callback al hacer clic en el chip.',
+    },
+    {
+      name: 'size',
+      type: "'sm' | 'md' | 'lg'",
+      default: "'md'",
+      description: 'Tamano del chip. sm: 28px, md: 32px, lg: 36px.',
+    },
+  ]}
+/>
+
+## Guias de Uso
+
+<DoDont type="do">
+  Usar chips para filtros activos, tags, o selecciones multiples compactas. Son ideales para representar metadata o categorias.
+</DoDont>
+
+<DoDont type="dont">
+  No usar chips como botones de accion principal. Son para metadata y categorias, no para acciones del flujo principal.
+</DoDont>

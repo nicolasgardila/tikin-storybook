@@ -1,0 +1,150 @@
+---
+title: Tooltip
+description: Tooltip flotante con texto informativo al hacer hover sobre un elemento
+status: stable
+---
+
+
+<TooltipPlayground />
+
+## Instalacion
+
+```tsx
+import { DSTooltip } from '@/components/ds/ds-tooltip'
+```
+
+## Uso
+
+```tsx title="tooltip.tsx"
+import { DSTooltip } from '@/components/ds/ds-tooltip'
+
+export default function Example() {
+  return (
+    <DSTooltip text="Guardar cambios" position="top" />
+  )
+}
+```
+
+## Ejemplos
+
+### Default (Top)
+
+Tooltip posicionado arriba del elemento trigger. Fondo oscuro con texto blanco.
+
+<ComponentPreview>
+  <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '60px', paddingBottom: '16px' }}>
+    <div style={{ position: 'relative', display: 'inline-block' }}>
+      <div style={{ position: 'absolute', bottom: '100%', left: '50%', transform: 'translateX(-50%)', marginBottom: '8px', backgroundColor: 'var(--preview-brand, #0B0B0B)', color: 'var(--preview-brand-on, #FFFFFF)', fontSize: '13px', fontWeight: 400, lineHeight: 1.4, fontFamily: 'var(--font-ubuntu-sans), sans-serif', borderRadius: '8px', padding: '8px 12px', maxWidth: '280px', whiteSpace: 'nowrap', zIndex: 50, boxShadow: '0px 2px 8px rgba(11,15,16,0.16)' }}>
+        Guardar cambios
+        <div style={{ position: 'absolute', top: '100%', left: '50%', transform: 'translateX(-50%)', width: 0, height: 0, borderLeft: '6px solid transparent', borderRight: '6px solid transparent', borderTop: '6px solid var(--preview-brand, #0B0B0B)' }} />
+      </div>
+      <button style={{ borderRadius: '0.75rem', backgroundColor: 'var(--preview-brand, #0B0B0B)', paddingLeft: '1.5rem', paddingRight: '1.5rem', paddingTop: '0.75rem', paddingBottom: '0.75rem', fontSize: '0.875rem', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--preview-brand-on, #FFFFFF)', border: 'none', cursor: 'pointer' }}>
+        Guardar
+      </button>
+    </div>
+  </div>
+</ComponentPreview>
+
+```tsx title="tooltip-default.tsx"
+export function Tooltip({ content, children }: { content: string; children: React.ReactNode }) {
+  return (
+    <div className="relative group inline-block">
+      {children}
+      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 rounded-lg bg-[#0B0B0B] px-3 py-2 text-[13px] text-white opacity-0 group-hover:opacity-100 transition-opacity z-50 max-w-[280px] shadow-[0px_2px_8px_rgba(11,15,16,0.16)]">
+        {content}
+        <div className="absolute top-full left-1/2 -translate-x-1/2 border-[6px] border-transparent border-t-[#0B0B0B]" />
+      </div>
+    </div>
+  );
+}
+```
+
+### Posiciones
+
+Cuatro posiciones disponibles: top, bottom, left y right.
+
+<ComponentPreview>
+  <div style={{ display: 'flex', gap: '48px', justifyContent: 'center', padding: '64px 16px' }}>
+    <div style={{ position: 'relative', display: 'inline-block' }}>
+      <div style={{ position: 'absolute', bottom: '100%', left: '50%', transform: 'translateX(-50%)', marginBottom: '8px', backgroundColor: 'var(--preview-brand, #0B0B0B)', color: 'var(--preview-brand-on, #FFFFFF)', fontSize: '13px', fontWeight: 400, lineHeight: 1.4, fontFamily: 'var(--font-ubuntu-sans), sans-serif', borderRadius: '8px', padding: '8px 12px', whiteSpace: 'nowrap', boxShadow: '0px 2px 8px rgba(11,15,16,0.16)' }}>
+        Top
+        <div style={{ position: 'absolute', top: '100%', left: '50%', transform: 'translateX(-50%)', width: 0, height: 0, borderLeft: '6px solid transparent', borderRight: '6px solid transparent', borderTop: '6px solid var(--preview-brand, #0B0B0B)' }} />
+      </div>
+      <div style={{ padding: '8px 16px', backgroundColor: 'var(--preview-muted-bg)', borderRadius: '8px', fontSize: '13px', fontFamily: 'var(--font-ubuntu-sans), sans-serif', color: 'inherit' }}>Top</div>
+    </div>
+    <div style={{ position: 'relative', display: 'inline-block' }}>
+      <div style={{ position: 'absolute', top: '100%', left: '50%', transform: 'translateX(-50%)', marginTop: '8px', backgroundColor: 'var(--preview-brand, #0B0B0B)', color: 'var(--preview-brand-on, #FFFFFF)', fontSize: '13px', fontWeight: 400, lineHeight: 1.4, fontFamily: 'var(--font-ubuntu-sans), sans-serif', borderRadius: '8px', padding: '8px 12px', whiteSpace: 'nowrap', boxShadow: '0px 2px 8px rgba(11,15,16,0.16)' }}>
+        Bottom
+        <div style={{ position: 'absolute', bottom: '100%', left: '50%', transform: 'translateX(-50%)', width: 0, height: 0, borderLeft: '6px solid transparent', borderRight: '6px solid transparent', borderBottom: '6px solid var(--preview-brand, #0B0B0B)' }} />
+      </div>
+      <div style={{ padding: '8px 16px', backgroundColor: 'var(--preview-muted-bg)', borderRadius: '8px', fontSize: '13px', fontFamily: 'var(--font-ubuntu-sans), sans-serif', color: 'inherit' }}>Bottom</div>
+    </div>
+    <div style={{ position: 'relative', display: 'inline-block' }}>
+      <div style={{ position: 'absolute', right: '100%', top: '50%', transform: 'translateY(-50%)', marginRight: '8px', backgroundColor: 'var(--preview-brand, #0B0B0B)', color: 'var(--preview-brand-on, #FFFFFF)', fontSize: '13px', fontWeight: 400, lineHeight: 1.4, fontFamily: 'var(--font-ubuntu-sans), sans-serif', borderRadius: '8px', padding: '8px 12px', whiteSpace: 'nowrap', boxShadow: '0px 2px 8px rgba(11,15,16,0.16)' }}>
+        Left
+        <div style={{ position: 'absolute', left: '100%', top: '50%', transform: 'translateY(-50%)', width: 0, height: 0, borderTop: '6px solid transparent', borderBottom: '6px solid transparent', borderLeft: '6px solid var(--preview-brand, #0B0B0B)' }} />
+      </div>
+      <div style={{ padding: '8px 16px', backgroundColor: 'var(--preview-muted-bg)', borderRadius: '8px', fontSize: '13px', fontFamily: 'var(--font-ubuntu-sans), sans-serif', color: 'inherit' }}>Left</div>
+    </div>
+    <div style={{ position: 'relative', display: 'inline-block' }}>
+      <div style={{ position: 'absolute', left: '100%', top: '50%', transform: 'translateY(-50%)', marginLeft: '8px', backgroundColor: 'var(--preview-brand, #0B0B0B)', color: 'var(--preview-brand-on, #FFFFFF)', fontSize: '13px', fontWeight: 400, lineHeight: 1.4, fontFamily: 'var(--font-ubuntu-sans), sans-serif', borderRadius: '8px', padding: '8px 12px', whiteSpace: 'nowrap', boxShadow: '0px 2px 8px rgba(11,15,16,0.16)' }}>
+        Right
+        <div style={{ position: 'absolute', right: '100%', top: '50%', transform: 'translateY(-50%)', width: 0, height: 0, borderTop: '6px solid transparent', borderBottom: '6px solid transparent', borderRight: '6px solid var(--preview-brand, #0B0B0B)' }} />
+      </div>
+      <div style={{ padding: '8px 16px', backgroundColor: 'var(--preview-muted-bg)', borderRadius: '8px', fontSize: '13px', fontFamily: 'var(--font-ubuntu-sans), sans-serif', color: 'inherit' }}>Right</div>
+    </div>
+  </div>
+</ComponentPreview>
+
+```tsx title="tooltip-positions.tsx"
+export function TooltipPositioned({ content, position = 'top', children }: {
+  content: string;
+  position?: 'top' | 'bottom' | 'left' | 'right';
+  children: React.ReactNode;
+}) {
+  const positionClasses = {
+    top: 'bottom-full left-1/2 -translate-x-1/2 mb-2',
+    bottom: 'top-full left-1/2 -translate-x-1/2 mt-2',
+    left: 'right-full top-1/2 -translate-y-1/2 mr-2',
+    right: 'left-full top-1/2 -translate-y-1/2 ml-2',
+  };
+
+  return (
+    <div className="relative group inline-block">
+      {children}
+      <div className={`absolute ${positionClasses[position]} rounded-lg bg-[#0B0B0B] px-3 py-2 text-[13px] text-white opacity-0 group-hover:opacity-100 transition-opacity z-50 max-w-[280px] shadow-[0px_2px_8px_rgba(11,15,16,0.16)]`}>
+        {content}
+      </div>
+    </div>
+  );
+}
+```
+
+## Props
+
+<PropsTable
+  props={[
+    {
+      name: 'text',
+      type: 'string',
+      default: "'Tooltip content'",
+      description: 'Texto del tooltip.',
+    },
+    {
+      name: 'position',
+      type: "'top' | 'bottom' | 'left' | 'right'",
+      default: "'top'",
+      description: 'Posicion del tooltip respecto al trigger.',
+    },
+  ]}
+/>
+
+## Guias de Uso
+
+<DoDont type="do">
+  Usar para texto breve y complementario que no es esencial para la tarea.
+</DoDont>
+
+<DoDont type="dont">
+  No poner contenido critico o acciones dentro de un tooltip.
+</DoDont>

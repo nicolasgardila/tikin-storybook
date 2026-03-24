@@ -1,0 +1,213 @@
+---
+title: Pagination
+description: Controles de paginacion con numeros, flechas y navegacion entre paginas
+status: stable
+---
+
+
+<PaginationPlayground />
+
+### Default
+
+Paginacion con numeros y flechas de navegacion.
+
+<ComponentPreview>
+  <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', fontSize: '13px' }}>
+    <button style={{ width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '10px', border: 'none', backgroundColor: 'transparent', cursor: 'pointer', color: 'inherit' }}>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 4L6 8L10 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+    </button>
+    <button style={{ width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '10px', border: 'none', backgroundColor: 'var(--preview-brand, #0B0B0B)', color: 'var(--preview-brand-on, #FFFFFF)', cursor: 'pointer', fontWeight: 500, fontSize: '13px', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', lineHeight: 1 }}>1</button>
+    <button style={{ width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '10px', border: 'none', backgroundColor: 'transparent', color: 'inherit', cursor: 'pointer', fontWeight: 500, fontSize: '13px', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', opacity: 0.55, lineHeight: 1 }}>2</button>
+    <button style={{ width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '10px', border: 'none', backgroundColor: 'transparent', color: 'inherit', cursor: 'pointer', fontWeight: 500, fontSize: '13px', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', opacity: 0.55, lineHeight: 1 }}>3</button>
+    <button style={{ width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '10px', border: 'none', backgroundColor: 'transparent', color: 'inherit', cursor: 'pointer', fontWeight: 500, fontSize: '13px', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', opacity: 0.55, lineHeight: 1 }}>4</button>
+    <button style={{ width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '10px', border: 'none', backgroundColor: 'transparent', color: 'inherit', cursor: 'pointer', fontWeight: 500, fontSize: '13px', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', opacity: 0.55, lineHeight: 1 }}>5</button>
+    <button style={{ width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '10px', border: 'none', backgroundColor: 'transparent', cursor: 'pointer', color: 'inherit' }}>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4L10 8L6 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+    </button>
+  </div>
+</ComponentPreview>
+
+```tsx title="pagination-default.tsx"
+export function Pagination({ currentPage = 1, totalPages = 5, onPageChange }) {
+  return (
+    <div className="flex items-center gap-1 font-['Ubuntu_Sans'] text-sm">
+      <button
+        onClick={() => onPageChange(currentPage - 1)}
+        disabled={currentPage === 1}
+        className="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-[#F6F6F6]"
+      >
+        <ChevronLeft size={16} />
+      </button>
+      {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+        <button
+          key={page}
+          onClick={() => onPageChange(page)}
+          className={`w-9 h-9 flex items-center justify-center rounded-lg font-medium ${
+            page === currentPage
+              ? 'bg-[#0B0B0B] text-white'
+              : 'text-[#0B0B0B] hover:bg-[#F6F6F6]'
+          }`}
+        >
+          {page}
+        </button>
+      ))}
+      <button
+        onClick={() => onPageChange(currentPage + 1)}
+        disabled={currentPage === totalPages}
+        className="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-[#F6F6F6]"
+      >
+        <ChevronRight size={16} />
+      </button>
+    </div>
+  );
+}
+```
+
+### With Ellipsis
+
+Cuando hay muchas paginas, se muestra un ellipsis para abreviar el rango.
+
+<ComponentPreview>
+  <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', fontSize: '13px' }}>
+    <button style={{ width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '10px', border: 'none', backgroundColor: 'transparent', cursor: 'pointer', color: 'inherit' }}>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 4L6 8L10 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+    </button>
+    <button style={{ width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '10px', border: 'none', backgroundColor: 'transparent', color: 'inherit', cursor: 'pointer', fontWeight: 500, fontSize: '13px', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', opacity: 0.55, lineHeight: 1 }}>1</button>
+    <button style={{ width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '10px', border: 'none', backgroundColor: 'transparent', color: 'inherit', cursor: 'pointer', fontWeight: 500, fontSize: '13px', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', opacity: 0.55, lineHeight: 1 }}>2</button>
+    <span style={{ width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'inherit', opacity: 0.3, fontSize: '13px', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', letterSpacing: '1px' }}>...</span>
+    <button style={{ width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '10px', border: 'none', backgroundColor: 'transparent', color: 'inherit', cursor: 'pointer', fontWeight: 500, fontSize: '13px', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', opacity: 0.55, lineHeight: 1 }}>8</button>
+    <button style={{ width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '10px', border: 'none', backgroundColor: 'var(--preview-brand, #0B0B0B)', color: 'var(--preview-brand-on, #FFFFFF)', cursor: 'pointer', fontWeight: 500, fontSize: '13px', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', lineHeight: 1 }}>9</button>
+    <button style={{ width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '10px', border: 'none', backgroundColor: 'transparent', color: 'inherit', cursor: 'pointer', fontWeight: 500, fontSize: '13px', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', opacity: 0.55, lineHeight: 1 }}>10</button>
+    <button style={{ width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '10px', border: 'none', backgroundColor: 'transparent', cursor: 'pointer', color: 'inherit' }}>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4L10 8L6 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+    </button>
+  </div>
+</ComponentPreview>
+
+```tsx title="pagination-ellipsis.tsx"
+export function PaginationWithEllipsis({ currentPage = 9, totalPages = 10, onPageChange }) {
+  // Genera rango con ellipsis: [1, 2, '...', 8, 9, 10]
+  const range = buildPageRange(currentPage, totalPages, { siblingCount: 1 });
+
+  return (
+    <div className="flex items-center gap-1 font-['Ubuntu_Sans'] text-sm">
+      <button onClick={() => onPageChange(currentPage - 1)} className="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-[#F6F6F6]">
+        <ChevronLeft size={16} />
+      </button>
+      {range.map((item, i) =>
+        item === '...' ? (
+          <span key={i} className="w-9 h-9 flex items-center justify-center text-[#999999]">...</span>
+        ) : (
+          <button key={i} onClick={() => onPageChange(item)} className={`w-9 h-9 flex items-center justify-center rounded-lg font-medium ${item === currentPage ? 'bg-[#0B0B0B] text-white' : 'text-[#0B0B0B] hover:bg-[#F6F6F6]'}`}>
+            {item}
+          </button>
+        )
+      )}
+      <button onClick={() => onPageChange(currentPage + 1)} className="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-[#F6F6F6]">
+        <ChevronRight size={16} />
+      </button>
+    </div>
+  );
+}
+```
+
+### Simple Prev/Next
+
+Solo flechas de navegacion, sin numeros. Ideal para flujos lineales.
+
+<ComponentPreview>
+  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontSize: '13px', color: 'inherit' }}>
+    <button style={{ height: '32px', display: 'flex', alignItems: 'center', gap: '6px', padding: '0 12px', borderRadius: '12px', border: '0.5px solid var(--preview-border)', backgroundColor: 'transparent', cursor: 'pointer', color: 'inherit', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', fontWeight: 500, fontSize: '13px', textTransform: 'uppercase' }}>
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 3L5 7L9 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
+      Anterior
+    </button>
+    <span style={{ fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontWeight: 400, fontSize: '13px', opacity: 0.55 }}>Pagina <b style={{ fontWeight: 500, opacity: 1 }}>3</b> de <b style={{ fontWeight: 500, opacity: 1 }}>10</b></span>
+    <button style={{ height: '32px', display: 'flex', alignItems: 'center', gap: '6px', padding: '0 12px', borderRadius: '12px', border: '0.5px solid var(--preview-border)', backgroundColor: 'transparent', cursor: 'pointer', color: 'inherit', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', fontWeight: 500, fontSize: '13px', textTransform: 'uppercase' }}>
+      Siguiente
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 3L9 7L5 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
+    </button>
+  </div>
+</ComponentPreview>
+
+```tsx title="pagination-simple.tsx"
+export function SimplePagination({ currentPage = 3, totalPages = 10, onPageChange }) {
+  return (
+    <div className="flex items-center gap-2 font-['Ubuntu_Sans'] text-sm">
+      <button
+        onClick={() => onPageChange(currentPage - 1)}
+        disabled={currentPage === 1}
+        className="w-9 h-9 flex items-center justify-center rounded-lg border border-[#DEDEDE] hover:bg-[#F6F6F6]"
+      >
+        <ChevronLeft size={16} />
+      </button>
+      <span className="font-medium min-w-[80px] text-center">
+        Pagina {currentPage} de {totalPages}
+      </span>
+      <button
+        onClick={() => onPageChange(currentPage + 1)}
+        disabled={currentPage === totalPages}
+        className="w-9 h-9 flex items-center justify-center rounded-lg border border-[#DEDEDE] hover:bg-[#F6F6F6]"
+      >
+        <ChevronRight size={16} />
+      </button>
+    </div>
+  );
+}
+```
+
+### Interacciones
+
+El componente incluye feedback tactil al presionar: escala sutil (`scale 0.97`) con reduccion de opacidad, y un release con transicion spring natural. Este efecto se desactiva automaticamente en estados `disabled` y `loading`.
+
+## Props
+
+<PropsTable
+  props={[
+    {
+      name: 'currentPage',
+      type: 'number',
+      description: 'Numero de la pagina actual (1-indexed).',
+      required: true,
+    },
+    {
+      name: 'totalPages',
+      type: 'number',
+      description: 'Numero total de paginas.',
+      required: true,
+    },
+    {
+      name: 'onPageChange',
+      type: '(page: number) => void',
+      description: 'Callback cuando el usuario cambia de pagina.',
+      required: true,
+    },
+    {
+      name: 'showNumbers',
+      type: 'boolean',
+      default: 'true',
+      description: 'Muestra los numeros de pagina (false = solo flechas).',
+    },
+    {
+      name: 'siblingCount',
+      type: 'number',
+      default: '1',
+      description: 'Cantidad de paginas visibles a cada lado de la actual.',
+    },
+    {
+      name: 'showPrevNext',
+      type: 'boolean',
+      default: 'true',
+      description: 'Muestra los botones de anterior/siguiente.',
+    },
+  ]}
+/>
+
+## Guias de Uso
+
+<DoDont type="do">
+  Muestra la pagina actual destacada y un rango razonable de paginas cercanas. Usa ellipsis para rangos largos.
+</DoDont>
+
+<DoDont type="dont">
+  No muestres todos los numeros de pagina si son mas de 7. Usa ellipsis para mantener la interfaz limpia.
+</DoDont>

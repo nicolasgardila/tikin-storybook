@@ -1,0 +1,149 @@
+---
+title: Dropdown
+description: Menú desplegable con opciones seleccionables
+status: stable
+---
+
+
+<DropdownPlayground />
+
+## Instalacion
+
+```tsx
+import { DSDropdown } from '@/components/ds/ds-dropdown'
+```
+
+## Uso
+
+```tsx title="dropdown.tsx"
+import { DSDropdown } from '@/components/ds/ds-dropdown'
+
+export default function Example() {
+  return (
+    <DSDropdown
+      state="active"
+      label="Opciones"
+    />
+  )
+}
+```
+
+## Ejemplos
+
+### Default Dropdown
+
+El menú se muestra en estado abierto debajo del botón trigger.
+
+<ComponentPreview>
+  <div style={{ width: '100%', maxWidth: '320px' }}>
+    <div style={{ borderRadius: '12px', border: '0.5px solid var(--preview-border)', backgroundColor: 'var(--preview-surface)', padding: '12px 16px', fontSize: '16px', fontFamily: 'var(--font-ubuntu-sans), sans-serif', color: 'inherit', display: 'flex', alignItems: 'center', justifyContent: 'space-between', cursor: 'pointer' }}>
+      <span>Opciones</span>
+      <svg style={{ width: '16px', height: '16px', flexShrink: 0 }} viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+    </div>
+    <div style={{ marginTop: '4px', borderRadius: '12px', border: '0.5px solid var(--preview-border)', backgroundColor: 'var(--preview-surface)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', overflow: 'hidden' }}>
+      <div style={{ padding: '8px 12px', fontSize: '14px', fontFamily: 'var(--font-ubuntu-sans), sans-serif', color: 'inherit', cursor: 'pointer' }}>Editar</div>
+      <div style={{ padding: '8px 12px', fontSize: '14px', fontFamily: 'var(--font-ubuntu-sans), sans-serif', color: 'inherit', cursor: 'pointer', backgroundColor: 'var(--preview-muted-bg)' }}>Duplicar</div>
+      <div style={{ padding: '8px 12px', fontSize: '14px', fontFamily: 'var(--font-ubuntu-sans), sans-serif', color: 'inherit', cursor: 'pointer' }}>Archivar</div>
+    </div>
+  </div>
+</ComponentPreview>
+
+### Con Iconos
+
+Cada item del menú puede incluir un icono a la izquierda para mejorar la legibilidad.
+
+<ComponentPreview>
+  <div style={{ width: '100%', maxWidth: '320px' }}>
+    <div style={{ marginTop: '4px', borderRadius: '12px', border: '0.5px solid var(--preview-border)', backgroundColor: 'var(--preview-surface)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', overflow: 'hidden' }}>
+      <div style={{ padding: '8px 12px', fontSize: '14px', fontFamily: 'var(--font-ubuntu-sans), sans-serif', color: 'inherit', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px' }}><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" /><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" /></svg> Editar</div>
+      <div style={{ padding: '8px 12px', fontSize: '14px', fontFamily: 'var(--font-ubuntu-sans), sans-serif', color: 'inherit', cursor: 'pointer', backgroundColor: 'var(--preview-muted-bg)', display: 'flex', alignItems: 'center', gap: '8px' }}><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2" /><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" /></svg> Duplicar</div>
+      <div style={{ padding: '8px 12px', fontSize: '14px', fontFamily: 'var(--font-ubuntu-sans), sans-serif', color: 'inherit', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px' }}><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="21 8 21 21 3 21 3 8" /><rect x="1" y="3" width="22" height="5" /><line x1="10" y1="12" x2="14" y2="12" /></svg> Archivar</div>
+    </div>
+  </div>
+</ComponentPreview>
+
+### Con Divisor
+
+Usa divisores para agrupar items relacionados dentro del menú.
+
+<ComponentPreview>
+  <div style={{ width: '100%', maxWidth: '320px' }}>
+    <div style={{ borderRadius: '12px', border: '0.5px solid var(--preview-border)', backgroundColor: 'var(--preview-surface)', boxShadow: '0 4px 12px rgba(0,0,0,0.08)', overflow: 'hidden' }}>
+      <div style={{ padding: '8px 12px', fontSize: '14px', fontFamily: 'var(--font-ubuntu-sans), sans-serif', color: 'inherit', cursor: 'pointer' }}>Editar</div>
+      <div style={{ padding: '8px 12px', fontSize: '14px', fontFamily: 'var(--font-ubuntu-sans), sans-serif', color: 'inherit', cursor: 'pointer' }}>Duplicar</div>
+      <div style={{ height: '0.5px', backgroundColor: 'var(--preview-border)', margin: '4px 12px' }} />
+      <div style={{ padding: '8px 12px', fontSize: '14px', fontFamily: 'var(--font-ubuntu-sans), sans-serif', color: 'inherit', cursor: 'pointer' }}>Mover a...</div>
+      <div style={{ padding: '8px 12px', fontSize: '14px', fontFamily: 'var(--font-ubuntu-sans), sans-serif', color: 'inherit', cursor: 'pointer' }}>Compartir</div>
+      <div style={{ height: '0.5px', backgroundColor: 'var(--preview-border)', margin: '4px 12px' }} />
+      <div style={{ padding: '8px 12px', fontSize: '14px', fontFamily: 'var(--font-ubuntu-sans), sans-serif', color: '#EC221F', cursor: 'pointer' }}>Eliminar</div>
+    </div>
+  </div>
+</ComponentPreview>
+
+```tsx title="dropdown-usage.tsx"
+export function Dropdown({ trigger, items, onSelect, align = 'left' }) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div className="relative inline-block">
+      <button onClick={() => setOpen(!open)}>
+        {trigger}
+      </button>
+
+      {open && (
+        <div className={cn(
+          "absolute mt-1 min-w-[180px] rounded-xl border border-[#DEDEDE] bg-white py-1 shadow-md",
+          align === 'right' ? 'right-0' : 'left-0'
+        )}>
+          {items.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => { onSelect(item.id); setOpen(false); }}
+              className="w-full px-3 py-2 text-left text-sm hover:bg-[#F6F6F6]"
+            >
+              {item.label}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+```
+
+## Props
+
+<PropsTable
+  props={[
+    {
+      name: 'state',
+      type: "'default' | 'active'",
+      default: "'active'",
+      description: 'Estado del dropdown. En active el menú se muestra abierto.',
+    },
+    {
+      name: 'label',
+      type: 'string',
+      default: "'Opciones'",
+      description: 'Texto del botón trigger del dropdown.',
+    },
+  ]}
+/>
+
+## Guías de Uso
+
+<DoDont type="do">
+  Usa Dropdown para menús de acciones contextuales y listas de opciones cortas (menos de 7 items).
+</DoDont>
+
+<DoDont type="dont">
+  No uses Dropdown para navegación principal. Usa sidebar o tabs en su lugar.
+</DoDont>
+
+<DoDont type="do">
+  Agrupa items relacionados con divisores y resalta acciones destructivas en rojo.
+</DoDont>
+
+<DoDont type="dont">
+  No anides dropdowns dentro de otros dropdowns. Simplifica la jerarquía de navegación.
+</DoDont>

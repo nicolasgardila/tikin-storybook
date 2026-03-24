@@ -1,0 +1,130 @@
+---
+title: Divider
+description: Separador horizontal con variantes neutral y warm y label opcional
+status: stable
+---
+
+
+<DividerPlayground />
+
+## Instalacion
+
+```tsx
+import { DSDivider } from '@/components/ds/ds-divider'
+```
+
+## Uso
+
+```tsx title="divider.tsx"
+import { DSDivider } from '@/components/ds/ds-divider'
+
+export default function Example() {
+  return (
+    <DSDivider variant="neutral" />
+  )
+}
+```
+
+## Ejemplos
+
+### Neutral
+
+Línea horizontal para fondos blancos o neutros. Color `#DEDEDE` light / `#333333` dark. Hairline = `0.5px`, thin = `1px`.
+
+<ComponentPreview>
+  <div style={{ width: '100%', padding: '16px 0' }}>
+    <div style={{ fontSize: '14px', fontFamily: 'var(--font-ubuntu-sans), sans-serif', color: 'inherit', marginBottom: '16px' }}>Sección superior</div>
+    <div style={{ width: '100%', height: '0.5px', backgroundColor: 'var(--preview-border)' }} />
+    <div style={{ fontSize: '14px', fontFamily: 'var(--font-ubuntu-sans), sans-serif', color: 'inherit', marginTop: '16px' }}>Sección inferior</div>
+  </div>
+</ComponentPreview>
+
+```tsx title="divider-neutral.tsx"
+export function DividerNeutral() {
+  return <hr className="border-t border-[#DEDEDE] my-4" />;
+}
+```
+
+### Warm
+
+Línea horizontal para fondos cálidos (#FAF8F4). Color `#E8E4DD` light / `#2A2826` dark.
+
+<ComponentPreview>
+  <div style={{ width: '100%', padding: '16px', backgroundColor: 'var(--preview-surface)', borderRadius: '8px' }}>
+    <div style={{ fontSize: '14px', fontFamily: 'var(--font-ubuntu-sans), sans-serif', color: 'inherit', marginBottom: '16px' }}>Sección superior</div>
+    <div style={{ width: '100%', height: '0.5px', backgroundColor: 'var(--preview-border)' }} />
+    <div style={{ fontSize: '14px', fontFamily: 'var(--font-ubuntu-sans), sans-serif', color: 'inherit', marginTop: '16px' }}>Sección inferior</div>
+  </div>
+</ComponentPreview>
+
+```tsx title="divider-warm.tsx"
+export function DividerWarm() {
+  return <hr className="border-t border-[#E8E4DD] my-4" />;
+}
+```
+
+### Con Label
+
+Texto centrado con líneas a cada lado. Ideal para separar secciones con contexto ("o", "Sección 2").
+
+<ComponentPreview>
+  <div style={{ width: '100%', padding: '16px 0' }}>
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+      <div style={{ flex: 1, height: '0.5px', backgroundColor: 'var(--preview-border)' }} />
+      <span style={{ padding: '0 12px', fontSize: '11px', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', fontWeight: 400, color: 'rgba(11,11,11,0.35)', whiteSpace: 'nowrap', textTransform: 'uppercase', letterSpacing: '0.5px' }}>o</span>
+      <div style={{ flex: 1, height: '0.5px', backgroundColor: 'var(--preview-border)' }} />
+    </div>
+    <div style={{ display: 'flex', alignItems: 'center', marginTop: '24px' }}>
+      <div style={{ flex: 1, height: '0.5px', backgroundColor: 'var(--preview-border)' }} />
+      <span style={{ padding: '0 12px', fontSize: '11px', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', fontWeight: 400, color: 'rgba(11,11,11,0.35)', whiteSpace: 'nowrap', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Continuar con</span>
+      <div style={{ flex: 1, height: '0.5px', backgroundColor: 'var(--preview-border)' }} />
+    </div>
+  </div>
+</ComponentPreview>
+
+```tsx title="divider-label.tsx"
+export function DividerWithLabel({ label }: { label: string }) {
+  return (
+    <div className="flex items-center">
+      <div className="flex-1 h-px bg-[#DEDEDE]" />
+      <span className="px-3 text-xs text-[#999999]">{label}</span>
+      <div className="flex-1 h-px bg-[#DEDEDE]" />
+    </div>
+  );
+}
+```
+
+## Props
+
+<PropsTable
+  props={[
+    {
+      name: 'variant',
+      type: "'neutral' | 'warm' | 'subtle' | 'strong'",
+      default: "'neutral'",
+      description: 'Tono del divider. Neutral para fondos blancos, warm para fondos calidos, subtle para separacion sutil, strong para contraste maximo.',
+    },
+    {
+      name: 'label',
+      type: 'string',
+      default: "'Section'",
+      description: 'Texto centrado entre las lineas del divider. Solo visible cuando showLabel es true.',
+    },
+    {
+      name: 'showLabel',
+      type: 'boolean',
+      default: 'false',
+      description: 'Muestra el label centrado entre dos lineas horizontales.',
+    },
+  ]}
+/>
+
+## Guías de Uso
+
+<DoDont type="do">
+  Usar el tono warm en fondos #FAF8F4, neutral en fondos blancos.
+</DoDont>
+
+<DoDont type="dont">
+  No abusar de dividers, usar spacing suficiente antes de recurrir a líneas.
+</DoDont>

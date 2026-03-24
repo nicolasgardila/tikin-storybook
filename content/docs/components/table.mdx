@@ -1,0 +1,294 @@
+---
+title: Table
+description: Tabla de datos con filas alternadas, header fijo y columnas alineadas
+status: stable
+---
+
+
+<TablePlayground />
+
+### Default
+
+Tabla con 3 columnas y filas alternadas para facilitar la lectura.
+
+<ComponentPreview>
+  <div style={{ width: '100%', borderRadius: '20px', overflow: 'hidden', border: '0.5px solid var(--preview-border)', fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontSize: '14px', color: 'inherit' }}>
+    <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+      <thead>
+        <tr style={{ backgroundColor: 'var(--preview-muted-bg)' }}>
+          <th style={{ textAlign: 'left', padding: '12px 16px', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', fontWeight: 500, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.3px', borderBottom: '0.5px solid var(--preview-border)', opacity: 0.5 }}>Nombre</th>
+          <th style={{ textAlign: 'left', padding: '12px 16px', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', fontWeight: 500, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.3px', borderBottom: '0.5px solid var(--preview-border)', opacity: 0.5 }}>Correo</th>
+          <th style={{ textAlign: 'right', padding: '12px 16px', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', fontWeight: 500, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.3px', borderBottom: '0.5px solid var(--preview-border)', opacity: 0.5 }}>Monto</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style={{ padding: '12px 16px', borderBottom: '0.5px solid var(--preview-border)', fontWeight: 400 }}>Ana Lopez</td>
+          <td style={{ padding: '12px 16px', borderBottom: '0.5px solid var(--preview-border)', fontWeight: 400 }}>ana@correo.com</td>
+          <td style={{ padding: '12px 16px', borderBottom: '0.5px solid var(--preview-border)', textAlign: 'right', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', fontWeight: 400 }}>$12,500</td>
+        </tr>
+        <tr>
+          <td style={{ padding: '12px 16px', borderBottom: '0.5px solid var(--preview-border)', fontWeight: 400 }}>Carlos Ruiz</td>
+          <td style={{ padding: '12px 16px', borderBottom: '0.5px solid var(--preview-border)', fontWeight: 400 }}>carlos@correo.com</td>
+          <td style={{ padding: '12px 16px', borderBottom: '0.5px solid var(--preview-border)', textAlign: 'right', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', fontWeight: 400 }}>$8,200</td>
+        </tr>
+        <tr>
+          <td style={{ padding: '12px 16px', borderBottom: '0.5px solid var(--preview-border)', fontWeight: 400 }}>Maria Torres</td>
+          <td style={{ padding: '12px 16px', borderBottom: '0.5px solid var(--preview-border)', fontWeight: 400 }}>maria@correo.com</td>
+          <td style={{ padding: '12px 16px', borderBottom: '0.5px solid var(--preview-border)', textAlign: 'right', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', fontWeight: 400 }}>$15,750</td>
+        </tr>
+        <tr>
+          <td style={{ padding: '12px 16px', fontWeight: 400 }}>Pedro Garcia</td>
+          <td style={{ padding: '12px 16px', fontWeight: 400 }}>pedro@correo.com</td>
+          <td style={{ padding: '12px 16px', textAlign: 'right', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', fontWeight: 400 }}>$6,300</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ComponentPreview>
+
+```tsx title="table-default.tsx"
+export function Table() {
+  return (
+    <div className="w-full rounded-xl overflow-hidden border border-[#DEDEDE]">
+      <table className="w-full border-collapse font-['Ubuntu_Sans'] text-sm">
+        <thead>
+          <tr className="bg-[#F6F6F6]">
+            <th className="text-left p-[12px_16px] font-semibold border-b border-[#DEDEDE]">Nombre</th>
+            <th className="text-left p-[12px_16px] font-semibold border-b border-[#DEDEDE]">Correo</th>
+            <th className="text-right p-[12px_16px] font-semibold border-b border-[#DEDEDE]">Monto</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((row, i) => (
+            <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-[#F6F6F6]'}>
+              <td className="p-[12px_16px] border-b border-[#DEDEDE]">{row.nombre}</td>
+              <td className="p-[12px_16px] border-b border-[#DEDEDE]">{row.correo}</td>
+              <td className="p-[12px_16px] border-b border-[#DEDEDE] text-right">{row.monto}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+```
+
+### With Actions Column
+
+Tabla con una columna de acciones al final para operaciones por fila.
+
+<ComponentPreview>
+  <div style={{ width: '100%', borderRadius: '20px', overflow: 'hidden', border: '0.5px solid var(--preview-border)', fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontSize: '14px', color: 'inherit' }}>
+    <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+      <thead>
+        <tr style={{ backgroundColor: 'var(--preview-muted-bg)' }}>
+          <th style={{ textAlign: 'left', padding: '12px 16px', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', fontWeight: 500, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.3px', borderBottom: '0.5px solid var(--preview-border)', opacity: 0.5 }}>Producto</th>
+          <th style={{ textAlign: 'right', padding: '12px 16px', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', fontWeight: 500, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.3px', borderBottom: '0.5px solid var(--preview-border)', opacity: 0.5 }}>Precio</th>
+          <th style={{ textAlign: 'center', padding: '12px 16px', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', fontWeight: 500, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.3px', borderBottom: '0.5px solid var(--preview-border)', opacity: 0.5 }}>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style={{ padding: '12px 16px', borderBottom: '0.5px solid var(--preview-border)', fontWeight: 400 }}>Plan Basico</td>
+          <td style={{ padding: '12px 16px', borderBottom: '0.5px solid var(--preview-border)', textAlign: 'right', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', fontWeight: 400 }}>$99/mes</td>
+          <td style={{ padding: '12px 16px', borderBottom: '0.5px solid var(--preview-border)', textAlign: 'center' }}>
+            <button style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '4px 8px', fontSize: '13px', color: 'inherit', textDecoration: 'underline' }}>Editar</button>
+          </td>
+        </tr>
+        <tr>
+          <td style={{ padding: '12px 16px', borderBottom: '0.5px solid var(--preview-border)', fontWeight: 400 }}>Plan Pro</td>
+          <td style={{ padding: '12px 16px', borderBottom: '0.5px solid var(--preview-border)', textAlign: 'right', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', fontWeight: 400 }}>$249/mes</td>
+          <td style={{ padding: '12px 16px', borderBottom: '0.5px solid var(--preview-border)', textAlign: 'center' }}>
+            <button style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '4px 8px', fontSize: '13px', color: 'inherit', textDecoration: 'underline' }}>Editar</button>
+          </td>
+        </tr>
+        <tr>
+          <td style={{ padding: '12px 16px', fontWeight: 400 }}>Plan Enterprise</td>
+          <td style={{ padding: '12px 16px', textAlign: 'right', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', fontWeight: 400 }}>$599/mes</td>
+          <td style={{ padding: '12px 16px', textAlign: 'center' }}>
+            <button style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '4px 8px', fontSize: '13px', color: 'inherit', textDecoration: 'underline' }}>Editar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ComponentPreview>
+
+```tsx title="table-actions.tsx"
+export function TableWithActions() {
+  return (
+    <div className="w-full rounded-xl overflow-hidden border border-[#DEDEDE]">
+      <table className="w-full border-collapse font-['Ubuntu_Sans'] text-sm">
+        <thead>
+          <tr className="bg-[#F6F6F6]">
+            <th className="text-left p-[12px_16px] font-semibold border-b border-[#DEDEDE]">Producto</th>
+            <th className="text-right p-[12px_16px] font-semibold border-b border-[#DEDEDE]">Precio</th>
+            <th className="text-center p-[12px_16px] font-semibold border-b border-[#DEDEDE]">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((row, i) => (
+            <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-[#F6F6F6]'}>
+              <td className="p-[12px_16px] border-b border-[#DEDEDE]">{row.producto}</td>
+              <td className="p-[12px_16px] border-b border-[#DEDEDE] text-right">{row.precio}</td>
+              <td className="p-[12px_16px] border-b border-[#DEDEDE] text-center">
+                <button className="underline text-[13px]">Editar</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+```
+
+### Compact
+
+Variante compacta con padding reducido para tablas densas.
+
+<ComponentPreview>
+  <div style={{ width: '100%', borderRadius: '20px', overflow: 'hidden', border: '0.5px solid var(--preview-border)', fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontSize: '14px', color: 'inherit' }}>
+    <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+      <thead>
+        <tr style={{ backgroundColor: 'var(--preview-muted-bg)' }}>
+          <th style={{ textAlign: 'left', padding: '8px 12px', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', fontWeight: 500, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.3px', borderBottom: '0.5px solid var(--preview-border)', opacity: 0.5 }}>ID</th>
+          <th style={{ textAlign: 'left', padding: '8px 12px', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', fontWeight: 500, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.3px', borderBottom: '0.5px solid var(--preview-border)', opacity: 0.5 }}>Estado</th>
+          <th style={{ textAlign: 'right', padding: '8px 12px', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', fontWeight: 500, fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.3px', borderBottom: '0.5px solid var(--preview-border)', opacity: 0.5 }}>Valor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style={{ padding: '8px 12px', borderBottom: '0.5px solid var(--preview-border)', fontWeight: 400 }}>#001</td>
+          <td style={{ padding: '8px 12px', borderBottom: '0.5px solid var(--preview-border)', fontWeight: 400 }}>Activo</td>
+          <td style={{ padding: '8px 12px', borderBottom: '0.5px solid var(--preview-border)', textAlign: 'right', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', fontWeight: 400 }}>$1,200</td>
+        </tr>
+        <tr>
+          <td style={{ padding: '8px 12px', borderBottom: '0.5px solid var(--preview-border)', fontWeight: 400 }}>#002</td>
+          <td style={{ padding: '8px 12px', borderBottom: '0.5px solid var(--preview-border)', fontWeight: 400 }}>Pendiente</td>
+          <td style={{ padding: '8px 12px', borderBottom: '0.5px solid var(--preview-border)', textAlign: 'right', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', fontWeight: 400 }}>$3,400</td>
+        </tr>
+        <tr>
+          <td style={{ padding: '8px 12px', fontWeight: 400 }}>#003</td>
+          <td style={{ padding: '8px 12px', fontWeight: 400 }}>Completado</td>
+          <td style={{ padding: '8px 12px', textAlign: 'right', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', fontWeight: 400 }}>$7,800</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ComponentPreview>
+
+```tsx title="table-compact.tsx"
+export function CompactTable() {
+  return (
+    <div className="w-full rounded-xl overflow-hidden border border-[#DEDEDE]">
+      <table className="w-full border-collapse font-['Ubuntu_Sans'] text-sm">
+        <thead>
+          <tr className="bg-[#F6F6F6]">
+            <th className="text-left p-[8px_12px] font-semibold border-b border-[#DEDEDE]">ID</th>
+            <th className="text-left p-[8px_12px] font-semibold border-b border-[#DEDEDE]">Estado</th>
+            <th className="text-right p-[8px_12px] font-semibold border-b border-[#DEDEDE]">Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((row, i) => (
+            <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-[#F6F6F6]'}>
+              <td className="p-[8px_12px] border-b border-[#DEDEDE]">{row.id}</td>
+              <td className="p-[8px_12px] border-b border-[#DEDEDE]">{row.estado}</td>
+              <td className="p-[8px_12px] border-b border-[#DEDEDE] text-right">{row.valor}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+```
+
+## Props
+
+<PropsTable
+  props={[
+    {
+      name: 'columns',
+      type: 'Column[]',
+      description: 'Definicion de columnas (ver sub-props abajo).',
+      required: true,
+    },
+    {
+      name: 'data',
+      type: 'Record<string, any>[]',
+      description: 'Array de objetos con los datos de cada fila.',
+      required: true,
+    },
+    {
+      name: 'striped',
+      type: 'boolean',
+      default: 'true',
+      description: 'Alterna el color de fondo entre filas.',
+    },
+    {
+      name: 'compact',
+      type: 'boolean',
+      default: 'false',
+      description: 'Reduce el padding de las celdas (8px 12px).',
+    },
+    {
+      name: 'stickyHeader',
+      type: 'boolean',
+      default: 'false',
+      description: 'Fija el header al hacer scroll en tablas largas.',
+    },
+    {
+      name: 'onRowClick',
+      type: '(row: Record<string, any>) => void',
+      description: 'Callback al hacer click en una fila.',
+    },
+  ]}
+/>
+
+### Column Sub-props
+
+<PropsTable
+  props={[
+    {
+      name: 'key',
+      type: 'string',
+      description: 'Clave del objeto de datos para esta columna.',
+      required: true,
+    },
+    {
+      name: 'header',
+      type: 'string',
+      description: 'Texto del encabezado de la columna.',
+      required: true,
+    },
+    {
+      name: 'align',
+      type: "'left' | 'center' | 'right'",
+      default: "'left'",
+      description: 'Alineacion del contenido de la columna.',
+    },
+    {
+      name: 'width',
+      type: 'string',
+      description: 'Ancho fijo de la columna (ej. "200px", "30%").',
+    },
+    {
+      name: 'render',
+      type: '(value: any, row: Record<string, any>) => ReactNode',
+      description: 'Funcion de renderizado personalizado para la celda.',
+    },
+  ]}
+/>
+
+## Guias de Uso
+
+<DoDont type="do">
+  Usa alineacion izquierda para texto y derecha para numeros. Esto facilita la lectura y comparacion de datos.
+</DoDont>
+
+<DoDont type="dont">
+  No uses tablas para datos con 1-2 columnas simples, considera usar una lista o cards en su lugar.
+</DoDont>

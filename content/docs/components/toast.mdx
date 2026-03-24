@@ -1,0 +1,166 @@
+---
+title: Toast
+description: Notificación temporal con variantes mobile y desktop
+status: stable
+---
+
+
+<ToastPlayground />
+
+## Instalacion
+
+```tsx
+import { DSToast } from '@/components/ds/ds-toast'
+```
+
+## Uso
+
+```tsx title="toast.tsx"
+import { DSToast } from '@/components/ds/ds-toast'
+
+export default function Example() {
+  return (
+    <DSToast
+      message="Cambios guardados correctamente"
+      variant="success"
+      position="top-right"
+    />
+  )
+}
+```
+
+## Ejemplos
+
+### Desktop Toast
+
+Aparece en la esquina superior derecha, con ancho limitado.
+
+<ComponentPreview>
+  <div style={{ position: 'relative', width: '100%', display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-start' }}>
+    <div style={{ backgroundColor: 'var(--preview-border, #1E1E1E)', borderRadius: '16px', padding: '3px', maxWidth: '360px', boxShadow: '0px 4px 20px rgba(11,15,16,0.14), 0px 0px 2px rgba(11,15,16,0.08)' }}>
+      <div style={{ backgroundColor: 'var(--preview-brand, #0B0B0B)', borderRadius: '14px', padding: '10px 14px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <svg width="16" height="16" viewBox="0 0 256 256" fill="#14AE5C" style={{ flexShrink: 0 }}>
+          <path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z" />
+        </svg>
+        <span style={{ fontSize: '14px', color: 'var(--preview-brand-on, #FFFFFF)' }}>Cambios guardados correctamente</span>
+      </div>
+    </div>
+  </div>
+</ComponentPreview>
+
+### Mobile Toast
+
+Se posiciona en la parte inferior, ocupando el ancho completo con márgenes laterales.
+
+<ComponentPreview>
+  <div style={{ width: '100%' }}>
+    <div style={{ backgroundColor: 'var(--preview-border, #1E1E1E)', borderRadius: '16px', padding: '4px', boxShadow: '0px 4px 20px rgba(11,15,16,0.14), 0px 0px 2px rgba(11,15,16,0.08)' }}>
+      <div style={{ backgroundColor: 'var(--preview-brand, #0B0B0B)', borderRadius: '14px', padding: '10px 14px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <svg width="16" height="16" viewBox="0 0 256 256" fill="#14AE5C" style={{ flexShrink: 0 }}><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z" /></svg>
+        <span style={{ fontSize: '14px', color: 'var(--preview-brand-on, #FFFFFF)' }}>Cambios guardados correctamente</span>
+      </div>
+    </div>
+  </div>
+</ComponentPreview>
+
+### Variantes por Estado
+
+<ComponentPreview>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', width: '100%', padding: '1rem' }}>
+    <div style={{ backgroundColor: 'var(--preview-border, #1E1E1E)', borderRadius: '16px', padding: '4px', boxShadow: '0px 4px 20px rgba(11,15,16,0.14), 0px 0px 2px rgba(11,15,16,0.08)' }}>
+      <div style={{ backgroundColor: 'var(--preview-brand, #0B0B0B)', borderRadius: '14px', padding: '10px 14px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <svg width="20" height="20" viewBox="0 0 256 256" fill="rgba(255,255,255,0.55)" style={{ flexShrink: 0 }}>
+          <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm-12-88v48a8,8,0,0,0,16,0V128a8,8,0,0,0-16,0Zm20-36a12,12,0,1,1-12-12A12,12,0,0,1,136,92Z" />
+        </svg>
+        <span style={{ fontSize: '14px', color: 'var(--preview-brand-on, #FFFFFF)' }}>Info: Tu sesion expira en 5 minutos</span>
+      </div>
+    </div>
+    <div style={{ backgroundColor: 'var(--preview-border, #1E1E1E)', borderRadius: '16px', padding: '4px', boxShadow: '0px 4px 20px rgba(11,15,16,0.14), 0px 0px 2px rgba(11,15,16,0.08)' }}>
+      <div style={{ backgroundColor: 'var(--preview-brand, #0B0B0B)', borderRadius: '14px', padding: '10px 14px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <svg width="16" height="16" viewBox="0 0 256 256" fill="#14AE5C" style={{ flexShrink: 0 }}>
+          <path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z" />
+        </svg>
+        <span style={{ fontSize: '14px', color: 'var(--preview-brand-on, #FFFFFF)' }}>Success: Transferencia completada</span>
+      </div>
+    </div>
+    <div style={{ backgroundColor: 'var(--preview-border, #1E1E1E)', borderRadius: '16px', padding: '4px', boxShadow: '0px 4px 20px rgba(11,15,16,0.14), 0px 0px 2px rgba(11,15,16,0.08)' }}>
+      <div style={{ backgroundColor: 'var(--preview-brand, #0B0B0B)', borderRadius: '14px', padding: '10px 14px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <svg width="20" height="20" viewBox="0 0 256 256" fill="#E8B931" style={{ flexShrink: 0 }}>
+          <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm-12-88v48a8,8,0,0,0,16,0V128a8,8,0,0,0-16,0Zm20-36a12,12,0,1,1-12-12A12,12,0,0,1,136,92Z" />
+        </svg>
+        <span style={{ fontSize: '14px', color: 'var(--preview-brand-on, #FFFFFF)' }}>Warning: Conexion inestable</span>
+      </div>
+    </div>
+    <div style={{ backgroundColor: 'var(--preview-border, #1E1E1E)', borderRadius: '16px', padding: '4px', boxShadow: '0px 4px 20px rgba(11,15,16,0.14), 0px 0px 2px rgba(11,15,16,0.08)' }}>
+      <div style={{ backgroundColor: 'var(--preview-brand, #0B0B0B)', borderRadius: '14px', padding: '10px 14px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <svg width="20" height="20" viewBox="0 0 256 256" fill="#EC221F" style={{ flexShrink: 0 }}>
+          <path d="M236.8,188.09,149.35,36.22h0a24.76,24.76,0,0,0-42.7,0L19.2,188.09a23.51,23.51,0,0,0,0,23.72A24.35,24.35,0,0,0,40.55,224h174.9a24.35,24.35,0,0,0,21.33-12.19A23.51,23.51,0,0,0,236.8,188.09ZM120,144V104a8,8,0,0,1,16,0v40a8,8,0,0,1-16,0Zm20,36a12,12,0,1,1-12-12A12,12,0,0,1,140,180Z" />
+        </svg>
+        <span style={{ fontSize: '14px', color: 'var(--preview-brand-on, #FFFFFF)' }}>Error: No se pudo procesar el pago</span>
+      </div>
+    </div>
+  </div>
+</ComponentPreview>
+
+```tsx title="toast-usage.tsx"
+export function Toast({ message, variant = 'info', position = 'top-right' }) {
+  return (
+    <div className={cn(
+      "fixed z-50 flex items-center gap-3 rounded-xl bg-[#0B0B0B] px-4 py-3 text-sm text-white shadow-md",
+      position === 'top-right' && "top-4 right-4 max-w-[360px]",
+      position === 'bottom-center' && "bottom-4 left-4 right-4"
+    )}>
+      <ToastIcon variant={variant} />
+      <span>{message}</span>
+    </div>
+  );
+}
+```
+
+## Props
+
+<PropsTable
+  props={[
+    {
+      name: 'message',
+      type: 'string',
+      description: 'Texto del mensaje a mostrar.',
+    },
+    {
+      name: 'variant',
+      type: "'info' | 'success' | 'error' | 'warning'",
+      default: "'success'",
+      description: 'Tipo de notificacion. Define el icono y color de acento.',
+    },
+    {
+      name: 'position',
+      type: "'top-right' | 'bottom-center'",
+      default: "'top-right'",
+      description: 'Posicion del toast. top-right para desktop, bottom-center para mobile.',
+    },
+    {
+      name: 'showClose',
+      type: 'boolean',
+      default: 'false',
+      description: 'Muestra un boton X para cerrar el toast manualmente.',
+    },
+  ]}
+/>
+
+## Guias de Uso
+
+<DoDont type="do">
+  Usa Toast para feedback no critico: acciones completadas, datos guardados, elementos copiados.
+</DoDont>
+
+<DoDont type="dont">
+  No uses Toast para errores que requieren accion del usuario. Usa Dialog para esos casos.
+</DoDont>
+
+<DoDont type="do">
+  Manten los mensajes cortos y claros — una linea maximo. El toast debe leerse en 2 segundos.
+</DoDont>
+
+<DoDont type="dont">
+  No muestres mas de un toast a la vez. Usa una cola que muestre uno por uno.
+</DoDont>

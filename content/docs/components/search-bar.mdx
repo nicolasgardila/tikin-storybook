@@ -1,0 +1,141 @@
+---
+title: Search Bar
+description: Barra de busqueda con icono, placeholder y boton de limpiar
+status: stable
+---
+
+
+<SearchBarPlayground />
+
+## Instalacion
+
+```tsx
+import { DSSearchBar } from '@/components/ds/ds-search-bar'
+```
+
+## Uso
+
+```tsx title="search-bar.tsx"
+import { DSSearchBar } from '@/components/ds/ds-search-bar'
+
+export default function Example() {
+  return (
+    <DSSearchBar
+      placeholder="Buscar transaccion..."
+      size="md"
+    />
+  )
+}
+```
+
+## Ejemplos
+
+### Default
+
+Barra de busqueda en estado inicial con placeholder.
+
+<ComponentPreview>
+  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', width: '320px', height: '40px', borderRadius: '12px', border: '0.5px solid var(--preview-border)', backgroundColor: 'var(--preview-surface)', padding: '0 12px' }}>
+    <svg style={{ width: '16px', height: '16px', color: 'rgba(11,11,11,0.35)', flexShrink: 0 }} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="7" cy="7" r="4.5" />
+      <path d="M11 11l3 3" />
+    </svg>
+    <span style={{ fontSize: '14px', fontFamily: 'var(--font-ubuntu-sans), system-ui, sans-serif', fontWeight: 400, color: 'rgba(11,11,11,0.45)', flex: 1 }}>Buscar transaccion...</span>
+  </div>
+</ComponentPreview>
+
+```tsx title="search-bar-default.tsx"
+export function SearchBar() {
+  return (
+    <div className="relative inline-flex items-center w-80">
+      <MagnifyingGlass className="absolute left-3 w-[18px] h-[18px] text-[#999999]" />
+      <input
+        type="text"
+        placeholder="Buscar..."
+        className="w-full h-10 rounded-[44px] bg-[#F6F6F6] border-none pl-10 pr-4 py-2 text-sm text-[#0B0B0B] focus:border focus:border-[#0B0B0B] outline-none"
+      />
+    </div>
+  );
+}
+```
+
+### Con boton de limpiar
+
+Barra de busqueda con texto ingresado y boton para limpiar.
+
+<ComponentPreview>
+  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', width: '320px', height: '40px', borderRadius: '12px', border: '0.5px solid var(--preview-border)', backgroundColor: 'var(--preview-surface)', padding: '0 12px' }}>
+    <svg style={{ width: '16px', height: '16px', color: 'rgba(11,11,11,0.35)', flexShrink: 0 }} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="7" cy="7" r="4.5" />
+      <path d="M11 11l3 3" />
+    </svg>
+    <span style={{ fontSize: '14px', fontFamily: 'var(--font-ubuntu-sans), system-ui, sans-serif', fontWeight: 400, color: 'inherit', flex: 1 }}>Transferencia</span>
+    <button style={{ width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', border: 'none', backgroundColor: 'transparent', cursor: 'pointer', padding: 0, color: 'rgba(11,11,11,0.35)', borderRadius: '6px', flexShrink: 0 }}>
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" style={{ width: '14px', height: '14px' }}>
+        <line x1="3" y1="3" x2="11" y2="11" />
+        <line x1="11" y1="3" x2="3" y2="11" />
+      </svg>
+    </button>
+  </div>
+</ComponentPreview>
+
+```tsx title="search-bar-clearable.tsx"
+export function SearchBarClearable() {
+  const [value, setValue] = useState('Transferencia');
+
+  return (
+    <div className="relative inline-flex items-center w-80">
+      <MagnifyingGlass className="absolute left-3 w-[18px] h-[18px] text-[#999999]" />
+      <input
+        type="text"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        className="w-full h-10 rounded-[44px] bg-[#F6F6F6] border border-[#0B0B0B] pl-10 pr-10 py-2 text-sm text-[#0B0B0B] outline-none"
+      />
+      {value && (
+        <button
+          onClick={() => setValue('')}
+          className="absolute right-3 w-[18px] h-[18px] flex items-center justify-center border-none bg-transparent cursor-pointer text-[#999999]"
+        >
+          <X size={18} />
+        </button>
+      )}
+    </div>
+  );
+}
+```
+
+## Props
+
+<PropsTable
+  props={[
+    {
+      name: 'placeholder',
+      type: 'string',
+      default: "'Buscar...'",
+      description: 'Texto placeholder cuando el campo esta vacio.',
+    },
+    {
+      name: 'size',
+      type: "'sm' | 'md' | 'lg'",
+      default: "'md'",
+      description: 'Tamano de la barra. sm: 32px, md: 40px, lg: 48px.',
+    },
+    {
+      name: 'disabled',
+      type: 'boolean',
+      default: 'false',
+      description: 'Deshabilita la barra de busqueda.',
+    },
+  ]}
+/>
+
+## Guias de Uso
+
+<DoDont type="do">
+  Usar placeholder descriptivo que indique que se puede buscar.
+</DoDont>
+
+<DoDont type="dont">
+  No usar la barra de busqueda para filtros complejos con multiples criterios.
+</DoDont>

@@ -1,0 +1,222 @@
+---
+title: Side Panel
+description: Panel lateral fijo con double-layer warm para contenido secundario, filtros o configuracion
+status: stable
+---
+
+
+<SidePanelPlayground />
+
+### Default
+
+Side Panel abierto con double-layer warm, titulo Funnel Display y boton de cierre 40x40.
+
+<ComponentPreview>
+  <div style={{ position: 'relative', width: '100%', height: '400px', backgroundColor: 'rgba(0,0,0,0.4)', borderRadius: '12px', overflow: 'hidden', display: 'flex', justifyContent: 'flex-end' }}>
+    <div style={{ width: '464px', height: '100%', backgroundColor: 'var(--preview-muted-bg)', borderRadius: '24px', padding: '12px', border: '0.5px solid var(--preview-border)', display: 'flex', flexDirection: 'column', zIndex: 50, position: 'relative' }}>
+      <button style={{ position: 'absolute', top: '24px', right: '24px', width: '40px', height: '40px', border: 'none', backgroundColor: 'transparent', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'inherit', zIndex: 3, padding: 0 }}>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><line x1="3" y1="3" x2="13" y2="13" /><line x1="13" y1="3" x2="3" y2="13" /></svg>
+      </button>
+      <div style={{ backgroundColor: 'var(--preview-surface)', borderRadius: '20px', border: '0.5px solid var(--preview-border)', flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ padding: '24px 24px 0 24px' }}>
+          <h3 style={{ fontFamily: 'var(--font-funnel-display), sans-serif', fontSize: '20px', fontWeight: 400, fontStyle: 'normal', lineHeight: 'normal', margin: 0, color: 'inherit', paddingRight: '40px' }}>Detalles</h3>
+          <p style={{ fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontSize: '14px', fontWeight: 400, color: 'inherit', opacity: 0.72, margin: 0, marginTop: '4px', lineHeight: 'normal' }}>Información de la transacción</p>
+          <div style={{ height: '0.5px', backgroundColor: 'var(--preview-border)', marginTop: '16px', marginLeft: '-24px', marginRight: '-24px', width: 'calc(100% + 48px)' }} />
+        </div>
+        <div style={{ padding: '24px', flex: 1, overflow: 'auto' }}>
+          <p style={{ fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontSize: '14px', color: 'inherit', opacity: 0.65, margin: 0, lineHeight: '1.45' }}>Contenido secundario del panel. Puede incluir formularios, listas o información detallada.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ComponentPreview>
+
+```tsx title="side-panel.tsx"
+export function SidePanel({ open, onClose, title, desc, width = 464, position = 'right', children }) {
+  if (!open) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 bg-black/40" onClick={onClose}>
+      {/* Outer shell — warm double-layer */}
+      <div
+        className={`absolute top-0 ${position === 'right' ? 'right-0' : 'left-0'} h-full rounded-[24px] border-[0.5px] border-[#E8E4DD] bg-[#F1EFEB] p-3`}
+        style={{ width }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Close button 40x40 on outer */}
+        <button onClick={onClose} className="absolute top-6 right-6 z-10 w-10 h-10 flex items-center justify-center">
+          <XIcon size={16} />
+        </button>
+        {/* Inner panel */}
+        <div className="h-full rounded-[20px] border-[0.5px] border-[#E8E4DD] bg-white overflow-hidden flex flex-col">
+          <div className="px-6 pt-6">
+            <h3 className="font-funnel-display text-xl font-normal pr-10">{title}</h3>
+            {desc && <p className="text-sm text-black/70 mt-1">{desc}</p>}
+            <div className="h-px bg-[#E8E4DD] mt-4 -mx-6 w-[calc(100%+48px)]" />
+          </div>
+          <div className="px-6 py-6 flex-1 overflow-auto">
+            {children}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+### Con Formulario
+
+Panel con campos de formulario para edicion inline.
+
+<ComponentPreview>
+  <div style={{ position: 'relative', width: '100%', height: '420px', backgroundColor: 'rgba(0,0,0,0.4)', borderRadius: '12px', overflow: 'hidden', display: 'flex', justifyContent: 'flex-end' }}>
+    <div style={{ width: '464px', height: '100%', backgroundColor: 'var(--preview-muted-bg)', borderRadius: '24px', padding: '12px', border: '0.5px solid var(--preview-border)', display: 'flex', flexDirection: 'column', zIndex: 50, position: 'relative' }}>
+      <button style={{ position: 'absolute', top: '24px', right: '24px', width: '40px', height: '40px', border: 'none', backgroundColor: 'transparent', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'inherit', zIndex: 3, padding: 0 }}>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><line x1="3" y1="3" x2="13" y2="13" /><line x1="13" y1="3" x2="3" y2="13" /></svg>
+      </button>
+      <div style={{ backgroundColor: 'var(--preview-surface)', borderRadius: '20px', border: '0.5px solid var(--preview-border)', flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ padding: '24px 24px 0 24px' }}>
+          <h3 style={{ fontFamily: 'var(--font-funnel-display), sans-serif', fontSize: '20px', fontWeight: 400, fontStyle: 'normal', lineHeight: 'normal', margin: 0, color: 'inherit', paddingRight: '40px' }}>Editar perfil</h3>
+          <div style={{ height: '0.5px', backgroundColor: 'var(--preview-border)', marginTop: '16px', marginLeft: '-24px', marginRight: '-24px', width: 'calc(100% + 48px)' }} />
+        </div>
+        <div style={{ padding: '24px', flex: 1, overflow: 'auto', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div>
+            <label style={{ fontFamily: 'var(--font-funnel-display), sans-serif', fontSize: '14px', fontWeight: 400, fontStyle: 'normal', color: 'inherit', display: 'block', marginBottom: '4px' }}>Nombre</label>
+            <input style={{ width: '100%', padding: '8px 12px', borderRadius: '8px', border: '1px solid var(--preview-border)', fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontSize: '14px', color: 'inherit', backgroundColor: 'var(--preview-surface)', boxSizing: 'border-box' }} defaultValue="Maria Garcia" />
+          </div>
+          <div>
+            <label style={{ fontFamily: 'var(--font-funnel-display), sans-serif', fontSize: '14px', fontWeight: 400, fontStyle: 'normal', color: 'inherit', display: 'block', marginBottom: '4px' }}>Email</label>
+            <input style={{ width: '100%', padding: '8px 12px', borderRadius: '8px', border: '1px solid var(--preview-border)', fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontSize: '14px', color: 'inherit', backgroundColor: 'var(--preview-surface)', boxSizing: 'border-box' }} defaultValue="maria@ejemplo.com" />
+          </div>
+          <button style={{ borderRadius: '12px', backgroundColor: 'var(--preview-brand)', height: '40px', padding: '0 16px', fontSize: '14px', fontWeight: 500, textTransform: 'uppercase', lineHeight: 'normal', color: 'var(--preview-brand-on)', border: 'none', cursor: 'pointer', marginTop: '8px', fontFamily: 'var(--font-ubuntu-sans-mono), monospace' }}>Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ComponentPreview>
+
+```tsx title="side-panel-form.tsx"
+export function SidePanelForm() {
+  return (
+    <SidePanel open title="Editar perfil" onClose={handleClose}>
+      <form className="flex flex-col gap-4">
+        <div>
+          <label className="mb-1 block font-funnel-display text-sm font-normal">Nombre</label>
+          <input className="w-full rounded-lg border border-[#DEDEDE] px-3 py-2 text-sm" />
+        </div>
+        <div>
+          <label className="mb-1 block font-funnel-display text-sm font-normal">Email</label>
+          <input className="w-full rounded-lg border border-[#DEDEDE] px-3 py-2 text-sm" />
+        </div>
+        <button className="mt-2 rounded-xl bg-[#0B0B0B] h-10 px-4 text-sm font-medium uppercase tracking-wider text-white font-mono">
+          Guardar
+        </button>
+      </form>
+    </SidePanel>
+  );
+}
+```
+
+## Anatomia
+
+Estructura double-layer warm del Side Panel:
+
+```
+Backdrop: rgba(0,0,0,0.40)
+
+┌─ Outer Shell (warm) ─────────────────┐
+│  bg: #F1EFEB (dark: #151413)         │
+│  border: 0.5px #E8E4DD (#2A2826)     │
+│  border-radius: 24px                 │
+│  padding: 12px                       │
+│  width: 464px                        │
+│  Close X: 40x40, top 24 right 24    │
+│                                      │
+│  ┌─ Inner Panel ──────────────────┐  │
+│  │  bg: #FFFFFF (dark: #1E1E1E)   │  │
+│  │  border: 0.5px #E8E4DD         │  │
+│  │  border-radius: 20px           │  │
+│  │                                │  │
+│  │  Header (px 24, pt 24)         │  │
+│  │    Title: Funnel Display 400   │  │
+│  │           20px                 │  │
+│  │    Desc: Ubuntu Sans 400 14px  │  │
+│  │    Divider: 0.5px #E8E4DD      │  │
+│  │                                │  │
+│  │  Body (p 24, scrollable)       │  │
+│  │    Content area                │  │
+│  │                                │  │
+│  └────────────────────────────────┘  │
+└──────────────────────────────────────┘
+```
+
+| Parte | Valor |
+|-------|-------|
+| Outer bg | #F1EFEB (dark: #151413) |
+| Outer border | 0.5px solid #E8E4DD (dark: #2A2826) |
+| Outer radius | 24px |
+| Outer padding | 12px |
+| Width | 464px |
+| Inner bg | #FFFFFF (dark: #1E1E1E) |
+| Inner border | 0.5px solid #E8E4DD (dark: #2A2826) |
+| Inner radius | 20px |
+| Header padding | 24px 24px 0 24px |
+| Title font | Funnel Display 400 20px |
+| Desc font | Ubuntu Sans 400 14px |
+| Desc color | rgba(11,11,11,0.72) (dark: rgba(255,255,255,0.5)) |
+| Divider | 0.5px #E8E4DD, margin-top 16px, full-width bleed |
+| Body padding | 24px |
+| Close button | 40x40, icon 16px, on outer shell |
+
+## Props
+
+<PropsTable
+  props={[
+    {
+      name: 'open',
+      type: 'boolean',
+      default: 'false',
+      description: 'Controla la visibilidad del Side Panel.',
+    },
+    {
+      name: 'onClose',
+      type: '() => void',
+      description: 'Callback al cerrar el panel (tap en overlay o boton X 40x40).',
+      required: true,
+    },
+    {
+      name: 'title',
+      type: 'string',
+      description: 'Titulo que se muestra en el header (Funnel Display 400 20px).',
+      required: true,
+    },
+    {
+      name: 'width',
+      type: 'number',
+      default: '464',
+      description: 'Ancho del panel en pixeles.',
+    },
+    {
+      name: 'position',
+      type: "'right' | 'left'",
+      default: "'right'",
+      description: 'Lado desde donde se abre el panel.',
+    },
+    {
+      name: 'children',
+      type: 'ReactNode',
+      description: 'Contenido del Side Panel.',
+      required: true,
+    },
+  ]}
+/>
+
+## Guias de Uso
+
+<DoDont type="do">
+  Usa para contenido secundario que no requiere una pagina nueva (filtros, detalles, configuracion).
+</DoDont>
+
+<DoDont type="dont">
+  No uses Side Panel para flujos principales o formularios largos que merecen su propia vista.
+</DoDont>

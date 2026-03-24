@@ -1,0 +1,303 @@
+---
+title: Getting Started
+description: Guia completa de instalacion y configuracion del Design System
+---
+
+## Instalacion
+
+Instala el paquete del Design System desde npm:
+
+```bash title="Terminal"
+npm install @dstikin/ds
+```
+
+## Configuracion
+
+### 1. Importar los estilos
+
+Agrega la hoja de estilos del DS en tu archivo CSS principal. Esto carga todos los tokens de diseno (colores, espaciado, radios, sombras) como CSS custom properties:
+
+```css title="app/globals.css"
+@import "tailwindcss";
+@import "@dstikin/ds/styles.css";
+```
+
+Si usas Tailwind v4, agrega el source directive para que Tailwind escanee las clases del paquete:
+
+```css title="app/globals.css"
+@import "tailwindcss";
+@import "@dstikin/ds/styles.css";
+@source "../node_modules/@dstikin/ds/dist";
+```
+
+### 2. Configurar las fuentes
+
+El DS usa tres familias tipograficas. Cargalas en tu proyecto:
+
+| Familia | Rol | Peso |
+|---------|-----|------|
+| **Funnel Display** | Labels, floating labels | 300–800 |
+| **Ubuntu Sans** | Texto de cuerpo, UI general | 300–700 |
+| **Ubuntu Sans Mono** | Botones, badges, chips, codigo | 400–700 |
+
+#### Con Next.js (recomendado)
+
+```tsx title="app/layout.tsx"
+import { Funnel_Display, Ubuntu_Sans, Ubuntu_Sans_Mono } from 'next/font/google';
+
+const funnelDisplay = Funnel_Display({
+  subsets: ['latin'],
+  variable: '--font-funnel-display',
+  display: 'swap',
+});
+
+const ubuntuSans = Ubuntu_Sans({
+  subsets: ['latin'],
+  variable: '--font-ubuntu-sans',
+  display: 'swap',
+});
+
+const ubuntuSansMono = Ubuntu_Sans_Mono({
+  subsets: ['latin'],
+  variable: '--font-ubuntu-sans-mono',
+  display: 'swap',
+});
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html className={`${funnelDisplay.variable} ${ubuntuSans.variable} ${ubuntuSansMono.variable}`}>
+      <body>{children}</body>
+    </html>
+  );
+}
+```
+
+#### Con HTML / Google Fonts
+
+```html title="index.html"
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Ubuntu+Sans:wght@300..700&family=Ubuntu+Sans+Mono:wght@400..700&display=swap" rel="stylesheet">
+```
+
+### 3. Dark Mode
+
+Los componentes soportan dark mode automaticamente. Agrega la clase `.dark` al elemento root de tu app:
+
+```tsx title="theme-toggle.tsx"
+// Los tokens se invierten automaticamente con .dark
+document.documentElement.classList.toggle('dark');
+```
+
+Los tokens que cambian en dark mode:
+
+| Token | Light | Dark |
+|-------|-------|------|
+| `--ds-brand` | `#0B0B0B` | `#FFFFFF` |
+| `--ds-brand-on` | `#FFFFFF` | `#0B0B0B` |
+| `--ds-surface` | `#FFFFFF` | `#1E1E1E` |
+| `--ds-border` | `#DEDEDE` | `#333333` |
+| `--ds-muted-bg` | `#F6F6F6` | `#171717` |
+| `--ds-error-bg` | `#FEE9E7` | `rgba(236,34,31,0.08)` |
+
+## Uso
+
+Importa los componentes directamente:
+
+```tsx title="mi-formulario.tsx"
+import { Button, TextField, Checkbox, Toggle, Badge } from '@dstikin/ds';
+
+export function MiFormulario() {
+  return (
+    <form className="flex flex-col gap-4">
+      <TextField
+        label="Email"
+        placeholder="tu@email.com"
+        size="md"
+      />
+
+      <TextField
+        label="Password"
+        type="password"
+        placeholder="••••••••"
+        size="md"
+      />
+
+      <Checkbox
+        label="Acepto los terminos y condiciones"
+        onCheckedChange={(checked) => console.log(checked)}
+      />
+
+      <Toggle
+        label="Recordar sesion"
+        onCheckedChange={(checked) => console.log(checked)}
+      />
+
+      <Button variant="primary" size="lg" fullWidth>
+        Iniciar Sesion
+      </Button>
+
+      <Button variant="ghost" size="md">
+        Olvidaste tu password?
+      </Button>
+    </form>
+  );
+}
+```
+
+## Componentes Disponibles
+
+| Componente | Descripcion | Import |
+|------------|-------------|--------|
+| `Button` | Primary, secondary, ghost con loading state | `import { Button } from '@dstikin/ds'` |
+| `TextField` | Input con label, estados error/success, spinner | `import { TextField } from '@dstikin/ds'` |
+| `Checkbox` | Checkbox con label y soporte indeterminate | `import { Checkbox } from '@dstikin/ds'` |
+| `Toggle` | Switch toggle con tamanos sm/md | `import { Toggle } from '@dstikin/ds'` |
+| `Badge` | Count o dot badge para overlay en iconos | `import { Badge } from '@dstikin/ds'` |
+
+## Referencia de Props
+
+### Button
+
+```tsx
+<Button
+  variant="primary"    // "primary" | "secondary" | "ghost"
+  size="md"            // "sm" | "md" | "lg"
+  fullWidth={false}    // boolean
+  loading={false}      // boolean — muestra spinner
+  disabled={false}     // boolean
+  onClick={() => {}}   // todos los props nativos de <button>
+>
+  Continuar
+</Button>
+```
+
+### TextField
+
+```tsx
+<TextField
+  label="Email"              // string — label sobre el input
+  placeholder="tu@email.com" // string
+  size="md"                  // "xs" | "sm" | "md" | "lg"
+  errorMessage="Invalido"    // string — activa estado error
+  successMessage="OK"        // string — activa estado success
+  helperText="Ayuda"         // string — texto de ayuda
+  loading={false}            // boolean — spinner al final
+  disabled={false}           // boolean
+  onChange={() => {}}         // todos los props nativos de <input>
+/>
+```
+
+### Checkbox
+
+```tsx
+<Checkbox
+  label="Acepto los terminos"  // string
+  size="md"                    // "sm" | "md"
+  checked={false}              // boolean
+  indeterminate={false}        // boolean
+  disabled={false}             // boolean
+  onCheckedChange={(v) => {}}  // (checked: boolean) => void
+/>
+```
+
+### Toggle
+
+```tsx
+<Toggle
+  label="Notificaciones"      // string
+  size="md"                   // "sm" | "md"
+  checked={false}             // boolean
+  disabled={false}            // boolean
+  onCheckedChange={(v) => {}} // (checked: boolean) => void
+/>
+```
+
+### Badge
+
+```tsx
+<Badge
+  variant="count"    // "count" | "dot"
+  count={5}          // number
+  max={99}           // number — muestra "99+" si excede
+  showZero={false}   // boolean — muestra "0" si count es 0
+>
+  <BellIcon />       {/* cualquier children — el badge se superpone */}
+</Badge>
+```
+
+## Tokens CSS
+
+Todos los tokens estan disponibles como CSS custom properties. Puedes usarlos directamente en tu CSS o con Tailwind:
+
+```css title="mi-componente.css"
+.mi-card {
+  background-color: var(--ds-surface);
+  border: 1px solid var(--ds-border);
+  border-radius: var(--ds-radius-md);
+  padding: var(--ds-space-4);
+  box-shadow: var(--ds-shadow-sm);
+}
+```
+
+### Espaciado
+
+| Token | Valor |
+|-------|-------|
+| `--ds-space-1` | 4px |
+| `--ds-space-2` | 8px |
+| `--ds-space-3` | 12px |
+| `--ds-space-4` | 16px |
+| `--ds-space-5` | 20px |
+| `--ds-space-6` | 24px |
+| `--ds-space-8` | 32px |
+| `--ds-space-10` | 40px |
+| `--ds-space-12` | 48px |
+| `--ds-space-16` | 64px |
+
+### Radios
+
+| Token | Valor |
+|-------|-------|
+| `--ds-radius-xs` | 4px |
+| `--ds-radius-sm` | 8px |
+| `--ds-radius-md` | 12px |
+| `--ds-radius-lg` | 16px |
+| `--ds-radius-xl` | 20px |
+| `--ds-radius-full` | 9999px |
+| `--ds-radius-pill` | 44px |
+
+### Sombras
+
+| Token | Valor |
+|-------|-------|
+| `--ds-shadow-xs` | `0 1px 2px rgba(0,0,0,0.05)` |
+| `--ds-shadow-sm` | `0 2px 4px rgba(0,0,0,0.06)` |
+| `--ds-shadow-md` | `0 4px 8px rgba(0,0,0,0.08)` |
+| `--ds-shadow-lg` | `0 8px 16px rgba(0,0,0,0.1)` |
+| `--ds-shadow-xl` | `0 16px 32px rgba(0,0,0,0.12)` |
+
+### Alturas de componentes
+
+| Token | Valor |
+|-------|-------|
+| `--ds-height-xs` | 28px |
+| `--ds-height-sm` | 32px |
+| `--ds-height-md` | 40px |
+| `--ds-height-lg` | 48px |
+| `--ds-height-xl` | 56px |
+
+## Iconos
+
+El DS usa [Phosphor Icons](https://phosphoricons.com) como libreria oficial. Siempre usa SVGs inline:
+
+```tsx title="icon-example.tsx"
+<svg width="24" height="24" viewBox="0 0 256 256" fill="none">
+  <path d="..." fill="currentColor" />
+</svg>
+```
+
+## Soporte
+
+- **Repo**: [github.com/nicolasgardila/tikin-ds](https://github.com/nicolasgardila/tikin-ds)
+- **npm**: [@dstikin/ds](https://www.npmjs.com/package/@dstikin/ds)

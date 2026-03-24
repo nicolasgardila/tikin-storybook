@@ -1,0 +1,59 @@
+---
+title: Alturas de Componentes
+description: Tokens de altura estandar para componentes interactivos
+---
+
+## Sistema de Alturas
+
+El sistema define 5 alturas estandar para componentes interactivos. Estas alturas garantizan consistencia visual y areas de toque adecuadas en toda la interfaz.
+
+## Escala de Tokens
+
+| Token | Variable CSS | Valor | Componentes |
+|-------|-------------|-------|-------------|
+| xs | `--ds-height-xs` | 28px | Chips pequenos, badges compactos |
+| sm | `--ds-height-sm` | 32px | Botones pequenos, inputs compactos |
+| md | `--ds-height-md` | 40px | Botones default, inputs, selects |
+| lg | `--ds-height-lg` | 48px | Botones grandes, barras de busqueda |
+| xl | `--ds-height-xl` | 56px | Inputs extra grandes, CTAs prominentes |
+
+## Guia de Seleccion
+
+### xs (28px) — Compacto
+Para elementos secundarios dentro de otros componentes. Chips de filtro, badges con accion, controles inline.
+
+### sm (32px) — Pequeno
+Botones secundarios y inputs en contextos densos como tablas o toolbars. Mantiene legibilidad con menor peso visual.
+
+### md (40px) — Default
+La altura estandar para la mayoria de componentes interactivos. Botones primarios, campos de formulario, selects. Cumple con el minimo de 44px de area de toque en mobile con padding adicional.
+
+### lg (48px) — Grande
+Para acciones prominentes y campos de busqueda. Ideal cuando el componente necesita mayor presencia visual.
+
+### xl (56px) — Extra grande
+Reservado para CTAs principales y campos de entrada destacados. Uso limitado a elementos de maxima jerarquia.
+
+## Ejemplo de Uso
+
+```css
+/* Boton default */
+.btn {
+  height: var(--ds-height-md);
+  padding: 0 var(--ds-space-4);
+  border-radius: var(--ds-radius-sm);
+}
+
+/* Boton pequeno */
+.btn-sm {
+  height: var(--ds-height-sm);
+  padding: 0 var(--ds-space-3);
+}
+
+/* Input de busqueda grande */
+.search-input {
+  height: var(--ds-height-lg);
+  padding: 0 var(--ds-space-4);
+  border-radius: var(--ds-radius-md);
+}
+```

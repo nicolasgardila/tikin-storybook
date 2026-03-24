@@ -1,0 +1,161 @@
+---
+title: Badge
+description: Indicador de notificacion o conteo
+status: stable
+---
+
+
+<BadgePlayground />
+
+## Instalacion
+
+```tsx
+import { DSBadge } from '@/components/ds/ds-badge'
+```
+
+## Uso
+
+```tsx title="badge.tsx"
+import { DSBadge } from '@/components/ds/ds-badge'
+
+export default function Example() {
+  return (
+    <DSBadge variant="count" count={5} />
+  )
+}
+```
+
+## Ejemplos
+
+### Badge Numerico
+
+Muestra un conteo dentro de una pastilla roja. Para valores altos se trunca con "+" (ej. 99+).
+
+<ComponentPreview>
+  <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+    <div style={{ minWidth: '16px', height: '16px', borderRadius: '8px', backgroundColor: 'var(--preview-brand)', color: 'var(--preview-brand-on)', fontSize: '10px', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', fontWeight: 500, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '0 4px', lineHeight: 1 }}>
+      3
+    </div>
+    <div style={{ minWidth: '16px', height: '16px', borderRadius: '8px', backgroundColor: 'var(--preview-brand)', color: 'var(--preview-brand-on)', fontSize: '10px', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', fontWeight: 500, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '0 4px', lineHeight: 1 }}>
+      12
+    </div>
+    <div style={{ minWidth: '16px', height: '16px', borderRadius: '8px', backgroundColor: 'var(--preview-brand)', color: 'var(--preview-brand-on)', fontSize: '10px', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', fontWeight: 500, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '0 4px', lineHeight: 1 }}>
+      99+
+    </div>
+  </div>
+</ComponentPreview>
+
+```tsx title="badge-numeric.tsx"
+export function BadgeNumeric({ count, max = 99 }: { count: number; max?: number }) {
+  const display = count > max ? `${max}+` : String(count);
+  return (
+    <span style={{ minWidth: 16, height: 16, borderRadius: 8, backgroundColor: 'var(--preview-brand)', color: 'var(--preview-brand-on)', fontSize: 10, fontFamily: 'var(--font-ubuntu-sans-mono), monospace', fontWeight: 500, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '0 4px', lineHeight: 1 }}>
+      {display}
+    </span>
+  );
+}
+```
+
+### Badge Dot
+
+Punto indicador minimo para senalar la existencia de novedades sin mostrar un conteo especifico.
+
+<ComponentPreview>
+  <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+    <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: 'var(--preview-brand)' }} />
+    <div style={{ width: '10px', height: '10px', borderRadius: '50%', backgroundColor: 'var(--preview-brand)' }} />
+  </div>
+</ComponentPreview>
+
+```tsx title="badge-dot.tsx"
+export function BadgeDot() {
+  return (
+    <span style={{ display: 'inline-block', width: 8, height: 8, borderRadius: '50%', backgroundColor: 'var(--preview-brand)' }} />
+  );
+}
+```
+
+### Badge sobre Icono
+
+Badge posicionado en la esquina superior derecha de un icono. Patron comun para iconos de notificaciones o carrito.
+
+<ComponentPreview>
+  <div style={{ display: 'flex', gap: '32px', alignItems: 'center' }}>
+    <div style={{ position: 'relative', display: 'inline-flex' }}>
+      <svg width="24" height="24" viewBox="0 0 256 256" fill="none" style={{ color: 'inherit' }}>
+        <path d="M221.8 175.94c-5.55-9.56-13.8-36.61-13.8-71.94a80 80 0 10-160 0c0 35.34-8.26 62.38-13.81 71.94A16 16 0 0048 200h40.81a40 40 0 0078.38 0H208a16 16 0 0013.8-24.06zM128 216a24 24 0 01-22.62-16h45.24A24 24 0 01128 216zm-80-32c7.7-13.24 16-43.92 16-80a64 64 0 11128 0c0 36.05 8.28 66.73 16 80z" fill="currentColor" />
+      </svg>
+      <div style={{ position: 'absolute', top: '-2px', right: '-2px', minWidth: '16px', height: '16px', borderRadius: '8px', backgroundColor: 'var(--preview-brand)', color: 'var(--preview-brand-on)', fontSize: '10px', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', fontWeight: 500, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '0 4px', lineHeight: 1, border: '1.5px solid var(--preview-surface)' }}>
+        5
+      </div>
+    </div>
+    <div style={{ position: 'relative', display: 'inline-flex' }}>
+      <svg width="24" height="24" viewBox="0 0 256 256" fill="none" style={{ color: 'inherit' }}>
+        <path d="M221.8 175.94c-5.55-9.56-13.8-36.61-13.8-71.94a80 80 0 10-160 0c0 35.34-8.26 62.38-13.81 71.94A16 16 0 0048 200h40.81a40 40 0 0078.38 0H208a16 16 0 0013.8-24.06zM128 216a24 24 0 01-22.62-16h45.24A24 24 0 01128 216zm-80-32c7.7-13.24 16-43.92 16-80a64 64 0 11128 0c0 36.05 8.28 66.73 16 80z" fill="currentColor" />
+      </svg>
+      <div style={{ position: 'absolute', top: '-2px', right: '-2px', width: '8px', height: '8px', borderRadius: '50%', backgroundColor: 'var(--preview-brand)', border: '1.5px solid var(--preview-surface)' }} />
+    </div>
+  </div>
+</ComponentPreview>
+
+```tsx title="badge-on-icon.tsx"
+export function BadgeOnIcon() {
+  return (
+    <div className="relative inline-flex">
+      {/* Bell icon (Phosphor) */}
+      <BellIcon className="w-6 h-6" />
+      <span className="absolute -top-1 -right-1 inline-flex items-center justify-center min-w-[16px] h-[16px] rounded-full bg-[#E74C3C] text-white text-[10px] font-semibold px-1">
+        5
+      </span>
+    </div>
+  );
+}
+```
+
+## Props
+
+<PropsTable
+  props={[
+    {
+      name: 'count',
+      type: 'number',
+      description: 'Numero a mostrar en el badge. Solo aplica para variant "count".',
+    },
+    {
+      name: 'max',
+      type: 'number',
+      default: '99',
+      description: 'Valor maximo antes de truncar con "+". Ej: 99 muestra "99+".',
+    },
+    {
+      name: 'showZero',
+      type: 'boolean',
+      default: 'false',
+      description: 'Si es true, muestra el badge aun cuando count es 0.',
+    },
+    {
+      name: 'variant',
+      type: "'dot' | 'count'",
+      default: "'count'",
+      description: 'Tipo de badge: dot (punto indicador) o count (numerico).',
+    },
+  ]}
+/>
+
+## Guias de Uso
+
+<DoDont type="do">
+  Usa Badge para conteos de notificaciones, mensajes no leidos, o indicadores de atencion sobre iconos.
+</DoDont>
+
+<DoDont type="dont">
+  No uses Badge para etiquetas de estado estaticas. Usa Status Chips en su lugar.
+</DoDont>
+
+<DoDont type="do">
+  Usa el variant "dot" cuando solo necesitas indicar la existencia de novedades sin un conteo especifico.
+</DoDont>
+
+<DoDont type="dont">
+  No muestres badges con conteo 0 a menos que sea necesario por contexto. Usa showZero solo si el cero tiene significado.
+</DoDont>

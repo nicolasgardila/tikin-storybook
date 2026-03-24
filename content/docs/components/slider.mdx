@@ -1,0 +1,218 @@
+---
+title: Slider
+description: Control deslizante para seleccionar valores dentro de un rango con track y thumb
+status: stable
+---
+
+
+<SliderPlayground />
+
+### Default
+
+Slider basico con track, fill y thumb circular.
+
+<ComponentPreview>
+  <div style={{ width: '100%', padding: '8px 0', fontFamily: 'var(--font-ubuntu-sans), sans-serif' }}>
+    <div style={{ position: 'relative', height: '20px', display: 'flex', alignItems: 'center' }}>
+      <div style={{ position: 'absolute', width: '100%', height: '4px', backgroundColor: 'var(--preview-muted-bg, #EEEBE6)', borderRadius: '100px' }} />
+      <div style={{ position: 'absolute', width: '40%', height: '4px', backgroundColor: 'var(--preview-brand, #0B0B0B)', borderRadius: '100px' }} />
+      <div style={{ position: 'absolute', left: '40%', transform: 'translateX(-50%)', width: '20px', height: '20px', borderRadius: '50%', backgroundColor: 'var(--preview-surface, #FFFFFF)', border: '2px solid var(--preview-brand, #0B0B0B)', cursor: 'pointer' }} />
+    </div>
+  </div>
+</ComponentPreview>
+
+```tsx title="slider-default.tsx"
+export function Slider({ value, min = 0, max = 100 }: SliderProps) {
+  const percent = ((value - min) / (max - min)) * 100;
+  return (
+    <div style={{ position: 'relative', height: 20, display: 'flex', alignItems: 'center', width: '100%' }}>
+      <div style={{ position: 'absolute', width: '100%', height: 4, backgroundColor: '#EEEBE6', borderRadius: 100 }} />
+      <div style={{ position: 'absolute', height: 4, backgroundColor: 'var(--preview-brand, #0B0B0B)', borderRadius: 100, width: `${percent}%` }} />
+      <div style={{ position: 'absolute', left: `${percent}%`, transform: 'translateX(-50%)', width: 20, height: 20, borderRadius: '50%', backgroundColor: 'var(--preview-surface, #FFFFFF)', border: '2px solid var(--preview-brand, #0B0B0B)', cursor: 'pointer' }} />
+    </div>
+  );
+}
+```
+
+### Con Labels
+
+Slider con etiquetas de minimo, maximo y valor actual.
+
+<ComponentPreview>
+  <div style={{ width: '100%', padding: '8px 0', fontFamily: 'var(--font-ubuntu-sans), sans-serif' }}>
+    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+      <span style={{ fontSize: '13px', fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontWeight: 400, color: 'rgba(11,11,11,0.55)' }}>Monto</span>
+      <span style={{ fontSize: '13px', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', fontWeight: 500, color: 'var(--preview-brand, #0B0B0B)' }}>$400.000</span>
+    </div>
+    <div style={{ position: 'relative', height: '20px', display: 'flex', alignItems: 'center' }}>
+      <div style={{ position: 'absolute', width: '100%', height: '4px', backgroundColor: 'var(--preview-muted-bg, #EEEBE6)', borderRadius: '100px' }} />
+      <div style={{ position: 'absolute', width: '40%', height: '4px', backgroundColor: 'var(--preview-brand, #0B0B0B)', borderRadius: '100px' }} />
+      <div style={{ position: 'absolute', left: '40%', transform: 'translateX(-50%)', width: '20px', height: '20px', borderRadius: '50%', backgroundColor: 'var(--preview-surface, #FFFFFF)', border: '2px solid var(--preview-brand, #0B0B0B)', cursor: 'pointer' }} />
+    </div>
+    <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '4px' }}>
+      <span style={{ fontSize: '11px', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', fontWeight: 400, color: 'rgba(11,11,11,0.35)' }}>$0</span>
+      <span style={{ fontSize: '11px', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', fontWeight: 400, color: 'rgba(11,11,11,0.35)' }}>$1.000.000</span>
+    </div>
+  </div>
+</ComponentPreview>
+
+```tsx title="slider-labels.tsx"
+export function SliderWithLabels({ value, min, max }: SliderProps) {
+  const percent = ((value - min) / (max - min)) * 100;
+  return (
+    <div className="w-full">
+      <div className="flex justify-between items-center mb-1">
+        <span className="text-xs text-[#999999]">{min}</span>
+        <span className="text-sm font-semibold text-[#0B0B0B]">{value}</span>
+        <span className="text-xs text-[#999999]">{max}</span>
+      </div>
+      <div className="relative h-5 flex items-center">
+        <div className="absolute w-full h-2 bg-[#F6F6F6] rounded-full" />
+        <div className="absolute h-2 bg-[#0B0B0B] rounded-full" style={{ width: `${percent}%` }} />
+        <div
+          className="absolute w-5 h-5 rounded-full bg-white border-2 border-[#0B0B0B] -translate-x-1/2"
+          style={{ left: `${percent}%` }}
+        />
+      </div>
+    </div>
+  );
+}
+```
+
+### Range
+
+Slider con dos thumbs para seleccionar un rango de valores.
+
+<ComponentPreview>
+  <div style={{ width: '100%', padding: '8px 0', fontFamily: 'var(--font-ubuntu-sans), sans-serif' }}>
+    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+      <span style={{ fontSize: '13px', fontFamily: 'var(--font-ubuntu-sans), sans-serif', fontWeight: 400, color: 'rgba(11,11,11,0.55)' }}>Rango de monto</span>
+      <span style={{ fontSize: '13px', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', fontWeight: 500, color: 'var(--preview-brand, #0B0B0B)' }}>$200K — $700K</span>
+    </div>
+    <div style={{ position: 'relative', height: '20px', display: 'flex', alignItems: 'center' }}>
+      <div style={{ position: 'absolute', width: '100%', height: '4px', backgroundColor: 'var(--preview-muted-bg, #EEEBE6)', borderRadius: '100px' }} />
+      <div style={{ position: 'absolute', left: '20%', right: '30%', top: '50%', transform: 'translateY(-50%)', height: '4px', backgroundColor: 'var(--preview-brand, #0B0B0B)' }} />
+      <div style={{ position: 'absolute', left: '20%', transform: 'translateX(-50%)', width: '20px', height: '20px', borderRadius: '50%', backgroundColor: 'var(--preview-surface, #FFFFFF)', border: '2px solid var(--preview-brand, #0B0B0B)', cursor: 'pointer', zIndex: 2 }} />
+      <div style={{ position: 'absolute', left: '70%', transform: 'translateX(-50%)', width: '20px', height: '20px', borderRadius: '50%', backgroundColor: 'var(--preview-surface, #FFFFFF)', border: '2px solid var(--preview-brand, #0B0B0B)', cursor: 'pointer', zIndex: 2 }} />
+    </div>
+    <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '4px' }}>
+      <span style={{ fontSize: '11px', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', fontWeight: 400, color: 'rgba(11,11,11,0.35)' }}>$0</span>
+      <span style={{ fontSize: '11px', fontFamily: 'var(--font-ubuntu-sans-mono), monospace', fontWeight: 400, color: 'rgba(11,11,11,0.35)' }}>$1.000.000</span>
+    </div>
+  </div>
+</ComponentPreview>
+
+```tsx title="slider-range.tsx"
+export function RangeSlider({ low, high, min, max }: RangeSliderProps) {
+  const lowPercent = ((low - min) / (max - min)) * 100;
+  const highPercent = ((high - min) / (max - min)) * 100;
+  return (
+    <div className="relative h-5 flex items-center w-full">
+      <div className="absolute w-full h-2 bg-[#F6F6F6] rounded-full" />
+      <div
+        className="absolute h-2 bg-[#0B0B0B] rounded-full"
+        style={{ left: `${lowPercent}%`, width: `${highPercent - lowPercent}%` }}
+      />
+      <div className="absolute w-5 h-5 rounded-full bg-white border-2 border-[#0B0B0B] -translate-x-1/2" style={{ left: `${lowPercent}%` }} />
+      <div className="absolute w-5 h-5 rounded-full bg-white border-2 border-[#0B0B0B] -translate-x-1/2" style={{ left: `${highPercent}%` }} />
+    </div>
+  );
+}
+```
+
+### Disabled
+
+Slider deshabilitado con colores atenuados.
+
+<ComponentPreview>
+  <div style={{ width: '100%', padding: '8px 0', fontFamily: 'var(--font-ubuntu-sans), sans-serif' }}>
+    <div style={{ position: 'relative', height: '20px', display: 'flex', alignItems: 'center' }}>
+      <div style={{ position: 'absolute', width: '100%', height: '4px', backgroundColor: 'var(--preview-muted-bg, #EEEBE6)', borderRadius: '100px' }} />
+      <div style={{ position: 'absolute', width: '60%', height: '4px', backgroundColor: '#D9D9D9', borderRadius: '100px' }} />
+      <div style={{ position: 'absolute', left: '60%', transform: 'translateX(-50%)', width: '20px', height: '20px', borderRadius: '50%', backgroundColor: '#F5F5F5', border: '2px solid #D9D9D9', cursor: 'default' }} />
+    </div>
+  </div>
+</ComponentPreview>
+
+```tsx title="slider-disabled.tsx"
+export function SliderDisabled({ value, min, max }: SliderProps) {
+  const percent = ((value - min) / (max - min)) * 100;
+  return (
+    <div className="relative h-5 flex items-center w-full opacity-50 pointer-events-none">
+      <div className="absolute w-full h-2 bg-[#F6F6F6] rounded-full" />
+      <div className="absolute h-2 bg-[#0B0B0B] rounded-full" style={{ width: `${percent}%` }} />
+      <div className="absolute w-5 h-5 rounded-full bg-white border-2 border-[#0B0B0B] -translate-x-1/2" style={{ left: `${percent}%` }} />
+    </div>
+  );
+}
+```
+
+## Props
+
+<PropsTable
+  props={[
+    {
+      name: 'value',
+      type: 'number',
+      description: 'Valor actual del slider.',
+      required: true,
+    },
+    {
+      name: 'min',
+      type: 'number',
+      default: '0',
+      description: 'Valor minimo del rango.',
+    },
+    {
+      name: 'max',
+      type: 'number',
+      default: '100',
+      description: 'Valor maximo del rango.',
+    },
+    {
+      name: 'step',
+      type: 'number',
+      default: '1',
+      description: 'Incremento entre valores validos.',
+    },
+    {
+      name: 'onChange',
+      type: '(value: number) => void',
+      description: 'Callback al cambiar el valor.',
+      required: true,
+    },
+    {
+      name: 'disabled',
+      type: 'boolean',
+      default: 'false',
+      description: 'Deshabilita la interaccion con el slider.',
+    },
+    {
+      name: 'showLabels',
+      type: 'boolean',
+      default: 'false',
+      description: 'Muestra etiquetas de min, max y valor actual.',
+    },
+    {
+      name: 'range',
+      type: 'boolean',
+      default: 'false',
+      description: 'Habilita seleccion de rango con dos thumbs.',
+    },
+    {
+      name: 'formatValue',
+      type: '(value: number) => string',
+      description: 'Funcion para formatear el valor mostrado.',
+    },
+  ]}
+/>
+
+## Guias de Uso
+
+<DoDont type="do">
+  Mostrar el valor actual y los limites del rango para que el usuario sepa el contexto. Usar labels cuando la precision es importante.
+</DoDont>
+
+<DoDont type="dont">
+  No usar slider para valores exactos donde la precision es critica. Usar input numerico en esos casos.
+</DoDont>

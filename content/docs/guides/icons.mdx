@@ -1,0 +1,56 @@
+---
+title: Iconografia
+description: Referencia de iconos Phosphor usados en el Design System
+---
+
+# Iconografia
+
+Black Cash DS utiliza [Phosphor Icons](https://phosphoricons.com) como libreria oficial de iconos. Phosphor ofrece un set consistente de iconos en multiples pesos (Thin, Light, Regular, Bold, Fill, Duotone) con mas de 1,200 iconos disponibles.
+
+## Lineamientos de Uso
+
+- **Formato**: Siempre usar SVGs inline, nunca icon fonts
+- **Tamano por defecto**: 24x24px (puede escalarse a 16, 20, 32)
+- **Color**: Hereda del texto padre via `currentColor`
+- **Peso**: Regular (por defecto), Bold para enfasis
+- **viewBox**: Siempre `0 0 256 256`
+
+## Referencia de Iconos
+
+Haz clic en cualquier icono para copiar el SVG al portapapeles.
+
+<IconSearch />
+
+## Uso en Codigo
+
+Para usar un icono Phosphor en tu componente, copia el SVG e insertalo directamente:
+
+```html
+<svg
+  width="24"
+  height="24"
+  viewBox="0 0 256 256"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="16"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <!-- Phosphor icon path -->
+  <polyline points="216 72 104 184 48 128" />
+</svg>
+```
+
+Para escalar un icono, cambia los atributos `width` y `height`:
+
+```html
+<!-- 16px -->
+<svg width="16" height="16" viewBox="0 0 256 256" ...>...</svg>
+
+<!-- 32px -->
+<svg width="32" height="32" viewBox="0 0 256 256" ...>...</svg>
+```
+
+## Libreria Completa
+
+Esta pagina muestra los ~50 iconos mas usados en el DS. Para la libreria completa con mas de 1,200 iconos, visita [phosphoricons.com](https://phosphoricons.com).
