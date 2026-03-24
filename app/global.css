@@ -126,10 +126,17 @@
 }
 
 .dark #nd-sidebar {
-  --color-fd-background: #000000;
+  --color-fd-background: #09090B;
   --color-fd-muted: #141414;
   --color-fd-secondary: #171717;
   --color-fd-muted-foreground: #A1A1AA;
+  background-color: #09090B !important;
+}
+
+.dark aside,
+.dark [data-sidebar],
+.dark nav[role="navigation"] {
+  background-color: #09090B !important;
 }
 
 /* ==========================================================================
