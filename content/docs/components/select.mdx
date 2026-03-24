@@ -9,18 +9,22 @@ status: stable
 
 ## Instalacion
 
+```bash title="Terminal"
+npm install @dstikin/ds
+```
+
 ```tsx
-import { DSSelect } from '@/components/ds/ds-select'
+import { Select } from '@dstikin/ds'
 ```
 
 ## Uso
 
 ```tsx title="select.tsx"
-import { DSSelect } from '@/components/ds/ds-select'
+import { Select } from '@dstikin/ds'
 
 export default function Example() {
   return (
-    <DSSelect
+    <Select
       placeholder="Seleccionar..."
       options={[
         { value: '1', label: 'Opción 1' },

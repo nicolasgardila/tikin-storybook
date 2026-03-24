@@ -9,18 +9,22 @@ status: stable
 
 ## Instalacion
 
+```bash title="Terminal"
+npm install @dstikin/ds
+```
+
 ```tsx
-import { DSSearchBar } from '@/components/ds/ds-search-bar'
+import { SearchBar } from '@dstikin/ds'
 ```
 
 ## Uso
 
 ```tsx title="search-bar.tsx"
-import { DSSearchBar } from '@/components/ds/ds-search-bar'
+import { SearchBar } from '@dstikin/ds'
 
 export default function Example() {
   return (
-    <DSSearchBar
+    <SearchBar
       placeholder="Buscar transaccion..."
       size="md"
     />

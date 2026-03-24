@@ -9,24 +9,28 @@ status: stable
 
 ## Instalacion
 
+```bash title="Terminal"
+npm install @dstikin/ds
+```
+
 ```tsx
-import { DSDialog } from '@/components/ds/ds-dialog'
+import { Dialog } from '@dstikin/ds'
 ```
 
 ## Uso
 
 ```tsx title="dialog.tsx"
-import { DSDialog } from '@/components/ds/ds-dialog'
+import { Dialog } from '@dstikin/ds'
 
 export default function Example() {
   return (
-    <DSDialog
+    <Dialog
       open={true}
       onClose={() => {}}
       title="Confirmar acción"
     >
       <p>¿Estás seguro de que deseas continuar?</p>
-    </DSDialog>
+    </Dialog>
   )
 }
 ```

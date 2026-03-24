@@ -9,18 +9,22 @@ status: stable
 
 ## Instalacion
 
+```bash title="Terminal"
+npm install @dstikin/ds
+```
+
 ```tsx
-import { DSToast } from '@/components/ds/ds-toast'
+import { Toast } from '@dstikin/ds'
 ```
 
 ## Uso
 
 ```tsx title="toast.tsx"
-import { DSToast } from '@/components/ds/ds-toast'
+import { Toast } from '@dstikin/ds'
 
 export default function Example() {
   return (
-    <DSToast
+    <Toast
       message="Cambios guardados correctamente"
       variant="success"
       position="top-right"

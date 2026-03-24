@@ -9,18 +9,22 @@ status: stable
 
 ## Instalacion
 
+```bash title="Terminal"
+npm install @dstikin/ds
+```
+
 ```tsx
-import { DSStatusChips } from '@/components/ds/ds-status-chips'
+import { StatusChips } from '@dstikin/ds'
 ```
 
 ## Uso
 
 ```tsx title="status-chips.tsx"
-import { DSStatusChips } from '@/components/ds/ds-status-chips'
+import { StatusChips } from '@dstikin/ds'
 
 export default function Example() {
   return (
-    <DSStatusChips variant="success" label="Completado" />
+    <StatusChips variant="success" label="Completado" />
   )
 }
 ```

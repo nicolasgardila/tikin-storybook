@@ -9,18 +9,22 @@ status: stable
 
 ## Instalacion
 
+```bash title="Terminal"
+npm install @dstikin/ds
+```
+
 ```tsx
-import { DSRadioButton } from '@/components/ds/ds-radio-button'
+import { RadioButton } from '@dstikin/ds'
 ```
 
 ## Uso
 
 ```tsx title="radio-button.tsx"
-import { DSRadioButton } from '@/components/ds/ds-radio-button'
+import { RadioButton } from '@dstikin/ds'
 
 export default function Example() {
   return (
-    <DSRadioButton
+    <RadioButton
       label="Transferencia bancaria"
       checked={true}
     />

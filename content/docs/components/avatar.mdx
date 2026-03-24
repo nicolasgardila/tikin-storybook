@@ -9,18 +9,22 @@ status: stable
 
 ## Instalacion
 
+```bash title="Terminal"
+npm install @dstikin/ds
+```
+
 ```tsx
-import { DSAvatar } from '@/components/ds/ds-avatar'
+import { Avatar } from '@dstikin/ds'
 ```
 
 ## Uso
 
 ```tsx title="avatar.tsx"
-import { DSAvatar } from '@/components/ds/ds-avatar'
+import { Avatar } from '@dstikin/ds'
 
 export default function Example() {
   return (
-    <DSAvatar initials="NG" size="40" showStatus status="online" />
+    <Avatar initials="NG" size="40" showStatus status="online" />
   )
 }
 ```

@@ -9,21 +9,25 @@ status: stable
 
 ## Instalacion
 
+```bash title="Terminal"
+npm install @dstikin/ds
+```
+
 ```tsx
-import { DSContainer } from '@/components/ds/ds-container'
+import { Container } from '@dstikin/ds'
 ```
 
 ## Uso
 
 ```tsx title="container.tsx"
-import { DSContainer } from '@/components/ds/ds-container'
+import { Container } from '@dstikin/ds'
 
 export default function Example() {
   return (
-    <DSContainer variant="double" padding="default">
+    <Container variant="double" padding="default">
       <h3>Confirmar Transferencia</h3>
       <p>Monto: $1,200.00</p>
-    </DSContainer>
+    </Container>
   )
 }
 ```

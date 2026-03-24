@@ -9,18 +9,22 @@ status: stable
 
 ## Instalacion
 
+```bash title="Terminal"
+npm install @dstikin/ds
+```
+
 ```tsx
-import { DSOTPInput } from '@/components/ds/ds-otp-input'
+import { OTPInput } from '@dstikin/ds'
 ```
 
 ## Uso
 
 ```tsx title="otp-input.tsx"
-import { DSOTPInput } from '@/components/ds/ds-otp-input'
+import { OTPInput } from '@dstikin/ds'
 
 export default function Example() {
   return (
-    <DSOTPInput length={4} size="md" state="default" />
+    <OTPInput length={4} size="md" state="default" />
   )
 }
 ```
