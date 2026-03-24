@@ -19,7 +19,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         ),
       }}
       links={[
-        { type: 'main', text: 'Docs', url: '/docs', active: 'nested-url' },
+        { type: 'main', text: 'Docs', url: '/docs', active: 'url' },
         {
           type: 'main',
           text: 'Componentes',
