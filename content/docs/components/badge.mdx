@@ -9,18 +9,24 @@ status: stable
 
 ## Instalacion
 
+```bash title="Terminal"
+npm install @dstikin/ds
+```
+
 ```tsx
-import { DSBadge } from '@/components/ds/ds-badge'
+import { Badge } from '@dstikin/ds'
 ```
 
 ## Uso
 
 ```tsx title="badge.tsx"
-import { DSBadge } from '@/components/ds/ds-badge'
+import { Badge } from '@dstikin/ds'
 
 export default function Example() {
   return (
-    <DSBadge variant="count" count={5} />
+    <Badge variant="count" count={3}>
+      <BellIcon />
+    </Badge>
   )
 }
 ```

@@ -9,20 +9,24 @@ status: stable
 
 ## Instalacion
 
+```bash title="Terminal"
+npm install @dstikin/ds
+```
+
 ```tsx
-import { DSButton } from '@/components/ds/ds-button'
+import { Button } from '@dstikin/ds'
 ```
 
 ## Uso
 
 ```tsx title="button.tsx"
-import { DSButton } from '@/components/ds/ds-button'
+import { Button } from '@dstikin/ds'
 
 export default function Example() {
   return (
-    <DSButton variant="primary" size="md">
+    <Button variant="primary" size="md">
       Continuar
-    </DSButton>
+    </Button>
   )
 }
 ```

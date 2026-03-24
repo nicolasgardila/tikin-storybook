@@ -9,22 +9,22 @@ status: stable
 
 ## Instalacion
 
+```bash title="Terminal"
+npm install @dstikin/ds
+```
+
 ```tsx
-import { DSToggle } from '@/components/ds/ds-toggle'
+import { Toggle } from '@dstikin/ds'
 ```
 
 ## Uso
 
 ```tsx title="toggle.tsx"
-import { DSToggle } from '@/components/ds/ds-toggle'
+import { Toggle } from '@dstikin/ds'
 
 export default function Example() {
   return (
-    <DSToggle
-      checked={false}
-      label="Notificaciones push"
-      onChange={(checked) => console.log(checked)}
-    />
+    <Toggle label="Notificaciones" size="md" onCheckedChange={(checked) => console.log(checked)} />
   )
 }
 ```

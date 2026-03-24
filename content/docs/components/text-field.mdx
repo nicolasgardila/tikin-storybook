@@ -9,22 +9,22 @@ status: stable
 
 ## Instalacion
 
+```bash title="Terminal"
+npm install @dstikin/ds
+```
+
 ```tsx
-import { DSTextField } from '@/components/ds/ds-text-field'
+import { TextField } from '@dstikin/ds'
 ```
 
 ## Uso
 
 ```tsx title="text-field.tsx"
-import { DSTextField } from '@/components/ds/ds-text-field'
+import { TextField } from '@dstikin/ds'
 
 export default function Example() {
   return (
-    <DSTextField
-      label="Email"
-      placeholder="tu@email.com"
-      size="md"
-    />
+    <TextField label="Email" placeholder="tu@email.com" size="md" />
   )
 }
 ```

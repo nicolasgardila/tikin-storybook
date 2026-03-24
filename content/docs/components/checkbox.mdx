@@ -9,21 +9,22 @@ status: stable
 
 ## Instalacion
 
+```bash title="Terminal"
+npm install @dstikin/ds
+```
+
 ```tsx
-import { DSCheckbox } from '@/components/ds/ds-checkbox'
+import { Checkbox } from '@dstikin/ds'
 ```
 
 ## Uso
 
 ```tsx title="checkbox.tsx"
-import { DSCheckbox } from '@/components/ds/ds-checkbox'
+import { Checkbox } from '@dstikin/ds'
 
 export default function Example() {
   return (
-    <DSCheckbox
-      label="Acepto los términos y condiciones"
-      checked={false}
-    />
+    <Checkbox label="Acepto los terminos" onCheckedChange={(checked) => console.log(checked)} />
   )
 }
 ```
